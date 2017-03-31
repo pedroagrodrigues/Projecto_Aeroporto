@@ -3,7 +3,11 @@
 
 int main() {
 	setlocale(LC_ALL, "Portuguese");
-	aviao pista[7], aproximacao[10], descolar;
+	var_load();
+
+
+
+	/*aviao pista[7], aproximacao[10], descolar;
 	int opt;
 	preencher_dados(aproximacao, 9);
 	int i = 0;
@@ -48,6 +52,6 @@ int main() {
 			cout << "Essa opção não é válida\n";
 			break;	
 		}
-	}
+	}*/
 }
 

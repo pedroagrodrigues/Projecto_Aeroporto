@@ -1,7 +1,6 @@
 //---------Bibliotecas
 #include <iostream>
 #include <string>
-#include <fstream>
 #include <conio.h>
 using namespace std;
 //---------Definições
@@ -31,4 +30,6 @@ struct pessoa {
 	string nacionalidade;
 };
 //---------Funções---------
-void preencher_dados(aviao a[], int size); //Consultas
+//void preencher_dados(aviao a[], int size); //Consultas
+void var_load();
+

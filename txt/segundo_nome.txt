@@ -1,4 +1,4 @@
-﻿SMITH
+SMITH
 JONES	  
 BROWN	  
 JOHNSON	  

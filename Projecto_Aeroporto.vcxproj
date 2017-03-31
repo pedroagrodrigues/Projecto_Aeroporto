@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="consultas.cpp" />
+    <ClCompile Include="filestreams.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
