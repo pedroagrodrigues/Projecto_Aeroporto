@@ -25,17 +25,16 @@ string random(string nome) {
 /* Erros conhecidos: 
 quando o valor random pertence à primeira linha aparece lixo antes do nome obtido
 */
-/*
-void preencher_dados(aviao a[], int size) {
-	for (int i = 0; i < size; i++) {
-		a[i].nome_voo = random("voo.txt");
-		a[i].destino = random("destino.txt");
-		a[i].modelo = random("modelo.txt");
-		a[i].origem = random("origem.txt");
-		a[i].capacidade = (rand() % (15 - 5)) + 5;
-		/*a.passageiro.bi=14047585;
-		a.passageiro.nacionalidade=random("nacionalidade.txt");
-		a.passageiro.primeiro_nome=random("primeiro_nome.txt");
-		a.passageiro.segundo_nome=random("segundo_nome.txt");
-	}
-}*/
+
+void var_load() {
+	string *destino_file=0, *capacidade_file = 0, *modelo_file = 0, *nacionalidade_file = 0, *origem_file = 0, *primeiro_file = 0, *segundo_file = 0, *voo_file = 0;
+	preencher_dados(destino_file, "txt\\destino.txt");
+	preencher_dados(capacidade_file, "txt\\capacidade.txt");
+	preencher_dados(modelo_file, "txt\\modelo.txt");
+	preencher_dados(nacionalidade_file, "txt\\nacionalidade.txt");
+	preencher_dados(origem_file, "txt\\origem.txt");
+	preencher_dados(primeiro_file, "txt\\primeiro_nome.txt");
+	preencher_dados(segundo_file, "txt\\segundo_nome.txt");
+	preencher_dados(voo_file, "txt\\voo.txt");
+
+}

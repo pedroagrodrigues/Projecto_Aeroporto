@@ -30,6 +30,6 @@ struct pessoa {
 	string nacionalidade;
 };
 //---------Funções---------
-//void preencher_dados(aviao a[], int size); //Consultas
 void var_load();
+void preencher_dados(string * data, string caminho);
 

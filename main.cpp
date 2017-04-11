@@ -1,15 +1,14 @@
 #include "bibliotecas.h"
 
-
 int main() {
 	setlocale(LC_ALL, "Portuguese");
 	var_load();
 
 
 
-	/*aviao pista[7], aproximacao[10], descolar;
+	aviao pista[7], aproximacao[10], descolar;
 	int opt;
-	preencher_dados(aproximacao, 9);
+
 	int i = 0;
 	while (1) { //Este é o nosso loop, o 1 representa o "verdadeiro" sendo que este é um loop infinito
 		limpar;
@@ -52,6 +51,6 @@ int main() {
 			cout << "Essa opção não é válida\n";
 			break;	
 		}
-	}*/
+	}
 }
 
