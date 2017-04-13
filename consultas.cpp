@@ -1,4 +1,5 @@
 #include "bibliotecas.h"
+string *destino_file, *capacidade_file, *modelo_file, *nacionalidade_file, *origem_file, *primeiro_file, *segundo_file, *voo_file;
 /*
 string random(string nome) {
 	nome = "txt\\" + nome;
@@ -26,15 +27,33 @@ string random(string nome) {
 quando o valor random pertence à primeira linha aparece lixo antes do nome obtido
 */
 
-void var_load() {
-	string *destino_file=0, *capacidade_file = 0, *modelo_file = 0, *nacionalidade_file = 0, *origem_file = 0, *primeiro_file = 0, *segundo_file = 0, *voo_file = 0;
-	preencher_dados(destino_file, "txt\\destino.txt");
-	preencher_dados(capacidade_file, "txt\\capacidade.txt");
-	preencher_dados(modelo_file, "txt\\modelo.txt");
-	preencher_dados(nacionalidade_file, "txt\\nacionalidade.txt");
-	preencher_dados(origem_file, "txt\\origem.txt");
-	preencher_dados(primeiro_file, "txt\\primeiro_nome.txt");
-	preencher_dados(segundo_file, "txt\\segundo_nome.txt");
-	preencher_dados(voo_file, "txt\\voo.txt");
+void var_load_file() {
+	//A POSIÇÃO ZERO DE CADA VECTOR INDICA O TAMANHO DO MESMO
+	destino_file = preencher_dados("txt\\destino.txt");
+	capacidade_file = preencher_dados("txt\\capacidade.txt");
+	modelo_file = preencher_dados("txt\\modelo.txt");
+	nacionalidade_file = preencher_dados("txt\\nacionalidade.txt");
+	origem_file = preencher_dados("txt\\origem.txt");
+	primeiro_file = preencher_dados("txt\\primeiro_nome.txt");
+	segundo_file = preencher_dados("txt\\segundo_nome.txt");
+	voo_file = preencher_dados("txt\\voo.txt");
+
+	//confirmação de carregamento
+	/*
+	for (int i = 1; i < stoi(origem_file[0]); i++) {
+		cout << origem_file[i] << endl;
+	}*/
+	
+}
+string randomize(string * data) {
+
+	return "2";
+}
+
+void carregamento_vectores(aviao * pista, aviao * aproximacao, aviao * descolar) {
+	for (int i = 0; i < 10; i++) {
+		aproximacao[i].capacidade = stoi(randomize(capacidade_file));
+	}
+
 
 }

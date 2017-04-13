@@ -1,4 +1,4 @@
-﻿Singapore Changi
+Singapore Changi
 Incheon Intl Airport
 Munich Airport
 Tokyo Intl Haneda
@@ -85,7 +85,7 @@ Nice Airport
 Guangzhou Airport
 Panama Tocumen
 Birmingham Airport
-Montréal Intl Airport
+Montr?al Intl Airport
 Detroit Airport
 Manchester Airport
 Los Angeles Airport

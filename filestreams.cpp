@@ -3,7 +3,7 @@
  
 
 
-void preencher_dados(string * data, string caminho) {
+string * preencher_dados(string caminho) {
 	string  line, * temp = new string[500];
 	fstream file(caminho);
 	int current = 0;
@@ -16,21 +16,20 @@ void preencher_dados(string * data, string caminho) {
 		}
 		file.close();
 
-		data = new string[current];
-		for (int i = 0; i < current; i++) {
-			data[i] = temp[i];
+		string * nova = new string[current+1];
+		nova[0] = to_string(current + 1);
+		for (int i = 1; i <= current; i++) {
+			nova[i] = temp[i];
 		}
 		delete[] temp; //Array temporário, já cumpriu a sua função, pode ser apagado para libertar o seu espaço em memória 
-		
-		//verificação de carregamento	
-		/*
-		for (int i = 0; i < current; i++) {
-			cout << data[i] << endl;
-		}
-		*/
+		return nova;
 
-	} else cout << "ERROR, something prevent connection to the file!\n";
-		
+	}
+	else {
+		cout << "ERROR, something prevent connection to the file!\n";
+		return 0;
+	}
+	
 	
 
 }

@@ -2,13 +2,12 @@
 
 int main() {
 	setlocale(LC_ALL, "Portuguese");
-	var_load();
+	var_load_file();
+	aviao * pista = new aviao[7], * aproximacao = new aviao[10], * descolar = new aviao;
+	carregamento_vectores(pista, aproximacao, descolar);
 
 
-
-	aviao pista[7], aproximacao[10], descolar;
-	int opt;
-
+	/*
 	int i = 0;
 	while (1) { //Este é o nosso loop, o 1 representa o "verdadeiro" sendo que este é um loop infinito
 		limpar;
@@ -51,6 +50,6 @@ int main() {
 			cout << "Essa opção não é válida\n";
 			break;	
 		}
-	}
+	}*/
 }
 

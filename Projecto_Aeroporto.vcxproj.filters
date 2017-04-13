@@ -49,9 +49,6 @@
     <Text Include="txt\nacionalidade.txt">
       <Filter>txt</Filter>
     </Text>
-    <Text Include="txt\origem.txt">
-      <Filter>txt</Filter>
-    </Text>
     <Text Include="txt\primeiro_nome.txt">
       <Filter>txt</Filter>
     </Text>
@@ -59,6 +56,9 @@
       <Filter>txt</Filter>
     </Text>
     <Text Include="txt\voo.txt">
+      <Filter>txt</Filter>
+    </Text>
+    <Text Include="txt\origem.txt">
       <Filter>txt</Filter>
     </Text>
   </ItemGroup>
