@@ -21,7 +21,6 @@ struct aviao {
 	string destino;
 	string modelo;
 	int capacidade;
-	//pessoa passageiro;
 };
 struct pessoa {
 	int bi;
@@ -32,5 +31,5 @@ struct pessoa {
 //---------Funções---------
 void var_load_file();
 string * preencher_dados(string caminho);
-void carregamento_vectores(aviao * pista, aviao * aproximacao, aviao * descolar);
-
+void carregamento_vectores(aviao pista[], aviao aproximacao[], aviao descolar);
+bool is_written();

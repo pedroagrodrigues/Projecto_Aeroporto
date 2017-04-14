@@ -40,20 +40,36 @@ void var_load_file() {
 
 	//confirmação de carregamento
 	/*
-	for (int i = 1; i < stoi(origem_file[0]); i++) {
-		cout << origem_file[i] << endl;
-	}*/
-	
+	for (int i = 0; i < stoi(origem_file[0]); i++) {
+		cout << i << origem_file[i] << endl;
+	}
+	*/
 }
 string randomize(string * data) {
-
-	return "2";
+	int line = rand() % (stoi(data[0])) + 1;
+	return data[line];
 }
 
-void carregamento_vectores(aviao * pista, aviao * aproximacao, aviao * descolar) {
-	for (int i = 0; i < 10; i++) {
-		aproximacao[i].capacidade = stoi(randomize(capacidade_file));
-	}
-
-
+int rand_capacidade(string *data) {
+	int line = rand() % (stoi(data[0])) + 1;
+	int capacidade = stoi(data[line]);
+	return capacidade;
 }
+aviao generate_aprox() {
+	aviao data;
+	data.nome_voo = randomize(voo_file);
+	data.origem = randomize(origem_file);
+	data.destino = "Aeroporto EDA"; 
+	data.modelo = randomize(modelo_file);
+	data.capacidade = rand_capacidade(capacidade_file);
+	return data;
+}
+
+//O programa quebra nesta função
+void carregamento_vectores(aviao pista[], aviao aproximacao[], aviao descolar) {
+	for (int i = 0; i < 1; i++) {
+		aproximacao[i] = generate_aprox();
+			
+		}
+}
+
