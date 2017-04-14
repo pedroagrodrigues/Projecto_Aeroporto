@@ -3,14 +3,14 @@
 int main() {
 	setlocale(LC_ALL, "Portuguese");
 	var_load_file();
-	aviao pista[7], aproximacao[10], descolar;
+	aviao * pista = new aviao[7], * aproximacao = new aviao[10], * descolar = new aviao;
 	carregamento_vectores(pista, aproximacao, descolar);
 
 
-	
+	/*
 	int i = 0;
 	while (1) { //Este é o nosso loop, o 1 representa o "verdadeiro" sendo que este é um loop infinito
-		//limpar;
+		limpar;
 		if (i == 9) i = 0;
 
 		cout << "(e)mergências (o)pções (g)ravar\n";
@@ -50,6 +50,6 @@ int main() {
 			cout << "Essa opção não é válida\n";
 			break;	
 		}
-	}
+	}*/
 }
 
