@@ -26,10 +26,10 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="consultas.cpp">
+    <ClCompile Include="filestreams.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="filestreams.cpp">
+    <ClCompile Include="main_funcions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,9 +38,6 @@
       <Filter>txt</Filter>
     </Text>
     <Text Include="txt\destino.txt">
-      <Filter>txt</Filter>
-    </Text>
-    <Text Include="txt\Estado.txt">
       <Filter>txt</Filter>
     </Text>
     <Text Include="txt\modelo.txt">

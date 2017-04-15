@@ -7,29 +7,35 @@ using namespace std;
 #ifdef _WIN32
 	#define limpar system("CLS");
 	#define pausa system("PAUSE");
-#endif
-
-#ifdef _unix_
+#else
 	#define limpar system("clear");
-	#define pausa system('PAUSE');\\não tenho a certeza se funciona em linux
+	#define pausa system('PAUSE');
 #endif
 
 //---------Estruturas-----
+struct pessoa {
+	int bilhete;
+	string primeiro_nome;
+	string segundo_nome;
+	string nacionalidade;
+};
 struct aviao {
 	string nome_voo;
 	string origem;
 	string destino;
 	string modelo;
 	int capacidade;
+	pessoa * passageiro;
 };
-struct pessoa {
-	int bi;
-	string primeiro_nome;
-	string segundo_nome;
-	string nacionalidade;
-};
+
+
 //---------Funções---------
-void var_load_file();
-string * preencher_dados(string caminho);
-void carregamento_vectores(aviao pista[], aviao aproximacao[], aviao descolar);
 bool is_written();
+void load_file_state(aviao pista[], aviao aproximacao[], aviao * desc);
+string * preencher_dados(string caminho); 
+bool save(aviao pista[], aviao aproximacao[], aviao * desc);
+
+void go_loop(aviao pista[], aviao aprox[], aviao * desc);
+void primeiro_carregamento_vectores(aviao pista[], aviao aproximacao[], aviao * desc);
+void var_load_file();
+

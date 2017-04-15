@@ -117,14 +117,13 @@
     <ClInclude Include="bibliotecas.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="consultas.cpp" />
+    <ClCompile Include="main_funcions.cpp" />
     <ClCompile Include="filestreams.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="txt\capacidade.txt" />
     <Text Include="txt\destino.txt" />
-    <Text Include="txt\Estado.txt" />
     <Text Include="txt\modelo.txt" />
     <Text Include="txt\nacionalidade.txt" />
     <Text Include="txt\origem.txt" />
