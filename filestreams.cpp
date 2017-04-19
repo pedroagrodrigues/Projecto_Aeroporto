@@ -1,10 +1,8 @@
 #include "bibliotecas.h";
 #include <fstream>
- 
-
 
 string * preencher_dados(string caminho) {
-	string  line, * temp = new string[500];
+	string  line, *temp = new string[500];
 	fstream file(caminho);
 	int current = 0;
 	if (file.is_open()) {
@@ -15,17 +13,13 @@ string * preencher_dados(string caminho) {
 			}
 		}
 		file.close();
-
-		string * nova = new string[current+1];
+		string * nova = new string[current + 1];
 		nova[0] = to_string(current);
 		for (int i = 1; i <= current; i++) {
-			nova[i] = temp[i];
+			nova[i] = temp[i - 1];
 		}
 		delete[] temp; //Array temporário, já cumpriu a sua função, pode ser apagado para libertar o seu espaço em memória 
 		return nova;
-<<<<<<< HEAD
-
-=======
 	}
 	else {
 		cout << "ERROR, something prevent connection to the file: " << caminho << "\n";
@@ -47,16 +41,12 @@ bool is_written() {
 			file.close();
 			return 1;
 		}
->>>>>>> origin/randomize
 	}
 	else {
 		return 0;
 	}
 	return false;
-	
-<<<<<<< HEAD
-	
-=======
+
 }
 
 bool save(aviao pista[], aviao aprox[], aviao * desc) {
@@ -107,7 +97,7 @@ bool save(aviao pista[], aviao aprox[], aviao * desc) {
 
 void load_file_state(aviao pista[], aviao aproximacao[], aviao * desc) {
 	fstream file("estado.save", ios_base::in | ios_base::binary);
-	if (file.is_open()) {	
+	if (file.is_open()) {
 		for (int i = 0; i < 7; i++) {
 			string temp;
 			getline(file, temp);
@@ -166,6 +156,5 @@ void load_file_state(aviao pista[], aviao aproximacao[], aviao * desc) {
 		cout << "ERROR, something prevent connection to the file! (load file state) \n";
 		pausa;
 	}
->>>>>>> origin/randomize
 
 }

@@ -74,7 +74,7 @@ void primeiro_carregamento_vectores(aviao pista[], aviao aproximacao[], aviao * 
 
 void pista_6(aviao pista[], aviao aprox[]) {
 	pista[6].modelo = aprox[0].modelo;
-	pista[6].capacidade= aprox[0].capacidade;
+	pista[6].capacidade = aprox[0].capacidade;
 	pista[6].origem = "Aeroporto EDA";
 	pista[6].destino = randomize(destino_file);
 	pista[6].nome_voo = randomize(voo_file);

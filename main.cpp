@@ -3,25 +3,11 @@
 int main() {
 	setlocale(LC_ALL, "Portuguese");
 	var_load_file();
-<<<<<<< HEAD
-	aviao * pista = new aviao[7], * aproximacao = new aviao[10], * descolar = new aviao;
-	carregamento_vectores(pista, aproximacao, descolar);
-
-
-	/*
-	int i = 0;
-	while (1) { //Este é o nosso loop, o 1 representa o "verdadeiro" sendo que este é um loop infinito
-		limpar;
-		if (i == 9) i = 0;
-
-		cout << "(e)mergências (o)pções (g)ravar\n";
-=======
-	aviao pista[7], aproximacao[10],* descolar = new aviao;
-	primeiro_carregamento_vectores(pista, aproximacao, descolar);	
+	aviao pista[7], aproximacao[10], *descolar = new aviao;
+	primeiro_carregamento_vectores(pista, aproximacao, descolar);
 	while (1) {
 		limpar;
 		cout << "(e)mergências (o)pções (g)ravar\t\t 0 - Sair\n";
->>>>>>> origin/randomize
 		cout << "---------------\nEm aproximação\n---------------\n";
 		cout << "Voo: " << aproximacao[0].nome_voo << endl;
 		cout << "Modelo: " << aproximacao[0].modelo << endl;
@@ -47,9 +33,9 @@ int main() {
 		cout << "Destino: " << descolar->destino << endl;
 		cout << "Passageiros: ";
 		for (int i = 0; i < descolar->capacidade && i <= 4; i++) cout << descolar->passageiro[i].segundo_nome << ", ";
-		if (descolar->capacidade > 4) cout << "...\n"; 
+		if (descolar->capacidade > 4) cout << "...\n";
 		else cout << "./n";
-		
+
 		//-------------Switch Case-------------
 		switch (_getch()) {
 		case 'e':
@@ -62,7 +48,7 @@ int main() {
 			break;
 		case 'g':
 			limpar;
-			if(save(pista, aproximacao, descolar))
+			if (save(pista, aproximacao, descolar))
 				cout << "Escolheu a opção gravar, os seus documentos foram salvos.\n";
 			else cout << "Erro, falha ao gravar!\n";
 			pausa;
@@ -78,8 +64,8 @@ int main() {
 			break;
 		default:
 			cout << "Essa opção não é válida\n";
-			break;	
+			break;
 		}
-	}*/
+	}
 }
 

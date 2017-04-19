@@ -14,7 +14,7 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="txt">
-      <UniqueIdentifier>{69500d82-dcf2-4add-9567-e78e4ba2f079}</UniqueIdentifier>
+      <UniqueIdentifier>{a5a8e915-2da5-4e74-83cb-e1b96e5fbeb9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -26,10 +26,10 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="filestreams.cpp">
+    <ClCompile Include="main_functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main_funcions.cpp">
+    <ClCompile Include="filestreams.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -46,6 +46,9 @@
     <Text Include="txt\nacionalidade.txt">
       <Filter>txt</Filter>
     </Text>
+    <Text Include="txt\origem.txt">
+      <Filter>txt</Filter>
+    </Text>
     <Text Include="txt\primeiro_nome.txt">
       <Filter>txt</Filter>
     </Text>
@@ -53,9 +56,6 @@
       <Filter>txt</Filter>
     </Text>
     <Text Include="txt\voo.txt">
-      <Filter>txt</Filter>
-    </Text>
-    <Text Include="txt\origem.txt">
       <Filter>txt</Filter>
     </Text>
   </ItemGroup>
