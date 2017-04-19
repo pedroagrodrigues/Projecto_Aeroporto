@@ -27,15 +27,18 @@ struct aviao {
 	int capacidade;
 	pessoa * passageiro;
 };
-
+struct terminal {
+	pessoa humman;
+	int turn = -1;
+};
 
 //---------Funções---------
 bool is_written();
-void load_file_state(aviao pista[], aviao aproximacao[], aviao * desc);
+void load_file_state(aviao pista[], aviao aproximacao[], aviao * desc, terminal * passageiros);
 string * preencher_dados(string caminho);
-bool save(aviao pista[], aviao aproximacao[], aviao * desc);
+bool save(aviao pista[], aviao aproximacao[], aviao * desc, terminal * passageiros);
 
-void go_loop(aviao pista[], aviao aprox[], aviao * desc);
-void primeiro_carregamento_vectores(aviao pista[], aviao aproximacao[], aviao * desc);
+void go_loop(aviao pista[], aviao aprox[], aviao * desc, terminal * passageiros);
+void primeiro_carregamento_vectores(aviao pista[], aviao aproximacao[], aviao * desc, terminal * passageiros);
 void var_load_file();
 

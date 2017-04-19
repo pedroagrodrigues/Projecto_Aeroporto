@@ -49,7 +49,7 @@ bool is_written() {
 
 }
 
-bool save(aviao pista[], aviao aprox[], aviao * desc) {
+bool save(aviao pista[], aviao aprox[], aviao * desc, terminal * passageiros) {
 	fstream file("estado.save", ios_base::out | ios_base::binary);
 	if (file.is_open()) {
 		for (int i = 0; i < 7; i++) {
@@ -83,19 +83,28 @@ bool save(aviao pista[], aviao aprox[], aviao * desc) {
 		file << desc->modelo << endl;
 		file << desc->nome_voo << endl;
 		file << desc->origem << endl;
-		for (int j = 0; j < desc->capacidade; j++) {
-			file << desc->passageiro[j].bilhete << endl;
-			file << desc->passageiro[j].nacionalidade << endl;
-			file << desc->passageiro[j].primeiro_nome << endl;
-			file << desc->passageiro[j].segundo_nome << endl;
+		for (int i = 0; i < desc->capacidade; i++) {
+			file << desc->passageiro[i].bilhete << endl;
+			file << desc->passageiro[i].nacionalidade << endl;
+			file << desc->passageiro[i].primeiro_nome << endl;
+			file << desc->passageiro[i].segundo_nome << endl;
 		}
+
+		for (int i = 0; i < 30; i++) {
+			file << passageiros[i].humman.bilhete << endl;
+			file << passageiros[i].humman.nacionalidade << endl;
+			file << passageiros[i].humman.primeiro_nome << endl;
+			file << passageiros[i].humman.segundo_nome << endl;
+			file << passageiros[i].turn << endl;
+		}
+
 		file.close();
 		return 1;
 	}
 	else return 0;
 }
 
-void load_file_state(aviao pista[], aviao aproximacao[], aviao * desc) {
+void load_file_state(aviao pista[], aviao aproximacao[], aviao * desc, terminal * passageiros) {
 	fstream file("estado.save", ios_base::in | ios_base::binary);
 	if (file.is_open()) {
 		for (int i = 0; i < 7; i++) {
@@ -108,9 +117,9 @@ void load_file_state(aviao pista[], aviao aproximacao[], aviao * desc) {
 			getline(file, pista[i].origem);
 			pista[i].passageiro = new pessoa[pista[i].capacidade];
 			for (int j = 0; j < pista[i].capacidade; j++) {
-				string temp2;
-				getline(file, temp2);
-				pista[i].passageiro[j].bilhete = atoi(temp2.c_str());
+				string temp;
+				getline(file, temp);
+				pista[i].passageiro[j].bilhete = atoi(temp.c_str());
 				getline(file, pista[i].passageiro[j].nacionalidade);
 				getline(file, pista[i].passageiro[j].primeiro_nome);
 				getline(file, pista[i].passageiro[j].segundo_nome);
@@ -126,9 +135,8 @@ void load_file_state(aviao pista[], aviao aproximacao[], aviao * desc) {
 			getline(file, aproximacao[i].origem);
 			aproximacao[i].passageiro = new pessoa[aproximacao[i].capacidade];
 			for (int j = 0; j < aproximacao[i].capacidade; j++) {
-				string temp2;
-				getline(file, temp2);
-				aproximacao[i].passageiro[j].bilhete = atoi(temp2.c_str());
+				getline(file, temp);
+				aproximacao[i].passageiro[j].bilhete = atoi(temp.c_str());
 				getline(file, aproximacao[i].passageiro[j].nacionalidade);
 				getline(file, aproximacao[i].passageiro[j].primeiro_nome);
 				getline(file, aproximacao[i].passageiro[j].segundo_nome);
@@ -143,13 +151,23 @@ void load_file_state(aviao pista[], aviao aproximacao[], aviao * desc) {
 		getline(file, desc->origem);
 		desc->passageiro = new pessoa[desc->capacidade];
 		for (int j = 0; j < desc->capacidade; j++) {
-			string temp2;
-			getline(file, temp2);
-			desc->passageiro[j].bilhete = atoi(temp2.c_str());
+			getline(file, temp);
+			desc->passageiro[j].bilhete = atoi(temp.c_str());
 			getline(file, desc->passageiro[j].nacionalidade);
 			getline(file, desc->passageiro[j].primeiro_nome);
 			getline(file, desc->passageiro[j].segundo_nome);
 		}
+		for (int i = 0; i < 30; i++) {
+			string temp;
+			getline(file, temp);
+			passageiros[i].humman.bilhete=atoi(temp.c_str());
+			getline(file, passageiros[i].humman.nacionalidade);
+			getline(file, passageiros[i].humman.primeiro_nome);
+			getline(file, passageiros[i].humman.segundo_nome);
+			getline(file, temp);
+			passageiros[i].turn = atoi(temp.c_str());
+		}
+
 		file.close();
 	}
 	else {

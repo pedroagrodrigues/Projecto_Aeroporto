@@ -4,7 +4,9 @@ int main() {
 	setlocale(LC_ALL, "Portuguese");
 	var_load_file();
 	aviao pista[7], aproximacao[10], *descolar = new aviao;
-	primeiro_carregamento_vectores(pista, aproximacao, descolar);
+	terminal * passageiros = new terminal[30];
+	//for (int i = 0; i < 30; i++) passageiros[i] = { NULL };
+	primeiro_carregamento_vectores(pista, aproximacao, descolar, passageiros);
 	while (1) {
 		limpar;
 		cout << "(e)mergências (o)pções (g)ravar\t\t 0 - Sair\n";
@@ -35,7 +37,8 @@ int main() {
 		for (int i = 0; i < descolar->capacidade && i <= 4; i++) cout << descolar->passageiro[i].segundo_nome << ", ";
 		if (descolar->capacidade > 4) cout << "...\n";
 		else cout << "./n";
-
+		/*for (int i = 0; i < 30; i++)
+			cout << passageiros[i].humman.segundo_nome << " teste\n";*/
 		//-------------Switch Case-------------
 		switch (_getch()) {
 		case 'e':
@@ -48,7 +51,7 @@ int main() {
 			break;
 		case 'g':
 			limpar;
-			if (save(pista, aproximacao, descolar))
+			if (save(pista, aproximacao, descolar, passageiros))
 				cout << "Escolheu a opção gravar, os seus documentos foram salvos.\n";
 			else cout << "Erro, falha ao gravar!\n";
 			pausa;
@@ -59,7 +62,7 @@ int main() {
 			return 0;
 		case 0xe0: //coresponde ao caracter indica que uma das setas foi precionada
 			if (_getch() == 0x4D) //corresponde à seta para a direita
-				go_loop(pista, aproximacao, descolar);
+				go_loop(pista, aproximacao, descolar, passageiros);
 			else cout << "Essa opção não é válida\n";
 			break;
 		default:

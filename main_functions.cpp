@@ -24,9 +24,9 @@ int generate_ticket() {
 	//ticket_number = "TKT" + ticket_number;
 	return ticket_number;
 }
-void primeiro_carregamento_vectores(aviao pista[], aviao aproximacao[], aviao * desc) {
+void primeiro_carregamento_vectores(aviao pista[], aviao aproximacao[], aviao * desc, terminal * passageiros) {
 	if (is_written()) {
-		load_file_state(pista, aproximacao, desc);
+		load_file_state(pista, aproximacao, desc, passageiros);
 	}
 	else {
 		for (int i = 0; i < 10; i++) {
@@ -102,11 +102,28 @@ void aprox_9(aviao aprox[]) {
 	}
 
 }
-void go_loop(aviao pista[], aviao aprox[], aviao * desc) {
+/*
+void check_terminal(aviao aprox, terminal * ppl) {
+	for (int i = 0; i < aprox.capacidade; i++) {
+		for (int j = 0; j < 30; j++) {
+			if (ppl[j].turn == -1) {
+				ppl[j].humman.bilhete = aprox.passageiro[i].bilhete;
+				ppl[j].humman.nacionalidade = aprox.passageiro[i].nacionalidade;
+				ppl[j].humman.primeiro_nome = aprox.passageiro[i].primeiro_nome;
+				ppl[j].humman.segundo_nome = aprox.passageiro[i].segundo_nome;
+				ppl[j].turn = 0;
+				break;
+			}
+		}
+		
+	}
+}*/
+void go_loop(aviao pista[], aviao aprox[], aviao * desc, terminal * passageiros) {
 	*desc = pista[0];
 	for (int i = 0; i < 6; i++) {
 		pista[i] = pista[i + 1];
 	}
+	//check_terminal(aprox[0], passageiros);
 	pista_6(pista, aprox);
 
 	for (int i = 0; i < 9; i++) {
