@@ -102,8 +102,12 @@ void aprox_9(aviao aprox[]) {
 	}
 
 }
-/*
+
 void check_terminal(aviao aprox, terminal * ppl) {
+	for (int i = 0; i < 30; i++) {
+		if (ppl[i].turn == 1) ppl[i] = { NULL };
+		else if (ppl[i].turn == 0) ppl[i].turn++;
+	}
 	for (int i = 0; i < aprox.capacidade; i++) {
 		for (int j = 0; j < 30; j++) {
 			if (ppl[j].turn == -1) {
@@ -114,16 +118,16 @@ void check_terminal(aviao aprox, terminal * ppl) {
 				ppl[j].turn = 0;
 				break;
 			}
-		}
-		
+		}	
 	}
-}*/
+	
+}
 void go_loop(aviao pista[], aviao aprox[], aviao * desc, terminal * passageiros) {
 	*desc = pista[0];
 	for (int i = 0; i < 6; i++) {
 		pista[i] = pista[i + 1];
 	}
-	//check_terminal(aprox[0], passageiros);
+	check_terminal(aprox[0], passageiros);
 	pista_6(pista, aprox);
 
 	for (int i = 0; i < 9; i++) {

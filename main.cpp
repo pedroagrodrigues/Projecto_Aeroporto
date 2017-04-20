@@ -5,7 +5,7 @@ int main() {
 	var_load_file();
 	aviao pista[7], aproximacao[10], *descolar = new aviao;
 	terminal * passageiros = new terminal[30];
-	//for (int i = 0; i < 30; i++) passageiros[i] = { NULL };
+	for (int i = 0; i < 30; i++) passageiros[i] = { NULL };
 	primeiro_carregamento_vectores(pista, aproximacao, descolar, passageiros);
 	while (1) {
 		limpar;
@@ -37,8 +37,12 @@ int main() {
 		for (int i = 0; i < descolar->capacidade && i <= 4; i++) cout << descolar->passageiro[i].segundo_nome << ", ";
 		if (descolar->capacidade > 4) cout << "...\n";
 		else cout << "./n";
-		/*for (int i = 0; i < 30; i++)
-			cout << passageiros[i].humman.segundo_nome << " teste\n";*/
+
+		//Teste para ver se as pessoas estão a entrar e a sair do terminal
+		//for (int i = 0; i < 30; i++)
+			//if (passageiros[i].turn != -1) cout << passageiros[i].humman.segundo_nome << " turno \t" << passageiros[i].turn << endl;
+
+
 		//-------------Switch Case-------------
 		switch (_getch()) {
 		case 'e':
