@@ -3,16 +3,19 @@
 #include <string>
 #include <conio.h>
 using namespace std;
-//---------Definições
+//---------Definições---------
 #ifdef _WIN32
 #define limpar system("CLS");
 #define pausa system("PAUSE");
+#define red system("color C"); //emergência (para sair)
+#define white system("color 7");
 #else
 #define limpar system("clear");
 #define pausa system('PAUSE');
+
 #endif
 
-//---------Estruturas-----
+//---------Estruturas---------
 struct pessoa {
 	int bilhete;
 	string primeiro_nome;
@@ -34,11 +37,11 @@ struct terminal {
 
 //---------Funções---------
 bool is_written();
-void load_file_state(aviao pista[], aviao aproximacao[], aviao * desc, terminal * passageiros);
+void load_file_state(aviao pista[], aviao aproximacao[], aviao desc[], terminal * passageiros);
 string * preencher_dados(string caminho);
-bool save(aviao pista[], aviao aproximacao[], aviao * desc, terminal * passageiros);
+bool save(aviao pista[], aviao aproximacao[], aviao desc[], terminal * passageiros);
 
-void go_loop(aviao pista[], aviao aprox[], aviao * desc, terminal * passageiros);
-void primeiro_carregamento_vectores(aviao pista[], aviao aproximacao[], aviao * desc, terminal * passageiros);
+void go_loop(aviao pista[], aviao aprox[], aviao desc[], terminal * passageiros);
+void primeiro_carregamento_vectores(aviao pista[], aviao aproximacao[], aviao desc[], terminal * passageiros);
 void var_load_file();
 

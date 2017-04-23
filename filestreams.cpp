@@ -1,8 +1,8 @@
 #include "bibliotecas.h";
 #include <fstream>
-
+//Carrega para uma variável com todas as linhas do ficheiro ".txt" recebido
 string * preencher_dados(string caminho) {
-	string  line, *temp = new string[500];
+	string  line, *temp = new string [500];
 	fstream file(caminho);
 	int current = 0;
 	if (file.is_open()) {
@@ -27,13 +27,12 @@ string * preencher_dados(string caminho) {
 		return 0;
 	}
 }
-
+//Verifica se existe algo escrito no ficheiro ".save" 
 bool is_written() {
 	ifstream file("estado.save", ios::beg | istream::binary);
 	if (file.is_open()) {
 		file.seekg(0, file.end);
-		int size = file.tellg();
-		if (size <= 0) {
+		if (file.tellg() <= 0) { //verifica a existencia de conteúdo
 			file.close();
 			return 0;
 		}
@@ -42,14 +41,14 @@ bool is_written() {
 			return 1;
 		}
 	}
-	else {
+	else { //caso não exista o ficheiro
 		return 0;
 	}
 	return false;
 
 }
-
-bool save(aviao pista[], aviao aprox[], aviao * desc, terminal * passageiros) {
+//Guarda os as variáveis no seu estado actual num ficheiro ".save" para que o programa continue a partir do ultimo ponto
+bool save(aviao pista[], aviao aprox[], aviao desc[], terminal * passageiros) {
 	fstream file("estado.save", ios_base::out | ios_base::binary);
 	if (file.is_open()) {
 		for (int i = 0; i < 7; i++) {
@@ -78,18 +77,19 @@ bool save(aviao pista[], aviao aprox[], aviao * desc, terminal * passageiros) {
 				file << aprox[i].passageiro[j].segundo_nome << endl;
 			}
 		}
-		file << desc->capacidade << endl;
-		file << desc->destino << endl;
-		file << desc->modelo << endl;
-		file << desc->nome_voo << endl;
-		file << desc->origem << endl;
-		for (int i = 0; i < desc->capacidade; i++) {
-			file << desc->passageiro[i].bilhete << endl;
-			file << desc->passageiro[i].nacionalidade << endl;
-			file << desc->passageiro[i].primeiro_nome << endl;
-			file << desc->passageiro[i].segundo_nome << endl;
+		for (int i = 0; i < 5; i++) {
+			file << desc[i].capacidade << endl;
+			file << desc[i].destino << endl;
+			file << desc[i].modelo << endl;
+			file << desc[i].nome_voo << endl;
+			file << desc[i].origem << endl;
+			for (int j = 0; j < desc[i].capacidade; j++) {
+				file << desc[i].passageiro[j].bilhete << endl;
+				file << desc[i].passageiro[j].nacionalidade << endl;
+				file << desc[i].passageiro[j].primeiro_nome << endl;
+				file << desc[i].passageiro[j].segundo_nome << endl;
+			}
 		}
-
 		for (int i = 0; i < 30; i++) {
 			file << passageiros[i].humman.bilhete << endl;
 			file << passageiros[i].humman.nacionalidade << endl;
@@ -103,8 +103,8 @@ bool save(aviao pista[], aviao aprox[], aviao * desc, terminal * passageiros) {
 	}
 	else return 0;
 }
-
-void load_file_state(aviao pista[], aviao aproximacao[], aviao * desc, terminal * passageiros) {
+//Carrega do ficheiro ".save" o estado que foi guardado noutra utilização
+void load_file_state(aviao pista[], aviao aproximacao[], aviao desc[], terminal * passageiros) {
 	fstream file("estado.save", ios_base::in | ios_base::binary);
 	if (file.is_open()) {
 		for (int i = 0; i < 7; i++) {
@@ -142,20 +142,23 @@ void load_file_state(aviao pista[], aviao aproximacao[], aviao * desc, terminal 
 				getline(file, aproximacao[i].passageiro[j].segundo_nome);
 			}
 		}
-		string temp;
-		getline(file, temp);
-		desc->capacidade = atoi(temp.c_str());
-		getline(file, desc->destino);
-		getline(file, desc->modelo);
-		getline(file, desc->nome_voo);
-		getline(file, desc->origem);
-		desc->passageiro = new pessoa[desc->capacidade];
-		for (int j = 0; j < desc->capacidade; j++) {
+		
+		for (int i = 0; i < 5; i++) {
+			string temp;
 			getline(file, temp);
-			desc->passageiro[j].bilhete = atoi(temp.c_str());
-			getline(file, desc->passageiro[j].nacionalidade);
-			getline(file, desc->passageiro[j].primeiro_nome);
-			getline(file, desc->passageiro[j].segundo_nome);
+			desc[i].capacidade = atoi(temp.c_str());
+			getline(file, desc[i].destino);
+			getline(file, desc[i].modelo);
+			getline(file, desc[i].nome_voo);
+			getline(file, desc[i].origem);
+			desc[i].passageiro = new pessoa[desc[i].capacidade];
+			for (int j = 0; j < desc[i].capacidade; j++) {
+				getline(file, temp);
+				desc[i].passageiro[j].bilhete = atoi(temp.c_str());
+				getline(file, desc[i].passageiro[j].nacionalidade);
+				getline(file, desc[i].passageiro[j].primeiro_nome);
+				getline(file, desc[i].passageiro[j].segundo_nome);
+			}
 		}
 		for (int i = 0; i < 30; i++) {
 			string temp;

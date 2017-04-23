@@ -14,17 +14,19 @@ void var_load_file() {
 	voo_file = preencher_dados("txt\\voo.txt");
 }
 
+//devolve o conteudo de uma linha seleccionada ao acaso.
 string randomize(string * data) {
 	int line = (rand() % stoi(data[0])) + 1;
 	return data[line];
 }
+//gera um numero para o bilhete (falta fazer a verificação se o numero já existe)
 int generate_ticket() {
 	int ticket_number;
 	ticket_number = rand() % 10000 + 900000;
-	//ticket_number = "TKT" + ticket_number;
 	return ticket_number;
 }
-void primeiro_carregamento_vectores(aviao pista[], aviao aproximacao[], aviao * desc, terminal * passageiros) {
+//Carrega o estado do programa se tiver algo guardado
+void primeiro_carregamento_vectores(aviao pista[], aviao aproximacao[], aviao desc[], terminal * passageiros) {
 	if (is_written()) {
 		load_file_state(pista, aproximacao, desc, passageiros);
 	}
@@ -57,21 +59,23 @@ void primeiro_carregamento_vectores(aviao pista[], aviao aproximacao[], aviao * 
 				pista[i].passageiro[j].segundo_nome = randomize(segundo_file);
 			}
 		}
-		desc->nome_voo = randomize(voo_file);
-		desc->origem = "Aeroporto EDA";
-		desc->destino = randomize(destino_file);
-		desc->modelo = randomize(modelo_file);
-		desc->capacidade = stoi(randomize(capacidade_file));
-		desc->passageiro = new pessoa[desc->capacidade];
-		for (int i = 0; i < desc->capacidade; i++) {
-			desc->passageiro[i].bilhete = generate_ticket();
-			desc->passageiro[i].nacionalidade = randomize(nacionalidade_file);
-			desc->passageiro[i].primeiro_nome = randomize(primeiro_file);
-			desc->passageiro[i].segundo_nome = randomize(segundo_file);
+		for (int i = 0; i < 5; i++) {
+			desc[i].nome_voo = randomize(voo_file);
+			desc[i].origem = "Aeroporto EDA";
+			desc[i].destino = randomize(destino_file);
+			desc[i].modelo = randomize(modelo_file);
+			desc[i].capacidade = stoi(randomize(capacidade_file));
+			desc[i].passageiro = new pessoa[desc[i].capacidade];
+			for (int j = 0; j < desc[i].capacidade; j++) {
+				desc[i].passageiro[j].bilhete = generate_ticket();
+				desc[i].passageiro[j].nacionalidade = randomize(nacionalidade_file);
+				desc[i].passageiro[j].primeiro_nome = randomize(primeiro_file);
+				desc[i].passageiro[j].segundo_nome = randomize(segundo_file);
+			}
 		}
 	}
 }
-
+//Cria os novos elementos do novo avião na pista
 void pista_6(aviao pista[], aviao aprox[]) {
 	pista[6].modelo = aprox[0].modelo;
 	pista[6].capacidade = aprox[0].capacidade;
@@ -87,6 +91,7 @@ void pista_6(aviao pista[], aviao aprox[]) {
 	}
 
 }
+//Cria um novo avião para a aproximação
 void aprox_9(aviao aprox[]) {
 	aprox[9].nome_voo = randomize(voo_file);
 	aprox[9].origem = randomize(origem_file);
@@ -102,7 +107,7 @@ void aprox_9(aviao aprox[]) {
 	}
 
 }
-
+//verifica o estado do terminal, limpa as pessoas que estão há dois turnos
 void check_terminal(aviao aprox, terminal * ppl) {
 	for (int i = 0; i < 30; i++) {
 		if (ppl[i].turn == 1) ppl[i] = { NULL };
@@ -122,8 +127,10 @@ void check_terminal(aviao aprox, terminal * ppl) {
 	}
 	
 }
-void go_loop(aviao pista[], aviao aprox[], aviao * desc, terminal * passageiros) {
-	*desc = pista[0];
+//gera um novo ciclo
+void go_loop(aviao pista[], aviao aprox[], aviao desc[], terminal * passageiros) {
+	for (int i = 0; i < 4; i++)	desc[i] = desc[i + 1];
+	desc[4] = pista[0];
 	for (int i = 0; i < 6; i++) {
 		pista[i] = pista[i + 1];
 	}

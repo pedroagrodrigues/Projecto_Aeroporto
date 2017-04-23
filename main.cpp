@@ -3,11 +3,13 @@
 int main() {
 	setlocale(LC_ALL, "Portuguese");
 	var_load_file();
-	aviao pista[7], aproximacao[10], *descolar = new aviao;
+	aviao pista[7], aproximacao[10], descolar[5];
 	terminal * passageiros = new terminal[30];
 	for (int i = 0; i < 30; i++) passageiros[i] = { NULL };
 	primeiro_carregamento_vectores(pista, aproximacao, descolar, passageiros);
+	
 	while (1) {
+		
 		limpar;
 		cout << "(e)mergências (o)pções (g)ravar\t\t 0 - Sair\n";
 		cout << "---------------\nEm aproximação\n---------------\n";
@@ -18,7 +20,7 @@ int main() {
 		cout << "Passageiros: ";
 		for (int i = 0; i < aproximacao[0].capacidade && i <= 4; i++) cout << aproximacao[0].passageiro[i].segundo_nome << ", ";
 		if (aproximacao[0].capacidade > 4) cout << "...\n";
-		else cout << "./n";
+		else cout << ".\n";
 		cout << "---------------\nNa pista\n---------------\n";
 		cout << "Voo: " << pista[0].nome_voo << endl;
 		cout << "Modelo: " << pista[0].modelo << endl;
@@ -27,27 +29,30 @@ int main() {
 		cout << "Passageiros: ";
 		for (int i = 0; i < pista[0].capacidade && i <= 4; i++) cout << pista[0].passageiro[i].segundo_nome << ", ";
 		if (pista[0].capacidade > 4) cout << "...\n";
-		else cout << "./n";
+		else cout << ".\n";
 		cout << "---------------\nA descolar\n---------------\n";
-		cout << "Voo: " << descolar->nome_voo << endl;
-		cout << "Modelo: " << descolar->modelo << endl;
-		cout << "Origem: " << descolar->origem << endl;
-		cout << "Destino: " << descolar->destino << endl;
+		cout << "Voo: " << descolar[4].nome_voo << endl;
+		cout << "Modelo: " << descolar[4].modelo << endl;
+		cout << "Origem: " << descolar[4].origem << endl;
+		cout << "Destino: " << descolar[4].destino << endl;
 		cout << "Passageiros: ";
-		for (int i = 0; i < descolar->capacidade && i <= 4; i++) cout << descolar->passageiro[i].segundo_nome << ", ";
-		if (descolar->capacidade > 4) cout << "...\n";
-		else cout << "./n";
+		for (int i = 0; i < descolar[4].capacidade && i <= 4; i++) cout << descolar[4].passageiro[i].segundo_nome << ", ";
+		if (descolar[4].capacidade > 4) cout << "...\n";
+		else cout << ".\n";
 
 		//Teste para ver se as pessoas estão a entrar e a sair do terminal
 		//for (int i = 0; i < 30; i++)
 			//if (passageiros[i].turn != -1) cout << passageiros[i].humman.segundo_nome << " turno \t" << passageiros[i].turn << endl;
 
-
+			
 		//-------------Switch Case-------------
 		switch (_getch()) {
 		case 'e':
 			limpar;
+			red;
 			cout << "Este é o menu emergência \n \t Função por implementar\n"; //entra em estado de emergência (uma das últimas a implementar)
+			pausa;
+			white;
 			break;
 		case 'o':
 			limpar;
@@ -55,8 +60,9 @@ int main() {
 			break;
 		case 'g':
 			limpar;
+			cout << "Escolheu a opção gravar.\n";
 			if (save(pista, aproximacao, descolar, passageiros))
-				cout << "Escolheu a opção gravar, os seus documentos foram salvos.\n";
+				cout << "Os seus documentos foram salvos.\n";
 			else cout << "Erro, falha ao gravar!\n";
 			pausa;
 			break;
