@@ -42,7 +42,7 @@ int main() {
 		if (descolar[4].capacidade > 4) cout << "...\n";
 		else cout << ".\n";
 
-		//Teste Para Ver Se As Pessoas Estão a Entrar e a Sair Do Terminal
+		//Teste para ver se as pessoas estão a entrar e a sair do terminal
 		//for (int i = 0; i < 30; i++)
 			//if (passageiros[i].turn != -1) cout << passageiros[i].humman.segundo_nome << " turno \t" << passageiros[i].turn << endl;
 
@@ -58,7 +58,7 @@ int main() {
 			break;
 		case 'o':
 			limpar;
-			opcoes(pista, aproximacao, descolar, passageiros); // Função Criada Para o Menu_Opções
+			opcoes(pista, aproximacao, descolar, passageiros);
 			break;
 		case 'g':
 			limpar;
@@ -72,8 +72,8 @@ int main() {
 			limpar;
 			cout << "Opção sair, até à próxima!\n";
 			return 0;
-		case 0xe0: //Coresponde ao Caracter Indica Que Uma Das Setas Foi Precionada
-			if (_getch() == 0x4D) //Corresponde à Seta Para a Direita
+		case 0xe0: //coresponde ao caracter indica que uma das setas foi precionada
+			if (_getch() == 0x4D) //corresponde à seta para a direita
 				go_loop(pista, aproximacao, descolar, passageiros);
 			else cout << "Essa opção não é válida\n";
 			break;
