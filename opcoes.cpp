@@ -8,7 +8,7 @@ int opcoes(aviao pista[], aviao aprox[], aviao desc[], terminal * passageiros) {
 
 	
 
-	while (1) { // ciclo criado para utilizador estar sempre dentro do menu até ordem em contrário
+	while (1) { // Ciclo Criado Para Utilizador Estar Sempre Dentro Do Menu Até Ordem Em Contrário
 
 		limpar;
 
@@ -26,16 +26,14 @@ int opcoes(aviao pista[], aviao aprox[], aviao desc[], terminal * passageiros) {
 		cout << "8- Editar Nome do Passageiro.(2ª Fase)" << endl;
 		cout << "9- Editar Nacionalidade do Passageiro.(2ª Fase)" << endl;
 		cout << "10- Editar Destino de Voo.(2ª Fase)" << endl;
-		cout << "\n0 - Voltar\t\t";
-		//cin >> escolha;
+		cout << "\n0 - Voltar\t\t"; // Cout Para Sair do Menu_Opções
+	
 
 		switch (_getch())
 
 		{
 		case '1':
-			
 			lista_todos_passageiros(pista, aprox, desc, passageiros);
-			
 			break;
 
 		case '2':
@@ -121,11 +119,11 @@ int opcoes(aviao pista[], aviao aprox[], aviao desc[], terminal * passageiros) {
 
 
 		default:
-			// estou a ter dificuldades na mensagem de erro não está a ser gerada muito em causa da função usada "Do"
+			
 			limpar;
 			cout << "\nPor Favor Introduza Uma Opção Válida.\n";
 			break;
 		} // Fim do Switch
-	} // Fim do "ciclo" criado para estar sempre no menu opções até ordem em contrário do utilizador
+	} // Fim Do "Ciclo" Criado Para Estar Sempre No Menu_Opções Até Ordem Em Contrário Do Utilizador
 
 }

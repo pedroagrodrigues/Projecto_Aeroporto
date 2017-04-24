@@ -1,6 +1,7 @@
 #include "bibliotecas.h";
 #include <fstream>
-//Carrega para uma variável com todas as linhas do ficheiro ".txt" recebido
+
+//Carrega Para Uma Variável Com Todas As Linhas Do Ficheiro ".txt" Recebido
 string * preencher_dados(string caminho) {
 	string  line, *temp = new string [500];
 	fstream file(caminho);
@@ -18,7 +19,7 @@ string * preencher_dados(string caminho) {
 		for (int i = 1; i <= current; i++) {
 			nova[i] = temp[i - 1];
 		}
-		delete[] temp; //Array temporário, já cumpriu a sua função, pode ser apagado para libertar o seu espaço em memória 
+		delete[] temp; //Array Temporário, Já Cumpriu a Sua Função, Pode Ser Apagado Para Libertar o Seu Espaço Em Memória 
 		return nova;
 	}
 	else {
@@ -27,12 +28,12 @@ string * preencher_dados(string caminho) {
 		return 0;
 	}
 }
-//Verifica se existe algo escrito no ficheiro ".save" 
+//Verifica Se Existe Algo Escrito No Ficheiro ".save" 
 bool is_written() {
 	ifstream file("estado.save", ios::beg | istream::binary);
 	if (file.is_open()) {
 		file.seekg(0, file.end);
-		if (file.tellg() <= 0) { //verifica a existencia de conteúdo
+		if (file.tellg() <= 0) { //Verifica a Existencia De Conteúdo
 			file.close();
 			return 0;
 		}
@@ -41,13 +42,13 @@ bool is_written() {
 			return 1;
 		}
 	}
-	else { //caso não exista o ficheiro
+	else { //Caso Não Exista o Ficheiro
 		return 0;
 	}
 	return false;
 
 }
-//Guarda os as variáveis no seu estado actual num ficheiro ".save" para que o programa continue a partir do ultimo ponto
+//Guarda As Variáveis No Seu Estado Actual Num Ficheiro ".save" Para Que o Programa Continue a Partir Do Último Ponto
 bool save(aviao pista[], aviao aprox[], aviao desc[], terminal * passageiros) {
 	fstream file("estado.save", ios_base::out | ios_base::binary);
 	if (file.is_open()) {
@@ -103,7 +104,7 @@ bool save(aviao pista[], aviao aprox[], aviao desc[], terminal * passageiros) {
 	}
 	else return 0;
 }
-//Carrega do ficheiro ".save" o estado que foi guardado noutra utilização
+//Carrega Do Ficheiro ".save" o Estado Que Foi Guardado Noutra Utilização
 void load_file_state(aviao pista[], aviao aproximacao[], aviao desc[], terminal * passageiros) {
 	fstream file("estado.save", ios_base::in | ios_base::binary);
 	if (file.is_open()) {

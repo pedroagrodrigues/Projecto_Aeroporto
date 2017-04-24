@@ -1,11 +1,14 @@
 #include "bibliotecas.h"
 
+// Funcionalidade da Opção 1 do Menu_Opções
 void lista_todos_passageiros(aviao pista[], aviao aprox[], aviao desc[], terminal * passageiros) {
 	limpar;
 	cout << "\nLista De Todos os Passageiros.\n";
+	
+	// Lista De Passageiros Que Estão Nos Aviões Em Aproximação
 	cout << "\n-------------------------------------------------------\n";
 	cout << "Em Aproximação:\n"; 
-	cout << "\n-------------------------------------------------------\n\n";
+	cout << "-------------------------------------------------------\n\n";
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < aprox[i].capacidade; j++) {
 
@@ -14,6 +17,7 @@ void lista_todos_passageiros(aviao pista[], aviao aprox[], aviao desc[], termina
 		}
 
 	}
+	// Lista De Passageiros Que Estão Nos Avições Em Pista
 	cout << "\n-------------------------------------------------------\n";
 	cout << "Em Pista:\n";
 	cout << "-------------------------------------------------------\n\n";
@@ -26,6 +30,7 @@ void lista_todos_passageiros(aviao pista[], aviao aprox[], aviao desc[], termina
 		}
 
 	}
+	// Lista De Passageiros Que Estão Nos Avições Em Descolagem
 	cout << "\n-------------------------------------------------------\n";
 	cout << "Em Descolar:\n";
 	cout << "-------------------------------------------------------\n\n";
@@ -38,6 +43,7 @@ void lista_todos_passageiros(aviao pista[], aviao aprox[], aviao desc[], termina
 		}
 
 	}
+	// Lista De Passageiros Que Estão No Terminal Do Aeroporto
 	cout << "\n-------------------------------------------------------\n";
 	cout << "No Terminal:\n";
 	cout << "-------------------------------------------------------\n\n";
@@ -51,4 +57,4 @@ void lista_todos_passageiros(aviao pista[], aviao aprox[], aviao desc[], termina
 	
 	
 	pausa;
-}
+} // Fim Da 1ª Função Do Menu_Opções
