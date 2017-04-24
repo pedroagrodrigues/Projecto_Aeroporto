@@ -22,7 +22,7 @@ string randomize(string * data) {
 //gera um numero para o bilhete (falta fazer a verificação se o numero já existe)
 int generate_ticket() {
 	int ticket_number;
-	ticket_number = rand() % 1000000000 + 9999999999;
+	ticket_number = rand() % 10000 + 900000;
 	return ticket_number;
 }
 //Carrega o estado do programa se tiver algo guardado

@@ -21,7 +21,6 @@ int main() {
 		for (int i = 0; i < aproximacao[0].capacidade && i <= 4; i++) cout << aproximacao[0].passageiro[i].segundo_nome << ", ";
 		if (aproximacao[0].capacidade > 4) cout << "...\n";
 		else cout << ".\n";
-		cout << ".\n.\n";
 		cout << "---------------\nNa pista\n---------------\n";
 		cout << "Voo: " << pista[0].nome_voo << endl;
 		cout << "Modelo: " << pista[0].modelo << endl;
@@ -31,7 +30,6 @@ int main() {
 		for (int i = 0; i < pista[0].capacidade && i <= 4; i++) cout << pista[0].passageiro[i].segundo_nome << ", ";
 		if (pista[0].capacidade > 4) cout << "...\n";
 		else cout << ".\n";
-		cout << ".\n.\n";
 		cout << "---------------\nA descolar\n---------------\n";
 		cout << "Voo: " << descolar[4].nome_voo << endl;
 		cout << "Modelo: " << descolar[4].modelo << endl;
@@ -58,7 +56,7 @@ int main() {
 			break;
 		case 'o':
 			limpar;
-			opcoes(pista, aproximacao, descolar, passageiros);
+			cout << "Este é o menu das opções\n\t Função por implementar\n"; //chama função com menu próprio
 			break;
 		case 'g':
 			limpar;
