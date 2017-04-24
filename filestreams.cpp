@@ -49,7 +49,7 @@ bool is_written() {
 
 }
 //Guarda As Variáveis No Seu Estado Actual Num Ficheiro ".save" Para Que o Programa Continue a Partir Do Último Ponto
-bool save(aviao pista[], aviao aprox[], aviao desc[], terminal * passageiros) {
+bool save(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 	fstream file("estado.save", ios_base::out | ios_base::binary);
 	if (file.is_open()) {
 		for (int i = 0; i < 7; i++) {
@@ -105,7 +105,7 @@ bool save(aviao pista[], aviao aprox[], aviao desc[], terminal * passageiros) {
 	else return 0;
 }
 //Carrega Do Ficheiro ".save" o Estado Que Foi Guardado Noutra Utilização
-void load_file_state(aviao pista[], aviao aproximacao[], aviao desc[], terminal * passageiros) {
+void load_file_state(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros) {
 	fstream file("estado.save", ios_base::in | ios_base::binary);
 	if (file.is_open()) {
 		for (int i = 0; i < 7; i++) {

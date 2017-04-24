@@ -37,20 +37,20 @@ struct terminal {
 
 //---------Funções_main---------
 bool is_written();
-void load_file_state(aviao pista[], aviao aproximacao[], aviao desc[], terminal * passageiros);
+void load_file_state(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros);
 string * preencher_dados(string caminho);
-bool save(aviao pista[], aviao aproximacao[], aviao desc[], terminal * passageiros);
+bool save(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros);
 
-void go_loop(aviao pista[], aviao aprox[], aviao desc[], terminal * passageiros);
-void primeiro_carregamento_vectores(aviao pista[], aviao aproximacao[], aviao desc[], terminal * passageiros);
+void go_loop(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
+void primeiro_carregamento_vectores(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros);
 void var_load_file();
 
 //---------Menu Opção---------
-int opcoes(aviao pista[], aviao aprox[], aviao desc[], terminal * passageiros);
+int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
 
 //---------Funções_opcoes---------
 
-void lista_todos_passageiros(aviao pista[], aviao aprox[], aviao desc[], terminal * passageiros);
+void lista_todos_passageiros(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
 
 
 

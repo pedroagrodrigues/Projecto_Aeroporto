@@ -3,13 +3,11 @@
 int main() {
 	setlocale(LC_ALL, "Portuguese");
 	var_load_file();
-	aviao pista[7], aproximacao[10], descolar[5];
+	aviao * pista = new aviao[7], * aproximacao = new aviao[10], * descolar = new aviao[5];
 	terminal * passageiros = new terminal[30];
 	for (int i = 0; i < 30; i++) passageiros[i] = { NULL };
 	primeiro_carregamento_vectores(pista, aproximacao, descolar, passageiros);
-	
 	while (1) {
-		
 		limpar;
 		cout << "(e)mergências (o)pções (g)ravar\t\t 0 - Sair\n";
 		cout << "---------------\nEm aproximação\n---------------\n";

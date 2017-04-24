@@ -26,7 +26,7 @@ int generate_ticket() {
 	return ticket_number;
 }
 //Carrega o Estado Dopprograma Se Tiver Algo Guardado
-void primeiro_carregamento_vectores(aviao pista[], aviao aproximacao[], aviao desc[], terminal * passageiros) {
+void primeiro_carregamento_vectores(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros) {
 	if (is_written()) {
 		load_file_state(pista, aproximacao, desc, passageiros);
 	}
@@ -128,7 +128,7 @@ void check_terminal(aviao aprox, terminal * ppl) {
 	
 }
 //Gera um Novo Ciclo
-void go_loop(aviao pista[], aviao aprox[], aviao desc[], terminal * passageiros) {
+void go_loop(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 	for (int i = 0; i < 4; i++)	desc[i] = desc[i + 1];
 	desc[4] = pista[0];
 	for (int i = 0; i < 6; i++) {
