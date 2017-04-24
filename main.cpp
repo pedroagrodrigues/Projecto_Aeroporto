@@ -21,6 +21,7 @@ int main() {
 		for (int i = 0; i < aproximacao[0].capacidade && i <= 4; i++) cout << aproximacao[0].passageiro[i].segundo_nome << ", ";
 		if (aproximacao[0].capacidade > 4) cout << "...\n";
 		else cout << ".\n";
+		cout << ".\n.\n";
 		cout << "---------------\nNa pista\n---------------\n";
 		cout << "Voo: " << pista[0].nome_voo << endl;
 		cout << "Modelo: " << pista[0].modelo << endl;
@@ -30,6 +31,7 @@ int main() {
 		for (int i = 0; i < pista[0].capacidade && i <= 4; i++) cout << pista[0].passageiro[i].segundo_nome << ", ";
 		if (pista[0].capacidade > 4) cout << "...\n";
 		else cout << ".\n";
+		cout << ".\n.\n";
 		cout << "---------------\nA descolar\n---------------\n";
 		cout << "Voo: " << descolar[4].nome_voo << endl;
 		cout << "Modelo: " << descolar[4].modelo << endl;
@@ -40,7 +42,7 @@ int main() {
 		if (descolar[4].capacidade > 4) cout << "...\n";
 		else cout << ".\n";
 
-		//Teste para ver se as pessoas estão a entrar e a sair do terminal
+		//Teste Para Ver Se As Pessoas Estão a Entrar e a Sair Do Terminal
 		//for (int i = 0; i < 30; i++)
 			//if (passageiros[i].turn != -1) cout << passageiros[i].humman.segundo_nome << " turno \t" << passageiros[i].turn << endl;
 
@@ -56,7 +58,7 @@ int main() {
 			break;
 		case 'o':
 			limpar;
-			cout << "Este é o menu das opções\n\t Função por implementar\n"; //chama função com menu próprio
+			opcoes(pista, aproximacao, descolar, passageiros); // Função Criada Para o Menu_Opções
 			break;
 		case 'g':
 			limpar;
@@ -70,8 +72,8 @@ int main() {
 			limpar;
 			cout << "Opção sair, até à próxima!\n";
 			return 0;
-		case 0xe0: //coresponde ao caracter indica que uma das setas foi precionada
-			if (_getch() == 0x4D) //corresponde à seta para a direita
+		case 0xe0: //Coresponde ao Caracter Indica Que Uma Das Setas Foi Precionada
+			if (_getch() == 0x4D) //Corresponde à Seta Para a Direita
 				go_loop(pista, aproximacao, descolar, passageiros);
 			else cout << "Essa opção não é válida\n";
 			break;

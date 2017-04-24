@@ -145,6 +145,8 @@
     <ClCompile Include="filestreams.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="main_functions.cpp" />
+    <ClCompile Include="opcoes.cpp" />
+    <ClCompile Include="opcoes_funcions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="txt\capacidade.txt" />

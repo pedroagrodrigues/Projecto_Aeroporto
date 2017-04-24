@@ -14,18 +14,18 @@ void var_load_file() {
 	voo_file = preencher_dados("txt\\voo.txt");
 }
 
-//devolve o conteudo de uma linha seleccionada ao acaso.
+//Devolve o Conteudo De Uma Linha Seleccionada ao Acaso.
 string randomize(string * data) {
 	int line = (rand() % stoi(data[0])) + 1;
 	return data[line];
 }
-//gera um numero para o bilhete (falta fazer a verificação se o numero já existe)
+//Gera Um Numero Para o Bilhete de Voo(falta fazer a verificação se o numero já existe)
 int generate_ticket() {
 	int ticket_number;
-	ticket_number = rand() % 10000 + 900000;
+	ticket_number = rand() % 1000000000 + 9999999999;
 	return ticket_number;
 }
-//Carrega o estado do programa se tiver algo guardado
+//Carrega o Estado Dopprograma Se Tiver Algo Guardado
 void primeiro_carregamento_vectores(aviao pista[], aviao aproximacao[], aviao desc[], terminal * passageiros) {
 	if (is_written()) {
 		load_file_state(pista, aproximacao, desc, passageiros);
@@ -75,7 +75,7 @@ void primeiro_carregamento_vectores(aviao pista[], aviao aproximacao[], aviao de
 		}
 	}
 }
-//Cria os novos elementos do novo avião na pista
+//Cria os Novos Elementos Do Novo Avião Na Pista
 void pista_6(aviao pista[], aviao aprox[]) {
 	pista[6].modelo = aprox[0].modelo;
 	pista[6].capacidade = aprox[0].capacidade;
@@ -91,7 +91,7 @@ void pista_6(aviao pista[], aviao aprox[]) {
 	}
 
 }
-//Cria um novo avião para a aproximação
+//Cria um Novo Avião Para a Aproximação
 void aprox_9(aviao aprox[]) {
 	aprox[9].nome_voo = randomize(voo_file);
 	aprox[9].origem = randomize(origem_file);
@@ -107,7 +107,7 @@ void aprox_9(aviao aprox[]) {
 	}
 
 }
-//verifica o estado do terminal, limpa as pessoas que estão há dois turnos
+//Verifica o Estado Do Terminal, Limpa as Pessoas Que Estão há Dois Turnos
 void check_terminal(aviao aprox, terminal * ppl) {
 	for (int i = 0; i < 30; i++) {
 		if (ppl[i].turn == 1) ppl[i] = { NULL };
@@ -127,7 +127,7 @@ void check_terminal(aviao aprox, terminal * ppl) {
 	}
 	
 }
-//gera um novo ciclo
+//Gera um Novo Ciclo
 void go_loop(aviao pista[], aviao aprox[], aviao desc[], terminal * passageiros) {
 	for (int i = 0; i < 4; i++)	desc[i] = desc[i + 1];
 	desc[4] = pista[0];
