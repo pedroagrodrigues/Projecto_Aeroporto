@@ -32,6 +32,12 @@
     <ClCompile Include="filestreams.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="opcoes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="opcoes_funcions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="txt\capacidade.txt">
