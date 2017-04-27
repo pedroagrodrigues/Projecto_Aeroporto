@@ -52,6 +52,7 @@ int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
 
 void lista_todos_passageiros(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
 
-
+//---------SOS--------------/
+void emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem);
 
 

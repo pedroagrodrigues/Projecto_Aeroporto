@@ -21,10 +21,10 @@ int main() {
 		else cout << ".\n";
 		cout << ".\n.\n";
 		cout << "---------------\nNa pista\n---------------\n";
-		cout << "Voo: " << pista[0].nome_voo << endl;
-		cout << "Modelo: " << pista[0].modelo << endl;
-		cout << "Origem: " << pista[0].origem << endl;
-		cout << "Destino: " << pista[0].destino << endl;
+		cout << "Voo: " << pista[6].nome_voo << endl;
+		cout << "Modelo: " << pista[6].modelo << endl;
+		cout << "Origem: " << pista[6].origem << endl;
+		cout << "Destino: " << pista[6].destino << endl;
 		cout << "Passageiros: ";
 		for (int i = 0; i < pista[0].capacidade && i <= 4; i++) cout << pista[0].passageiro[i].segundo_nome << ", ";
 		if (pista[0].capacidade > 4) cout << "...\n";
@@ -50,7 +50,8 @@ int main() {
 		case 'e':
 			limpar;
 			red;
-			cout << "Este é o menu emergência \n \t Função por implementar\n"; //entra em estado de emergência (uma das últimas a implementar)
+			 //entra em estado de emergência (uma das últimas a implementar)
+			emergencia(pista,aproximacao, descolar);
 			pausa;
 			white;
 			break;
