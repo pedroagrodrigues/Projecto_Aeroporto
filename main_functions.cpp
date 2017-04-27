@@ -146,39 +146,26 @@ void go_loop(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros)
 //EMERGÊNCIA!
 void emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 	limpar;
-    
 	cout << "\nEntrou no Modo Emergência.\n";
 	cout << "-------------------------------------------------------\n";
 	cout << "\nSelecione o Voo Em Situação De Emergência!\n\n";
-
 	for (int i = 0; i <= 9; i++)
 		cout << i + 1 << " - Voo: " << aproximacao[i].nome_voo << "\t" << " - Modelo: " << aproximacao[i].modelo << "\t" << " - Origem: " << aproximacao[i].origem << endl;
-
-
 	//variável de seleção
 	int n;
 	cin >> n;
-
-	//aviao temp = aproximacao[n - 1];
 	aproximacao[0] = aproximacao[n - 1];
-
 	for (int i = n; i > 1; i--)
 		aproximacao[i] = aproximacao[i - 1];
-
-
 	//Descolagem
 	cout << "\nSelecione o Voo a Descolar\n\n";
-
 	for (int i = 0; i <= 6; i++)
 		cout << i + 1 << " - Voo: " << pista[i].nome_voo << "\t" << " - Modelo: " << pista[i].modelo << "\t" << " - Origem: " << pista[i].origem << endl;
-
 	//variável de seleção
 	int h;
 	cin >> h;
-
-	//aviao temp = aproximacao[h - 1];
 	pista[0] = pista[h - 1];
-
 	for (int i = h; i > 1; i--)
 		pista[i] = pista[i - 1];
 }
+

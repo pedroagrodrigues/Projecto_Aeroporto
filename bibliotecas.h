@@ -60,7 +60,7 @@ void lista_passageiros_pista_nacionalidade(aviao * pista, aviao * aprox, aviao *
 
 
 //---------Função_EMERGÊNCIA---------
-
-void emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem); 
+void emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem);
+ 
 
 	

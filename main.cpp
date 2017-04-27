@@ -21,10 +21,10 @@ int main() {
 		else cout << ".\n";
 		cout << ".\n.\n";
 		cout << "---------------\nNa pista\n---------------\n";
-		cout << "Voo: " << pista[0].nome_voo << endl;
-		cout << "Modelo: " << pista[0].modelo << endl;
-		cout << "Origem: " << pista[0].origem << endl;
-		cout << "Destino: " << pista[0].destino << endl;
+		cout << "Voo: " << pista[6].nome_voo << endl;
+		cout << "Modelo: " << pista[6].modelo << endl;
+		cout << "Origem: " << pista[6].origem << endl;
+		cout << "Destino: " << pista[6].destino << endl;
 		cout << "Passageiros: ";
 		for (int i = 0; i < pista[0].capacidade && i <= 4; i++) cout << pista[0].passageiro[i].segundo_nome << ", ";
 		if (pista[0].capacidade > 4) cout << "...\n";
@@ -51,12 +51,10 @@ int main() {
 		case 'e':
 			emergencia(pista, aproximacao, descolar); // Função Criada Para Modo_EMERGÊNCIA
 			break;
-		
 		case 'o':
 			limpar;
 			opcoes(pista, aproximacao, descolar, passageiros); // Função Criada Para o Menu_Opções
 			break;
-		
 		case 'g':
 			limpar;
 			cout << "Escolheu a Opção Gravar.\n";
