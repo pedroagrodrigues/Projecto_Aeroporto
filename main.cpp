@@ -47,29 +47,30 @@ int main() {
 			
 		//-------------Switch Case-------------
 		switch (_getch()) {
+		
 		case 'e':
-			limpar;
-			red;
-			cout << "Este é o menu emergência \n \t Função por implementar\n"; //entra em estado de emergência (uma das últimas a implementar)
-			pausa;
-			white;
+			emergencia(pista, aproximacao, descolar); // Função Criada Para Modo_EMERGÊNCIA
 			break;
+		
 		case 'o':
 			limpar;
 			opcoes(pista, aproximacao, descolar, passageiros); // Função Criada Para o Menu_Opções
 			break;
+		
 		case 'g':
 			limpar;
-			cout << "Escolheu a opção gravar.\n";
+			cout << "Escolheu a Opção Gravar.\n";
 			if (save(pista, aproximacao, descolar, passageiros))
-				cout << "Os seus Documentos Foram Salvos.\n";
-			else cout << "Erro, Falha ao Gravar!\n";
+				cout << "Os Seus Documentos Foram Salvos.\n";
+			else cout << "Erro. Falha ao Gravar!\n";
 			pausa;
 			break;
+		
 		case '0':
 			limpar;
 			cout << "Opção Sair, Até à Próxima!\n";
 			return 0;
+		
 		case 0xe0: //Coresponde ao Caracter Indica Que Uma Das Setas Foi Precionada
 			if (_getch() == 0x4D) //Corresponde à Seta Para a Direita
 				go_loop(pista, aproximacao, descolar, passageiros);
@@ -79,6 +80,6 @@ int main() {
 			cout << "Essa opção não é válida\n";
 			break;
 		}
-	}
+	} // Fim do While(1)
 }
 

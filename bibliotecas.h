@@ -9,8 +9,6 @@ using namespace std;
 #ifdef _WIN32
 #define limpar system("CLS");
 #define pausa system("PAUSE");
-#define red system("color C"); //emergência (para sair)
-#define white system("color 7");
 #else
 #define limpar system("clear");
 #define pausa system('PAUSE');
@@ -61,5 +59,8 @@ void lista_passageiros_pista(aviao * pista, aviao * aprox, aviao * desc, termina
 void lista_passageiros_pista_nacionalidade(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
 
 
+//---------Função_EMERGÊNCIA---------
 
+void emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem); 
 
+	
