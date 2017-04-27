@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 #include <conio.h>
+#include <iomanip>
+
 using namespace std;
 //---------Definições---------
 #ifdef _WIN32
@@ -50,7 +52,13 @@ int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
 
 //---------Funções_opcoes---------
 
-void lista_todos_passageiros(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
+void lista_todos_passageiros(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros); 
+
+void lista_todos_voos(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
+
+void lista_passageiros_pista(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
+
+void lista_passageiros_pista_nacionalidade(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
 
 
 

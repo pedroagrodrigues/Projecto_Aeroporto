@@ -9,42 +9,31 @@ int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 		cout << "2 - Mostrar Todos os Voos em Pista e a Descolar.\n";
 		cout << "3 - Mostrar Passageiros em Pista.\n";
 		cout << "4 - Mostrar Passageiros em Pista (Por Nacionalidade).\n";
-		cout << "5 - Pesquisa De Passageiros (Origem Estrangeira).(2ª Fase)\n";
-		cout << "6 - Lista De Passageiros Origem Estrangeira no Aeroporto (Ordenada Por Ordem Alfabética).(2ª Fase)\n";
-		cout << "7 - Pesquisa Sobre os Passageiros.(2ª Fase)\n";
-		cout << "8 - Editar Nome do Passageiro.(2ª Fase)\n";
-		cout << "9 - Editar Nacionalidade do Passageiro.(2ª Fase)\n";
-		cout << "10 - Editar Destino de Voo.(2ª Fase)\n";
-		cout << "\n0 - Voltar\t\t"; // Cout Para Sair do Menu_Opções
+		cout << "5 - Pesquisa De Passageiros (Origem Estrangeira).\n";
+		cout << "6 - Lista De Passageiros Origem Estrangeira no Aeroporto (Ordenada Por Ordem Alfabética).\n";
+		cout << "7 - Pesquisa Sobre os Passageiros.\n";
+		cout << "8 - Editar Nome do Passageiro.\n";
+		cout << "9 - Editar Nacionalidade do Passageiro.\n";
+		cout << "10 - Editar Destino de Voo.\n";
+		cout << "\n0 - Voltar Consola Principal\t\t"; // Cout Para Sair do Menu_Opções
 		switch (_getch()){
 		case '1':
 			lista_todos_passageiros(pista, aprox, desc, passageiros);
 			break;
 		case '2':
-			limpar;
-			cout << "\nLista De Voos em Pista e Descolar.\n";
-			cout << "------------------------------------------------\n";
-			// Funçao por implementar ainda
-			pausa;
+			lista_todos_voos(pista, aprox, desc, passageiros);
 			break;
 		case '3':
-			limpar;
-			cout << "\nLista De Todos os Passageiros em Pista.\n";
-			cout << "-----------------------------------------------------\n";
-			// Funçao por implementar ainda
-			pausa;
+			lista_passageiros_pista(pista, aprox, desc, passageiros);
 			break;
 		case '4':
-			limpar;
-			cout << "\nLista De Passageiros em Pista (Por Nacionalidade).\n";
-			cout << "-------------------------------------------------------\n";
-			// Funçao por implementar ainda
-			pausa;
+			lista_passageiros_pista_nacionalidade(pista, aprox, desc, passageiros);
 			break;
 		case '5':
 			limpar;
 			cout << "\nPesquisa De Passageiros (Origem Estrangeira).\n";
 			cout << "-------------------------------------------------------\n";
+			cout << "\nFunção Apenas Disponível na 2ª Fase Do Projecto.\n";// Remover Depois Da Função Implementada
 			// Funçao por implementar ainda
 			pausa;
 			break;
@@ -52,6 +41,7 @@ int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 			limpar;
 			cout << "\nLista De Passageiros Origem Estrangeira no Aeroporto (Ordenada Por Ordem Alfabética).\n";
 			cout << "-------------------------------------------------------\n";
+			cout << "\nFunção Apenas Disponível na 2ª Fase Do Projecto.\n";// Remover Depois Da Função Implementada
 			// Funçao por implementar ainda
 			pausa;
 			break;
@@ -59,6 +49,7 @@ int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 			limpar;
 			cout << "\nPesquisa Sobre os Passageiros.\n";
 			cout << "-------------------------------------------------------\n";
+			cout << "\nFunção Apenas Disponível na 2ª Fase Do Projecto.\n";// Remover Depois Da Função Implementada
 			// Funçao por implementar ainda
 			pausa;
 			break;
@@ -66,6 +57,7 @@ int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 			limpar;
 			cout << "\nEditar Nome do Passageiro.\n";
 			cout << "-------------------------------------------------------\n";
+			cout << "\nFunção Apenas Disponível na 2ª Fase Do Projecto.\n"; // Remover Depois Da Função Implementada
 			// Funçao por implementar ainda
 			pausa;
 			break;
@@ -73,6 +65,7 @@ int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 			limpar;
 			cout << "\nEditar Nacionalidade do Passageiro.\n";
 			cout << "-------------------------------------------------------\n";
+			cout << "\nFunção Apenas Disponível na 2ª Fase Do Projecto.\n"; // Remover Depois Da Função Implementada
 			// Funçao por implementar ainda
 			pausa;
 			break;
@@ -80,6 +73,7 @@ int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 			limpar;
 			cout << "\nEditar Destino de Voo.\n";
 			cout << "-------------------------------------------------------\n";
+			cout << "\nFunção Apenas Disponível na 2ª Fase Do Projecto.\n"; // Remover Depois Da Função Implementada
 			// Funçao por implementar ainda
 			pausa;
 			break;

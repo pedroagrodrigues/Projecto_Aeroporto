@@ -62,18 +62,18 @@ int main() {
 			limpar;
 			cout << "Escolheu a opção gravar.\n";
 			if (save(pista, aproximacao, descolar, passageiros))
-				cout << "Os seus documentos foram salvos.\n";
-			else cout << "Erro, falha ao gravar!\n";
+				cout << "Os seus Documentos Foram Salvos.\n";
+			else cout << "Erro, Falha ao Gravar!\n";
 			pausa;
 			break;
 		case '0':
 			limpar;
-			cout << "Opção sair, até à próxima!\n";
+			cout << "Opção Sair, Até à Próxima!\n";
 			return 0;
 		case 0xe0: //Coresponde ao Caracter Indica Que Uma Das Setas Foi Precionada
 			if (_getch() == 0x4D) //Corresponde à Seta Para a Direita
 				go_loop(pista, aproximacao, descolar, passageiros);
-			else cout << "Essa opção não é válida\n";
+			else cout << "Essa Opção Não é Válida\n";
 			break;
 		default:
 			cout << "Essa opção não é válida\n";
