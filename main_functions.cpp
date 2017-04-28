@@ -19,12 +19,14 @@ string randomize(string * data) {
 	int line = (rand() % stoi(data[0])) + 1;
 	return data[line];
 }
+
 //Gera Um Numero Para o Bilhete de Voo(falta fazer a verificação se o numero já existe)
 int generate_ticket() {
 	int ticket_number;
 	ticket_number = rand() % 1000000000 + 9999999999;
 	return ticket_number;
 }
+
 //Carrega o Estado Dopprograma Se Tiver Algo Guardado
 void primeiro_carregamento_vectores(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros) {
 	if (is_written()) {
@@ -75,6 +77,7 @@ void primeiro_carregamento_vectores(aviao * pista, aviao * aproximacao, aviao * 
 		}
 	}
 }
+
 //Cria os Novos Elementos Do Novo Avião Na Pista
 void pista_6(aviao pista[], aviao aprox[]) {
 	pista[6].modelo = aprox[0].modelo;
@@ -89,8 +92,8 @@ void pista_6(aviao pista[], aviao aprox[]) {
 		pista[6].passageiro[j].primeiro_nome = randomize(primeiro_file);
 		pista[6].passageiro[j].segundo_nome = randomize(segundo_file);
 	}
-
 }
+
 //Cria um Novo Avião Para a Aproximação
 void aprox_9(aviao aprox[]) {
 	aprox[9].nome_voo = randomize(voo_file);
@@ -105,8 +108,8 @@ void aprox_9(aviao aprox[]) {
 		aprox[9].passageiro[j].primeiro_nome = randomize(primeiro_file);
 		aprox[9].passageiro[j].segundo_nome = randomize(segundo_file);
 	}
-
 }
+
 //Verifica o Estado Do Terminal, Limpa as Pessoas Que Estão há Dois Turnos
 void check_terminal(aviao aprox, terminal * ppl) {
 	for (int i = 0; i < 30; i++) {
@@ -125,8 +128,10 @@ void check_terminal(aviao aprox, terminal * ppl) {
 			}
 		}	
 	}
+	sort_terminal(ppl);
 	
 }
+
 //Gera um Novo Ciclo
 void go_loop(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 	for (int i = 0; i < 4; i++)	desc[i] = desc[i + 1];
@@ -149,21 +154,20 @@ void emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 	cout << "\nEntrou no Modo Emergência.\n";
 	cout << "-------------------------------------------------------\n";
 	cout << "\nSelecione o Voo Em Situação De Emergência!\n";
-	for (int i = 0; i <= 9; i++)
-		cout<<"\n" << i + 1 << " - Voo: " << aproximacao[i].nome_voo << "\n  " << " - Modelo: " << aproximacao[i].modelo << "\n  " << " - Origem: " << aproximacao[i].origem << endl;
+	for (int i = 0; i < 10; i++)
+		cout << "\n" << i + 1 << " - Voo: " << aproximacao[i].nome_voo << "\n  " << " - Modelo: " << aproximacao[i].modelo << "\n  " << " - Origem: " << aproximacao[i].origem << endl;
 	//variável de seleção
 	int n;
 	cin >> n;
 	n--;
 	aproximacao[0] = aproximacao[n];
-	aproximacao[0].nome_voo = aproximacao[0].nome_voo + "-----Em EMÊRGENCIA!";
+	aproximacao[0].nome_voo += "-----EM EMÊRGENCIA!";
 	for (int i = n; i > 1; i--)
 		aproximacao[i] = aproximacao[i - 1];
-	
 	//Descolagem
 	cout << "\nSelecione o Voo a Descolar\n";
-	for (int i = 0; i <= 6; i++)
-		cout<<"\n" << i + 1 << " - Voo: " << pista[i].nome_voo << "\n  " << " - Modelo: " << pista[i].modelo << "\n  " << " - Origem: " << pista[i].origem << endl;
+	for (int i = 0; i < 7; i++)
+		cout << "\n" << i + 1 << " - Voo: " << pista[i].nome_voo << "\n  " << " - Modelo: " << pista[i].modelo << "\n  " << " - Origem: " << pista[i].origem << endl;
 	//variável de seleção
 	int h;
 	cin >> h;
@@ -173,3 +177,12 @@ void emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 		pista[i] = pista[i - 1];
 }
 
+//----Sorting Function----
+void sort_terminal (terminal * pass) {
+	for (int i = 0; i < 30; i++) {
+		for (int j = i; j < 30; j++) {
+			if (pass[i].humman.segundo_nome > pass[j].humman.segundo_nome)
+				swap(pass[i], pass[j]);
+		}
+	}
+}
