@@ -157,10 +157,12 @@ void emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 	cout << "\nSelecione o Voo Em Situação De Emergência!\n";
 	for (int i = 0; i < 10; i++)
 		cout << "\n" << i + 1 << " - Voo: " << aproximacao[i].nome_voo << "\n  " << " - Modelo: " << aproximacao[i].modelo << "\n  " << " - Origem: " << aproximacao[i].origem << endl;
+
 	//variável de seleção
 	int n;
 	cin >> n;
-	n--;
+    n--;
+	cout << "\t Selecionou Voo: " << aproximacao[n].nome_voo << "\t  Modelo: " << aproximacao[n].modelo << endl;
 	aproximacao[0] = aproximacao[n];
 	aproximacao[0].nome_voo += "-----EM EMÊRGENCIA!";
 	for (int i = n; i > 1; i--)
