@@ -50,17 +50,23 @@ int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
 
 //---------Funções_opcoes---------
 
+// 1ª Funcionalidade
 void lista_todos_passageiros(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros); 
+void lista_todos_passageiros_ordenados(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
 
+// 2ª Funcionalidade
 void lista_todos_voos(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
+void lista_voos_pista_descolar(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
 
+// 3ª Funcionalidade
 void lista_passageiros_pista(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
 
+//4ª Funcionalidade
 void lista_passageiros_pista_nacionalidade(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
 
 
 //---------Função_EMERGÊNCIA---------
-void emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem);
- 
+
+void emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem); 
 
 	

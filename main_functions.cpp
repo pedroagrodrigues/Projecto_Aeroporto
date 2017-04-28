@@ -151,6 +151,7 @@ void go_loop(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros)
 //EMERGÊNCIA!
 void emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 	limpar;
+    
 	cout << "\nEntrou no Modo Emergência.\n";
 	cout << "-------------------------------------------------------\n";
 	cout << "\nSelecione o Voo Em Situação De Emergência!\n";
@@ -171,8 +172,10 @@ void emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 	//variável de seleção
 	int h;
 	cin >> h;
-	h--;
-	pista[0] = pista[h];
+
+	//aviao temp = aproximacao[h - 1];
+	pista[0] = pista[h - 1];
+
 	for (int i = h; i > 1; i--)
 		pista[i] = pista[i - 1];
 }
