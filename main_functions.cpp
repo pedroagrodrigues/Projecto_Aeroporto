@@ -150,11 +150,12 @@ void emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 	cout << "-------------------------------------------------------\n";
 	cout << "\nSelecione o Voo Em Situação De Emergência!\n";
 	for (int i = 0; i <= 9; i++)
-		cout<<"\n" << i + 1 << " - Voo: " << aproximacao[i].nome_voo << "\n  " << " - Modelo: " << aproximacao[i].modelo << "\n  " << " - Origem: " << aproximacao[i].origem << endl;
+		cout<<"\n" << i + 1 << "  - Voo: " << aproximacao[i].nome_voo << "\n  " << " - Modelo: " << aproximacao[i].modelo << "\n  " << " - Origem: " << aproximacao[i].origem << endl;
 	//variável de seleção
 	int n;
 	cin >> n;
-	n--;
+    n--;
+	cout << "\t Selecionou Voo: " << aproximacao[n].nome_voo << "\t  Modelo: " << aproximacao[n].modelo << endl;
 	aproximacao[0] = aproximacao[n];
 	aproximacao[0].nome_voo = aproximacao[0].nome_voo + "-----Em EMÊRGENCIA!";
 	for (int i = n; i > 1; i--)
@@ -163,11 +164,12 @@ void emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 	//Descolagem
 	cout << "\nSelecione o Voo a Descolar\n";
 	for (int i = 0; i <= 6; i++)
-		cout<<"\n" << i + 1 << " - Voo: " << pista[i].nome_voo << "\n  " << " - Modelo: " << pista[i].modelo << "\n  " << " - Origem: " << pista[i].origem << endl;
+		cout<<"\n" << i + 1 << "  - Voo: " << pista[i].nome_voo << "\n  " << " - Modelo: " << pista[i].modelo << "\n  " << " - Origem: " << pista[i].origem << endl;
 	//variável de seleção
 	int h;
 	cin >> h;
 	h--;
+	cout << "\t Selecionou Voo: " << pista[h].nome_voo << "\t  Modelo: " << pista[h].modelo << endl;
 	pista[0] = pista[h];
 	for (int i = h; i > 1; i--)
 		pista[i] = pista[i - 1];
