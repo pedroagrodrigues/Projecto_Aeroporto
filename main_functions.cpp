@@ -128,8 +128,6 @@ void check_terminal(aviao aprox, terminal * ppl) {
 			}
 		}	
 	}
-	sort_terminal(ppl);
-	
 }
 
 //Gera um Novo Ciclo
@@ -172,22 +170,12 @@ void emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 	for (int i = 0; i < 7; i++)
 		cout << "\n" << i + 1 << " - Voo: " << pista[i].nome_voo << "\n  " << " - Modelo: " << pista[i].modelo << "\n  " << " - Origem: " << pista[i].origem << endl;
 	//variável de seleção
-	int h;
-	cin >> h;
-
+	cin >> n;
+	n--;
 	//aviao temp = aproximacao[h - 1];
-	pista[0] = pista[h - 1];
+	pista[0] = pista[n];
 
-	for (int i = h; i > 1; i--)
+	for (int i = n; i > 1; i--)
 		pista[i] = pista[i - 1];
 }
 
-//----Sorting Function----
-void sort_terminal (terminal * pass) {
-	for (int i = 0; i < 30; i++) {
-		for (int j = i; j < 30; j++) {
-			if (pass[i].humman.segundo_nome > pass[j].humman.segundo_nome)
-				swap(pass[i], pass[j]);
-		}
-	}
-}

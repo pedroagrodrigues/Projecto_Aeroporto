@@ -28,6 +28,7 @@ string * preencher_dados(string caminho) {
 		return 0;
 	}
 }
+
 //Verifica Se Existe Algo Escrito No Ficheiro ".save" 
 bool is_written() {
 	ifstream file("estado.save", ios::beg | istream::binary);
@@ -48,6 +49,7 @@ bool is_written() {
 	return false;
 
 }
+
 //Guarda As Variáveis No Seu Estado Actual Num Ficheiro ".save" Para Que o Programa Continue a Partir Do Último Ponto
 bool save(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 	fstream file("estado.save", ios_base::out | ios_base::binary);
@@ -104,6 +106,7 @@ bool save(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 	}
 	else return 0;
 }
+
 //Carrega Do Ficheiro ".save" o Estado Que Foi Guardado Noutra Utilização
 void load_file_state(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros) {
 	fstream file("estado.save", ios_base::in | ios_base::binary);

@@ -17,14 +17,14 @@ int main() {
 		cout << "Destino: " << aproximacao[0].destino << endl;
 		cout << "Passageiros: ";
 		for (int i = 0; i < aproximacao[0].capacidade && i <= 4; i++) cout << aproximacao[0].passageiro[i].segundo_nome << ", ";
-		if (aproximacao[0].capacidade > 4) cout << "...\n";
+		if (aproximacao[0].capacidade > 4) cout << "...\n"; //Esta comparação serve para o caso de adicionarem uma capacidade de 4 ao ficheiro "capacidade.txt"
 		else cout << ".\n";
 		cout << ".\n.\n";
 		cout << "---------------\nNa pista\n---------------\n";
-		cout << "Voo: " << pista[0].nome_voo << endl;
-		cout << "Modelo: " << pista[0].modelo << endl;
-		cout << "Origem: " << pista[0].origem << endl;
-		cout << "Destino: " << pista[0].destino << endl;
+		cout << "Voo: " << pista[6].nome_voo << endl;
+		cout << "Modelo: " << pista[6].modelo << endl;
+		cout << "Origem: " << pista[6].origem << endl;
+		cout << "Destino: " << pista[6].destino << endl;
 		cout << "Passageiros: ";
 		for (int i = 0; i < pista[0].capacidade && i <= 4; i++) cout << pista[0].passageiro[i].segundo_nome << ", ";
 		if (pista[0].capacidade > 4) cout << "...\n";
@@ -47,16 +47,13 @@ int main() {
 			
 		//-------------Switch Case-------------
 		switch (_getch()) {
-		
 		case 'e':
 			emergencia(pista, aproximacao, descolar); // Função Criada Para Modo_EMERGÊNCIA
 			break;
-		
 		case 'o':
 			limpar;
 			opcoes(pista, aproximacao, descolar, passageiros); // Função Criada Para o Menu_Opções
 			break;
-		
 		case 'g':
 			limpar;
 			cout << "Escolheu a Opção Gravar.\n";
@@ -65,12 +62,10 @@ int main() {
 			else cout << "Erro. Falha ao Gravar!\n";
 			pausa;
 			break;
-		
 		case '0':
 			limpar;
 			cout << "Opção Sair, Até à Próxima!\n";
 			return 0;
-		
 		case 0xe0: //Coresponde ao Caracter Indica Que Uma Das Setas Foi Precionada
 			if (_getch() == 0x4D) //Corresponde à Seta Para a Direita
 				go_loop(pista, aproximacao, descolar, passageiros);
@@ -80,6 +75,6 @@ int main() {
 			cout << "Essa opção não é válida\n";
 			break;
 		}
-	} // Fim do While(1)
+	} // Fim do While
 }
 

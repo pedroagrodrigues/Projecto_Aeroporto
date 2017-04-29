@@ -2,7 +2,7 @@
 
 
 // Menu_Opções_Funcionalidade1
-int menu_opcoes_funcionalidade1(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
+int todos_os_passageiros(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 	while (1) {
 		limpar;
 	cout << "\n(1) Lista Todos Passageiros" << " (2) Lista Todos os Passageiros Ordenados" << "\t (0) Voltar" << endl;
@@ -30,7 +30,7 @@ int menu_opcoes_funcionalidade1(aviao * pista, aviao * aprox, aviao * desc, term
 } // Fim do da função criado para Menu_Opções Funcionalidade 1
 
 // Menu_Opções_Funcionalidade2
-int menu_opcoes_funcionalidade2(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
+int todos_voos_pista_desc(aviao * pista, aviao * aprox,  aviao * desc) {
 	while (1) {
 		limpar;
 		cout << "\n(1) Lista Todos Voos" << " (2) Lista Todos os Voos em Pista e a Descolar" << "\t (0) Voltar" << endl;
@@ -38,10 +38,10 @@ int menu_opcoes_funcionalidade2(aviao * pista, aviao * aprox, aviao * desc, term
 		switch (_getch()) {
 
 		case'1':
-			lista_todos_voos(pista, aprox, desc, passageiros);
+			lista_todos_voos(pista, aprox, desc);
 			break;
 		case'2':
-			lista_voos_pista_descolar(pista, aprox, desc, passageiros);
+			lista_voos_pista_descolar(pista, desc);
 			break;
 		case'0':
 			return 0;
@@ -69,22 +69,22 @@ int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 		cout << "8 - Editar Nome do Passageiro.\n";
 		cout << "9 - Editar Nacionalidade do Passageiro.\n";
 		cout << "10 - Editar Destino de Voo.\n";
-		cout << "\n0 - Voltar Consola Principal\t\t"; // Cout Para Sair do Menu_Opções
+		cout << "\n0 - Voltar"; // Cout Para Sair do Menu_Opções
 		switch (_getch()){
 		
 		case '1':
-			  menu_opcoes_funcionalidade1(pista, aprox, desc, passageiros);
-			  break;
+			todos_os_passageiros(pista, aprox, desc, passageiros);
+			break;
 		case '2':
-			menu_opcoes_funcionalidade2(pista, aprox, desc, passageiros);
+			todos_voos_pista_desc(pista, aprox, desc);
 			break;
 		
 		case '3':
-			lista_passageiros_pista(pista, aprox, desc, passageiros);
+			lista_passageiros_pista(pista);
 			break;
 	
 		case '4':
-			lista_passageiros_pista_nacionalidade(pista, aprox, desc, passageiros);
+			lista_passageiros_pista_nacionalidade(pista);
 			break;
 		
 		case '5':
