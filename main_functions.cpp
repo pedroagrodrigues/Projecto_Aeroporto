@@ -107,21 +107,21 @@ void go_loop(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros)
 int emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 	limpar;
 	string selecao1, selecao2;
-	
+
 	while (1) {
+		char opt;
+		cout << selecao1;
+		cout << selecao2;
 
-	cout << selecao1;
-	cout << selecao2;
-	
-	cout << "\nEntrou no Modo Emergência.\n";
-	cout << "-------------------------------------------------------\n";
+		cout << "\nEntrou no Modo Emergência.\n";
+		cout << "-------------------------------------------------------\n";
 
-	cout << "1 - Selecione o Voo em Emergência.\n";
-	cout << "2 - Selecione o Voo a Descolar. \n";
-	cout << "c - Confirma a Seleção.\n";
-	cout << "0 - Cancelar.\n";
+		cout << "1 - Selecione o Voo em Emergência.\n";
+		cout << "2 - Selecione o Voo a Descolar. \n";
+		cout << "c - Confirma a Seleção.\n";
+		cout << "0 - Cancelar.\n";
 
-	
+
 		switch (_getch()) {
 		case '1'://Sub Seleção para aterragem
 			limpar;
@@ -147,15 +147,17 @@ int emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 				cout << aproximacao[i].origem << endl;
 			}
 			//variável de seleção
+
+			cin >> opt;
 			int aprox_select;
-			cin >> aprox_select;
+			aprox_select = (int)opt;
 			if (aprox_select > 0 && aprox_select < 11) {
 				aprox_select--;
 				selecao1 = "\t Selecionou Voo a Aterrar: " + aproximacao[aprox_select].nome_voo + "\t  Modelo: " + aproximacao[aprox_select].modelo + "\n";
 			}
 			else {
 				aprox_select = NULL;
-				cout <<"Essa opção não é válida\n";
+				cout << "Essa opção não é válida\n";
 				pausa;
 			}
 			limpar;
@@ -182,15 +184,17 @@ int emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 				cout << pista[i].destino << endl;
 			}
 			//variável de seleção
+			cin >> opt;
 			int pista_select;
-			cin >> pista_select;
+			pista_select = (int)opt;
+			cin.ignore();
 			if (pista_select > 0 && pista_select < 11) {
 				pista_select--;
 				selecao2 = "\t Selecionou Voo a Descolar: " + pista[pista_select].nome_voo + "\t  Modelo: " + pista[pista_select].modelo + "\n";
 			}
 			else {
 				cout << "Essa opção não é válida\n";
-				pista_select = NULL;
+				pista_select = 0;
 				pausa;
 			}
 			limpar;

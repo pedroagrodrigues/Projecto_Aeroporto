@@ -16,7 +16,7 @@ using namespace std;
 
 //---------Estruturas---------
 struct pessoa {
-	int bilhete;
+	long bilhete;
 	string primeiro_nome;
 	string segundo_nome;
 	string nacionalidade;
