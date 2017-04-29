@@ -43,7 +43,7 @@ bool save(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageir
 void go_loop(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
 void primeiro_carregamento_vectores(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros);
 void var_load_file();
-void emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem);
+int emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem);
 
 //---------Menu Opção---------
 int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);

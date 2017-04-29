@@ -48,7 +48,7 @@ int main() {
 		//-------------Switch Case-------------
 		switch (_getch()) {
 		case 'e':
-			emergencia(pista, aproximacao, descolar); // Função Criada Para Modo_EMERGÊNCIA
+			cout << emergencia(pista, aproximacao, descolar); // Função Criada Para Modo_EMERGÊNCIA
 			break;
 		case 'o':
 			limpar;
