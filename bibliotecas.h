@@ -26,7 +26,7 @@ struct aviao {
 	string origem;
 	string destino;
 	string modelo;
-	int capacidade;
+	int capacidade = 0;
 	pessoa * passageiro;
 };
 struct terminal {
