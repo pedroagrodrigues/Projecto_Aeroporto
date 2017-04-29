@@ -27,74 +27,7 @@ int generate_ticket() {
 	return ticket_number;
 }
 
-//Carrega o Estado Dopprograma Se Tiver Algo Guardado
-void primeiro_carregamento_vectores(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros) {
-	if (is_written()) {
-		load_file_state(pista, aproximacao, desc, passageiros);
-	}
-	else {
-		for (int i = 0; i < 10; i++) {
-			aproximacao[i].nome_voo = randomize(voo_file);
-			aproximacao[i].origem = randomize(origem_file);
-			aproximacao[i].destino = "Aeroporto EDA";
-			aproximacao[i].modelo = randomize(modelo_file);
-			aproximacao[i].capacidade = stoi(randomize(capacidade_file));
-			aproximacao[i].passageiro = new pessoa[aproximacao[i].capacidade];
-			for (int j = 0; j < aproximacao[i].capacidade; j++) {
-				aproximacao[i].passageiro[j].bilhete = generate_ticket();
-				aproximacao[i].passageiro[j].nacionalidade = randomize(nacionalidade_file);
-				aproximacao[i].passageiro[j].primeiro_nome = randomize(primeiro_file);
-				aproximacao[i].passageiro[j].segundo_nome = randomize(segundo_file);
-			}
-		}
-		for (int i = 0; i < 7; i++) {
-			pista[i].nome_voo = randomize(voo_file);
-			pista[i].origem = "Aeroporto EDA";
-			pista[i].destino = randomize(destino_file);
-			pista[i].modelo = randomize(modelo_file);
-			pista[i].capacidade = stoi(randomize(capacidade_file));
-			pista[i].passageiro = new pessoa[pista[i].capacidade];
-			for (int j = 0; j < pista[i].capacidade; j++) {
-				pista[i].passageiro[j].bilhete = generate_ticket();
-				pista[i].passageiro[j].nacionalidade = randomize(nacionalidade_file);
-				pista[i].passageiro[j].primeiro_nome = randomize(primeiro_file);
-				pista[i].passageiro[j].segundo_nome = randomize(segundo_file);
-			}
-		}
-		for (int i = 0; i < 5; i++) {
-			desc[i].nome_voo = randomize(voo_file);
-			desc[i].origem = "Aeroporto EDA";
-			desc[i].destino = randomize(destino_file);
-			desc[i].modelo = randomize(modelo_file);
-			desc[i].capacidade = stoi(randomize(capacidade_file));
-			desc[i].passageiro = new pessoa[desc[i].capacidade];
-			for (int j = 0; j < desc[i].capacidade; j++) {
-				desc[i].passageiro[j].bilhete = generate_ticket();
-				desc[i].passageiro[j].nacionalidade = randomize(nacionalidade_file);
-				desc[i].passageiro[j].primeiro_nome = randomize(primeiro_file);
-				desc[i].passageiro[j].segundo_nome = randomize(segundo_file);
-			}
-		}
-	}
-}
-
-//Cria os Novos Elementos Do Novo Avião Na Pista
-void pista_6(aviao pista[], aviao aprox[]) {
-	pista[6].modelo = aprox[0].modelo;
-	pista[6].capacidade = aprox[0].capacidade;
-	pista[6].origem = "Aeroporto EDA";
-	pista[6].destino = randomize(destino_file);
-	pista[6].nome_voo = randomize(voo_file);
-	pista[6].passageiro = new pessoa[pista[6].capacidade];
-	for (int j = 0; j < pista[6].capacidade; j++) {
-		pista[6].passageiro[j].bilhete = generate_ticket();
-		pista[6].passageiro[j].nacionalidade = randomize(nacionalidade_file);
-		pista[6].passageiro[j].primeiro_nome = randomize(primeiro_file);
-		pista[6].passageiro[j].segundo_nome = randomize(segundo_file);
-	}
-}
-
-//Cria um Novo Avião Para a Aproximação
+// Cria um Novo Avião Para a Aproximação
 void aprox_9(aviao aprox[]) {
 	aprox[9].nome_voo = randomize(voo_file);
 	aprox[9].origem = randomize(origem_file);
@@ -107,6 +40,29 @@ void aprox_9(aviao aprox[]) {
 		aprox[9].passageiro[j].nacionalidade = randomize(nacionalidade_file);
 		aprox[9].passageiro[j].primeiro_nome = randomize(primeiro_file);
 		aprox[9].passageiro[j].segundo_nome = randomize(segundo_file);
+	}
+}
+
+//Carrega o Estado Dopprograma Se Tiver Algo Guardado
+void primeiro_carregamento_vectores(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros) {
+	if (is_written()) load_file_state(pista, aproximacao, desc, passageiros);
+	else aprox_9(aproximacao);
+}
+
+//Cria os Novos Elementos Do Novo Avião Na Pista
+void pista_6(aviao pista[], aviao aprox[]) {
+	pista[6].modelo = aprox[0].modelo;
+	pista[6].capacidade = aprox[0].capacidade;
+	pista[6].origem = "Aeroporto EDA";
+	pista[6].destino = randomize(destino_file);
+	pista[6].nome_voo = randomize(voo_file);
+	//if (pista[6].capacidade > 0) {
+	pista[6].passageiro = new pessoa[pista[6].capacidade];
+	for (int j = 0; j < pista[6].capacidade; j++) {
+		pista[6].passageiro[j].bilhete = generate_ticket();
+		pista[6].passageiro[j].nacionalidade = randomize(nacionalidade_file);
+		pista[6].passageiro[j].primeiro_nome = randomize(primeiro_file);
+		pista[6].passageiro[j].segundo_nome = randomize(segundo_file);
 	}
 }
 
@@ -138,7 +94,8 @@ void go_loop(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros)
 		pista[i] = pista[i + 1];
 	}
 	check_terminal(aprox[0], passageiros);
-	pista_6(pista, aprox);
+	if (aprox[0].capacidade != 0)
+		pista_6(pista, aprox);
 
 	for (int i = 0; i < 9; i++) {
 		aprox[i] = aprox[i + 1];
