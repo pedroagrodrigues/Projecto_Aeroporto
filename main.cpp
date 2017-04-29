@@ -20,7 +20,8 @@ int main() {
 			for (int i = 0; i < aproximacao[0].capacidade && i <= 4; i++) cout << aproximacao[0].passageiro[i].segundo_nome << ", ";
 			if (aproximacao[0].capacidade > 4) cout << "...\n"; //Esta comparação serve para o caso de adicionarem uma capacidade de 4 ao ficheiro "capacidade.txt"
 			else if (aproximacao[0].capacidade > 0) cout << ".\n";
-			cout << "\n.\n.\n.";
+			else cout << endl;
+			cout << ".\n.\n";
 			cout << "---------------\nNa pista\n---------------\n";
 			cout << "Voo: " << pista[6].nome_voo << endl;
 			cout << "Modelo: " << pista[6].modelo << endl;
@@ -30,7 +31,8 @@ int main() {
 			for (int i = 0; i < pista[6].capacidade && i <= 4; i++) cout << pista[6].passageiro[i].segundo_nome << ", ";
 			if (pista[6].capacidade > 4) cout << "...\n";
 			else if (pista[6].capacidade > 0) cout << ".\n";
-			cout << "\n.\n.\n.";
+			else cout << endl;
+			cout << ".\n.\n";
 			cout << "---------------\nA descolar\n---------------\n";
 			cout << "Voo: " << descolar[4].nome_voo << endl;
 			cout << "Modelo: " << descolar[4].modelo << endl;
@@ -38,8 +40,8 @@ int main() {
 			cout << "Destino: " << descolar[4].destino << endl;
 			cout << "Passageiros: ";
 			for (int i = 0; i < descolar[4].capacidade && i <= 4; i++) cout << descolar[4].passageiro[i].segundo_nome << ", ";
-			if (descolar[4].capacidade > 4) cout << "...\n";
-			else if (descolar[4].capacidade > 0) cout << ".\n";
+			if (descolar[4].capacidade > 4) cout << "...";
+			else if (descolar[4].capacidade > 0) cout << ".";
 		}
 		else {
 			cout << "---------------\nEm aproximação (A carregar)\n---------------\n";

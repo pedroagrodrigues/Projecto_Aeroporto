@@ -32,6 +32,14 @@ void sort_by_nacionality(pessoa * passageiro, int size) {
 	}
 }
 
+void sort_by_destino(aviao * ordenar, int size) {
+	for (int i = 0; i < size; i++) {
+		for (int j = i; j < size; j++)
+			if (ordenar[i].destino > ordenar[j].destino)
+				swap(ordenar[i].destino, ordenar[j].destino);
+	}
+}
+
 
 
 // ----------------Funções_Menu_Opções-------------------
@@ -108,87 +116,32 @@ void lista_todos_passageiros(aviao * pista, aviao * aprox, aviao * desc, termina
 void lista_todos_passageiros_ordenados(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 	limpar;
 	//----------APROX--------
-	pessoa * temp = new pessoa[150];
+	pessoa * temp = new pessoa[360];
 	int current = 0;//current serve para contar o interior do array temp
-	for (int i = 0; i < 10; i++)
-		for (int j = 0; j < aprox[i].capacidade; j++) {
-			temp[current] = aprox[i].passageiro[j];
-			current++;
-		}
-	sort_by_name(temp, current);
-	cout << "\nLista De Todos os Passageiros Ordenados Por Ordem Alfabética.\n";
-
-	// Lista De Passageiros Que Estão Nos Aviões Em Aproximação
-	cout << "\n----------------------------------------------------------------------------\n";
-	cout.width(48);
-	cout << right << "Em Aproximação:\n";
-	cout << "----------------------------------------------------------------------------\n\n";
-	cout << "Nome";
-	cout.width(60);
-	cout << "Nacionalidade\n\n";
-	for (int i = 0; i < current; i++) {
-		cout.width(49);
-		cout << left << temp[i].segundo_nome + ", " + temp[i].primeiro_nome;
-		cout << internal << temp[i].nacionalidade << endl;
-	}
-
-	//--------PISTA---------
-	temp = new pessoa[107];
-	current = 0;//current serve para contar o interior do array temp
-	for (int i = 0; i < 7; i++)
-		for (int j = 0; j < pista[i].capacidade; j++) {
-			temp[current] = pista[i].passageiro[j];
-			current++;
-		}
-	sort_by_name(temp, current);
-
-	cout << "\n----------------------------------------------------------------------------\n";
-	cout.width(45);
-	cout << right << "Em Pista:\n";
-	cout << "----------------------------------------------------------------------------\n\n";
-	cout << "Nome";
-	cout.width(60);
-	cout << "Nacionalidade\n\n";
-	for (int i = 0; i < current; i++) {
-		cout.width(49);
-		cout << left << temp[i].segundo_nome + ", " + temp[i].primeiro_nome;
-		cout << internal << temp[i].nacionalidade << endl;
-	}
-	//-------DESC-------
-
-	temp = new pessoa[75];
-	current = 0;//current serve para contar o interior do array temp
-	for (int i = 0; i < 5; i++)
-		for (int j = 0; j < desc[i].capacidade; j++) {
-			temp[current] = desc[i].passageiro[j];
-			current++;
-		}
-	sort_by_name(temp, current);
-	cout << "\n----------------------------------------------------------------------------\n";
-	cout.width(45);
-	cout << right << "A Descolar:\n";
-	cout << "----------------------------------------------------------------------------\n\n";
-	cout << "Nome";
-	cout.width(60);
-	cout << "Nacionalidade\n\n";
-	for (int i = 0; i < current; i++) {
-		cout.width(49);
-		cout << left << temp[i].segundo_nome + ", " + temp[i].primeiro_nome;
-		cout << internal << temp[i].nacionalidade << endl;
-	}
-	//-----------No Terminal-------
-
-	temp = new pessoa[30];
-	current = 0;//current serve para contar o interior do array temp
 	for (int i = 0; i < 30; i++)
-		if(passageiros[i].turn!=-1){
+		if (passageiros[i].turn != -1) {
 			temp[current] = passageiros[i].humman;
 			current++;
 		}
+	for (int i = 0; i < 7; i++)
+		for (int j = i; j < pista[i].capacidade; j++){
+			temp[current] = pista[i].passageiro[j];
+			current++;
+		}
+	for (int i = 0; i < 10; i++)
+		for (int j = i; j < aprox[i].capacidade; j++) {
+			temp[current] = aprox[i].passageiro[j];
+			current++;
+		}
+		for (int i = 0; i < 5; i++)
+			for (int j = i; j < desc[i].capacidade; j++) {
+				temp[current] = desc[i].passageiro[j];
+				current++;
+			}
 	sort_by_name(temp, current);
 	cout << "\n----------------------------------------------------------------------------\n";
-	cout.width(45);
-	cout << right << "No Terminal:\n";
+	cout.width(65);
+	cout << right << "Lista de Passageiros Ordenada Alfabeticamente.\n";
 	cout << "----------------------------------------------------------------------------\n\n";
 	cout << "Nome";
 	cout.width(60);
@@ -262,6 +215,12 @@ void lista_todos_voos(aviao * pista, aviao * aprox, aviao * desc) {
 
 } // Fim da 2ª Funcionalidade
 void lista_voos_pista_descolar(aviao * pista, aviao * desc) {
+	aviao * temp = new aviao[7];
+	for (int i = 0; i < 7; i++) {
+		temp[i] = pista[i];
+	}
+	sort_by_destino(temp, 7);
+
 	limpar;
 	cout << "\nLista Todos os Voos, em Pista e a Descolar, Ordenados Alfabéticamente.\n";
 	cout << "\n----------------------------------------------------------------------------\n";
@@ -275,11 +234,18 @@ void lista_voos_pista_descolar(aviao * pista, aviao * desc) {
 	cout << "Destino\n\n";
 	for (int i = 0; i < 7; i++) {
 		cout.width(27);
-		cout << left << pista[i].modelo;
+		cout << left << temp[i].modelo;
 		cout.width(27);
-		cout << left << pista[i].origem;
-		cout << pista[i].destino << endl;
+		cout << left << temp[i].origem;
+		cout << temp[i].destino << endl;
 	}
+
+	temp = new aviao[5];
+	for (int i = 0; i < 5; i++) {
+		temp[i] = desc[i];
+	}
+	sort_by_destino(temp, 5);
+
 	cout << "\n----------------------------------------------------------------------------\n";
 	cout.width(45);
 	cout << right << "Em Descolar:\n";
@@ -291,11 +257,12 @@ void lista_voos_pista_descolar(aviao * pista, aviao * desc) {
 	cout << "Destino\n\n";
 	for (int i = 0; i < 5; i++) {
 		cout.width(27);
-		cout << left << desc[i].modelo;
+		cout << left << temp[i].modelo;
 		cout.width(27);
-		cout << left << desc[i].origem;
-		cout << desc[i].destino << endl;
+		cout << left << temp[i].origem;
+		cout << temp[i].destino << endl;
 	}
+	delete[] temp;
 	pausa;
 }
 
