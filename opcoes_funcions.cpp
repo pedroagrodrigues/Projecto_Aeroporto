@@ -1,7 +1,7 @@
 #include "bibliotecas.h"
 //CPP Dedicado às Funções do Menu_Opções;
 
-//----Sorting Functions----
+//----Sorting Functions---- (Funções Para Ordenação Alfabéticamente)
 void sort_by_name(pessoa * passageiro, int size) {
 	for (int i = 0; i < size; i++) {
 		for (int j = i; j < (size); j++) {
@@ -36,45 +36,72 @@ void sort_by_nacionality(pessoa * passageiro, int size) {
 
 // ----------------Funções_Menu_Opções-------------------
 
-// 1ª Funcionalidade Menu_Opções
+// (Sub Menu Com 2 Opções) - Opção 1 Menu_Opções
 void lista_todos_passageiros(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros){
 	limpar;
 
 	cout << "\nLista De Todos os Passageiros.\n";
 
 	// Lista De Passageiros Que Estão Nos Aviões Em Aproximação
-	cout << "\n-------------------------------------------------------\n";
-	cout << "Em Aproximação:\n";
-	cout << "-------------------------------------------------------\n\n";
+	cout << "\n----------------------------------------------------------------------------\n";
+	cout.width(48);
+	cout << right << "Em Aproximação:\n";
+	cout << "----------------------------------------------------------------------------\n\n";
+	cout << "Nome";
+	cout.width(60);
+	cout << "Nacionalidade\n\n";
 		for (int i = 0; i < 10; i++)
-				for (int j = 0; j < aprox[i].capacidade; j++)
-				    cout << aprox[i].passageiro[j].segundo_nome << ", " << aprox[i].passageiro[j].primeiro_nome << "\t->\t" << aprox[i].passageiro[j].nacionalidade << endl;
+			for (int j = 0; j < aprox[i].capacidade; j++) {
+				cout.width(49);
+				cout << left << aprox[i].passageiro[j].segundo_nome + ", " + aprox[i].passageiro[j].primeiro_nome;
+				cout << internal << aprox[i].passageiro[j].nacionalidade << endl;
+			}
 
     // Lista De Passageiros Que Estão Nos Avições Em Pista
-	cout << "\n-------------------------------------------------------\n";
-	cout << "Em Pista:\n";
-	cout << "-------------------------------------------------------\n\n";
-	   for (int i = 0; i < 7; i++)
-		  for (int j = 0; j < pista[i].capacidade; j++)
-				cout << pista[i].passageiro[j].segundo_nome << ", " << pista[i].passageiro[j].primeiro_nome << "\t->\t" << pista[i].passageiro[j].nacionalidade << endl;
-
+		cout << "\n----------------------------------------------------------------------------\n";
+		cout.width(48);
+		cout << right << "Em Pista:\n";
+		cout << "----------------------------------------------------------------------------\n\n";
+		cout << "Nome";
+		cout.width(60);
+		cout << "Nacionalidade\n\n";
+		for (int i = 0; i < 7; i++)
+			for (int j = 0; j < pista[i].capacidade; j++) {
+				cout.width(49);
+				cout << left << pista[i].passageiro[j].segundo_nome + ", " + pista[i].passageiro[j].primeiro_nome;
+				cout << internal << pista[i].passageiro[j].nacionalidade << endl;
+			}
 
 	// Lista De Passageiros Que Estão Nos Avições Em Descolagem
-	cout << "\n-------------------------------------------------------\n";
-	cout << "Em Descolar:\n";
-	cout << "-------------------------------------------------------\n\n";
-		for (int i = 0; i < 5; i++)
-			for (int j = 0; j < desc[i].capacidade; j++)
-				cout << desc[i].passageiro[j].segundo_nome << ", " << desc[i].passageiro[j].primeiro_nome << "\t->\t" << desc[i].passageiro[j].nacionalidade << endl;
+	   cout << "\n----------------------------------------------------------------------------\n";
+	   cout.width(48);
+	   cout << right << "Em Descolar:\n";
+	   cout << "----------------------------------------------------------------------------\n\n";
+	   cout << "Nome";
+	   cout.width(60);
+	   cout << "Nacionalidade\n\n";
+	   for (int i = 0; i < 5; i++)
+		   for (int j = 0; j < desc[i].capacidade; j++){
+		   cout.width(49);
+		   cout << left << desc[i].passageiro[j].segundo_nome + ", " + desc[i].passageiro[j].primeiro_nome;
+		   cout << internal << desc[i].passageiro[j].nacionalidade << endl;
+	   }
 
 	// Lista De Passageiros Que Estão No Terminal Do Aeroporto
-	cout << "\n-------------------------------------------------------\n";
-	cout << "No Terminal:\n";
-	cout << "-------------------------------------------------------\n\n";
-	     for (int j = 0; j < 30; j++)
-			if (passageiros[j].turn != -1)
-				cout << passageiros[j].humman.segundo_nome << ", " << passageiros[j].humman.primeiro_nome << "\t->\t" << passageiros[j].humman.nacionalidade << endl;
-
+		cout << "\n----------------------------------------------------------------------------\n";
+		cout.width(48);
+		cout << right << "No Terminal:\n";
+		cout << "----------------------------------------------------------------------------\n\n";
+		cout << "Nome";
+		cout.width(60);
+		cout << "Nacionalidade\n\n";
+		for (int j = 0; j < 30; j++) {
+			if (passageiros[j].turn != -1) {
+				cout.width(49);
+				cout << left << passageiros[j].humman.segundo_nome + ", " + passageiros[j].humman.primeiro_nome;
+				cout << internal << passageiros[j].humman.nacionalidade << endl;
+			}
+			}
 	pausa;
 
 } // Fim Da 1ª Função Do Menu_Opções
@@ -90,7 +117,7 @@ void lista_todos_passageiros_ordenados(aviao * pista, aviao * aprox, aviao * des
 		}
 	sort_by_name(temp, current);
 	cout << "\nLista De Todos os Passageiros Ordenados Por Ordem Alfabética.\n";
-	cout << "----------------------------------------------------------------------------\n\n";
+
 	// Lista De Passageiros Que Estão Nos Aviões Em Aproximação
 	cout << "\n----------------------------------------------------------------------------\n";
 	cout.width(48);
@@ -175,7 +202,7 @@ void lista_todos_passageiros_ordenados(aviao * pista, aviao * aprox, aviao * des
 	pausa;
 }
 
-// 2ª Funcionalidade Menu_Opções
+// (Sub Menu Com 2 Opções) - Opção 2 Menu_Opções
 void lista_todos_voos(aviao * pista, aviao * aprox, aviao * desc) {
 	limpar;
 	cout << "\nLista De Todos os Voos.\n";
@@ -221,7 +248,7 @@ void lista_todos_voos(aviao * pista, aviao * aprox, aviao * desc) {
 	cout << "Modelo";
 	cout.width(30);
 	cout << "Origem";
-	cout.width(35);
+	cout.width(30);
 	cout << "Destino\n\n";
 	for (int i = 0; i < 5; i++) {
 		cout.width(27);
@@ -236,6 +263,7 @@ void lista_todos_voos(aviao * pista, aviao * aprox, aviao * desc) {
 } // Fim da 2ª Funcionalidade
 void lista_voos_pista_descolar(aviao * pista, aviao * desc) {
 	limpar;
+	cout << "\nLista Todos os Voos, em Pista e a Descolar, Ordenados Alfabéticamente.\n";
 	cout << "\n----------------------------------------------------------------------------\n";
 	cout.width(45);
 	cout << right << "Na Pista:\n";
@@ -259,7 +287,7 @@ void lista_voos_pista_descolar(aviao * pista, aviao * desc) {
 	cout << "Modelo";
 	cout.width(30);
 	cout << "Origem";
-	cout.width(35);
+	cout.width(30);
 	cout << "Destino\n\n";
 	for (int i = 0; i < 5; i++) {
 		cout.width(27);
@@ -272,8 +300,7 @@ void lista_voos_pista_descolar(aviao * pista, aviao * desc) {
 }
 
 
-
-// 3ª Funcionalidade Menu_Opções
+// Opção 3 - Menu_Opções
 void lista_passageiros_pista(aviao * pista) {
 	limpar;
 	cout << "\n----------------------------------------------------------------------------\n";
@@ -296,7 +323,7 @@ void lista_passageiros_pista(aviao * pista) {
 	pausa;
 } // Fim da 3ª Funcionalidade
 
-// 4ª Funcionalidade Menu_Opções
+// Opção 4 - Menu_Opções
 void lista_passageiros_pista_nacionalidade(aviao * pista) {
 	limpar;
 	pessoa * temp = new pessoa[107];

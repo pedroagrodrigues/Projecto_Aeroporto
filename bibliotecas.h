@@ -50,18 +50,18 @@ int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
 
 //---------Funções_opcoes---------
 
-// 1ª Funcionalidade
+// Opção 1 Menu_Opções - Funções
 void lista_todos_passageiros(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros); 
 void lista_todos_passageiros_ordenados(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
 
-// 2ª Funcionalidade
+// Opção 2 Menu_Opções - Funções
 void lista_todos_voos(aviao * pista, aviao * aprox, aviao * desc);
 void lista_voos_pista_descolar(aviao * pista, aviao * desc);
 
-// 3ª Funcionalidade
+// Opção 3 Menu_Opções - Funções
 void lista_passageiros_pista(aviao * pista);
 
-//4ª Funcionalidade
+//Opção 4 Menu_Opções - Funções
 void lista_passageiros_pista_nacionalidade(aviao * pista);
 
 
