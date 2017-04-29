@@ -52,8 +52,9 @@ bool is_written() {
 
 //Guarda As Variáveis No Seu Estado Actual Num Ficheiro ".save" Para Que o Programa Continue a Partir Do Último Ponto
 bool save(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
-	fstream file("estado.save", ios_base::out | ios_base::binary);
-	if (file.is_open()) {
+	fstream file("estado.save", ios::out | ofstream::binary);
+
+	if(file.is_open()){
 		for (int i = 0; i < 7; i++) {
 			file << pista[i].capacidade << endl;
 			file << pista[i].destino << endl;
@@ -100,7 +101,7 @@ bool save(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 			file << passageiros[i].humman.segundo_nome << endl;
 			file << passageiros[i].turn << endl;
 		}
-
+		
 		file.close();
 		return 1;
 	}
@@ -109,7 +110,7 @@ bool save(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 
 //Carrega Do Ficheiro ".save" o Estado Que Foi Guardado Noutra Utilização
 void load_file_state(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros) {
-	fstream file("estado.save", ios_base::in | ios_base::binary);
+	ifstream file("estado.save", ios::in | ifstream::binary);
 	if (file.is_open()) {
 		for (int i = 0; i < 7; i++) {
 			string temp;
