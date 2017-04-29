@@ -104,35 +104,125 @@ void go_loop(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros)
 }
 
 //EMERGÊNCIA!
-void emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
+int emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 	limpar;
-    
+	string selecao1, selecao2;
+	
+	while (1) {
+
+	cout << selecao1;
+	cout << selecao2;
+	
 	cout << "\nEntrou no Modo Emergência.\n";
 	cout << "-------------------------------------------------------\n";
-	cout << "\nSelecione o Voo Em Situação De Emergência!\n";
-	for (int i = 0; i < 10; i++)
-		cout << "\n" << i + 1 << " - Voo: " << aproximacao[i].nome_voo << "\n  " << " - Modelo: " << aproximacao[i].modelo << "\n  " << " - Origem: " << aproximacao[i].origem << endl;
 
-	//variável de seleção
-	int n;
-	cin >> n;
-    n--;
-	cout << "\t Selecionou Voo: " << aproximacao[n].nome_voo << "\t  Modelo: " << aproximacao[n].modelo << endl;
-	aproximacao[0] = aproximacao[n];
-	aproximacao[0].nome_voo += "-----EM EMÊRGENCIA!";
-	for (int i = n; i > 1; i--)
-		aproximacao[i] = aproximacao[i - 1];
-	//Descolagem
-	cout << "\nSelecione o Voo a Descolar\n";
-	for (int i = 0; i < 7; i++)
-		cout << "\n" << i + 1 << " - Voo: " << pista[i].nome_voo << "\n  " << " - Modelo: " << pista[i].modelo << "\n  " << " - Origem: " << pista[i].origem << endl;
-	//variável de seleção
-	cin >> n;
-	n--;
-	//aviao temp = aproximacao[h - 1];
-	pista[0] = pista[n];
+	cout << "1 - Selecione o Voo em Emergência.\n";
+	cout << "2 - Selecione o Voo a Descolar. \n";
+	cout << "c - Confirma a Seleção.\n";
+	cout << "0 - Cancelar.\n";
 
-	for (int i = n; i > 1; i--)
-		pista[i] = pista[i - 1];
+	
+		switch (_getch()) {
+		case '1'://Sub Seleção para aterragem
+			limpar;
+			//Aproximação
+			cout << "\nSelecione o Voo Em Situação De Emergência!\n";
+			cout << "\n----------------------------------------------------------------------------\n";
+			cout.width(48);
+			cout << "----------------------------------------------------------------------------\n\n";
+			cout << "Nº";
+			cout.width(30);
+			cout << "Nome do Voo";
+			cout.width(30);
+			cout << "Modelo";
+			cout.width(30);
+			cout << "Origem\n\n";
+			for (int i = 0; i < 10; i++) {
+				cout.width(27);
+				cout << left << i + 1;
+				cout.width(27);
+				cout << left << aproximacao[i].nome_voo;
+				cout.width(27);
+				cout << left << aproximacao[i].modelo;
+				cout << aproximacao[i].origem << endl;
+			}
+			//variável de seleção
+			int aprox_select;
+			cin >> aprox_select;
+			if (aprox_select > 0 && aprox_select < 11) {
+				aprox_select--;
+				selecao1 = "\t Selecionou Voo a Aterrar: " + aproximacao[aprox_select].nome_voo + "\t  Modelo: " + aproximacao[aprox_select].modelo + "\n";
+			}
+			else {
+				aprox_select = NULL;
+				cout <<"Essa opção não é válida\n";
+				pausa;
+			}
+			limpar;
+			break;
+
+		case '2'://Submenu Seleção para Descolar
+			limpar;
+			//Descolagem
+			cout << "\nSelecione o Voo a Descolar\n\n";
+			cout.width(30);
+			cout << "Nº";
+			cout.width(30);
+			cout << "Nome do Voo";
+			cout.width(30);
+			cout << "Modelo";
+			cout << "Destino\n\n";
+			for (int i = 0; i < 7; i++) {
+				cout.width(27);
+				cout << left << i + 1;
+				cout.width(27);
+				cout << left << pista[i].nome_voo;
+				cout.width(25);
+				cout << pista[i].modelo;
+				cout << pista[i].destino << endl;
+			}
+			//variável de seleção
+			int pista_select;
+			cin >> pista_select;
+			if (pista_select > 0 && pista_select < 11) {
+				pista_select--;
+				selecao2 = "\t Selecionou Voo a Descolar: " + pista[pista_select].nome_voo + "\t  Modelo: " + pista[pista_select].modelo + "\n";
+			}
+			else {
+				cout << "Essa opção não é válida\n";
+				pista_select = NULL;
+				pausa;
+			}
+			limpar;
+			break;
+		case 'c':
+			//Aprox
+			aproximacao[0] = aproximacao[aprox_select];
+			aproximacao[0].nome_voo += "-----EM EMÊRGENCIA!";
+			for (int i = aprox_select; i > 1; i--)
+				aproximacao[i] = aproximacao[i - 1];
+
+			//Descolagem
+			pista[0] = pista[pista_select];
+			for (int i = pista_select; i > 1; i--)
+				pista[i] = pista[i - 1];
+			limpar;
+			return 0;
+			break;
+		case '0':
+			limpar;
+			return 0;
+			break;
+		default:
+			limpar;
+			cout << "Essa opção não é válida\n";
+			break;
+		}
+	}
+
 }
+	
+	
+	
+	
 
