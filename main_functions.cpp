@@ -1,4 +1,5 @@
 #include "bibliotecas.h"
+
 string *destino_file, *capacidade_file, *modelo_file, *nacionalidade_file, *origem_file, *primeiro_file, *segundo_file, *voo_file;
 
 
@@ -56,7 +57,6 @@ void pista_6(aviao pista[], aviao aprox[]) {
 	pista[6].origem = "Aeroporto EDA";
 	pista[6].destino = randomize(destino_file);
 	pista[6].nome_voo = randomize(voo_file);
-	//if (pista[6].capacidade > 0) {
 	pista[6].passageiro = new pessoa[pista[6].capacidade];
 	for (int j = 0; j < pista[6].capacidade; j++) {
 		pista[6].passageiro[j].bilhete = generate_ticket();
@@ -154,39 +154,31 @@ int emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 	while (1) {
 		cout << selecao[0];
 		cout << selecao[1];
-
 		cout << "\n----------------------------------------------------------------------------\n";
 		cout.width(55);
 		cout << right << "Entrou no modo de Emergência!\n";
 		cout << "----------------------------------------------------------------------------\n\n";
-
 		cout << "1 - Selecione o Voo em Emergência.\n";
 		cout << "2 - Selecione o Voo a Descolar. \n";
 		cout << "c - Confirma a Seleção.\n";
 		cout << "0 - Cancelar.\n";
-
-
 		switch (_getch()) {
 		case '1'://Sub Seleção para aterragem
 			selectE[0] = emergency_select(aproximacao, 10);
 			selecao[0] = "\t Selecionou Voo a Aterrar: " + aproximacao[selectE[0]].nome_voo + "\t  Modelo: " + aproximacao[selectE[0]].modelo + "\n";
-
 			break;
-
 		case '2'://Submenu Seleção para Descolar
-			//Descolagem
 			selectE[1] = emergency_select(pista, 7);
 			selecao[1] = "\t Selecionou Voo a Descolar: " + pista[selectE[1]].nome_voo + "\t  Modelo: " + pista[selectE[1]].modelo + "\n";
 			break;
 		case 'c':
-			//Aprox
 			cout << endl;
 			if (selectE[0] != -1 && selectE[1] != -1) {
+				//Aprox
 				aproximacao[0] = aproximacao[selectE[0]];
 				aproximacao[0].nome_voo += "-----EM EMÊRGENCIA!";
 				for (int i = selectE[0]; i > 1; i--)
 					aproximacao[i] = aproximacao[i - 1];
-
 				//Descolagem
 				pista[0] = pista[selectE[1]];
 				for (int i = selectE[1]; i > 1; i--)

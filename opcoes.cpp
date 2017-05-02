@@ -6,7 +6,7 @@
 int todos_os_passageiros(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 	while (1) {
 		limpar;
-	cout << "\n(1) Lista Todos Passageiros" << " (2) Lista Todos os Passageiros Ordenados" << "\t (0) Voltar" << endl;
+	cout << "\n(1) Lista Todos Passageiros" << " (2) Lista Todos os Passageiros Ordenados" << "\t (0) - Voltar" << endl;
 	cout << "-------------------------------------------------------------------------------\n";
 	
 
@@ -34,7 +34,7 @@ int todos_os_passageiros(aviao * pista, aviao * aprox, aviao * desc, terminal * 
 int todos_voos_pista_desc(aviao * pista, aviao * aprox,  aviao * desc) {
 	while (1) {
 		limpar;
-		cout << "\n(1) Lista Todos Voos" << " (2) Lista De Voos em Pista e a Descolar" << "\t (0) Voltar" << endl;
+		cout << "\n(1) Lista Todos Voos" << " (2) Lista De Voos em Pista e a Descolar" << "\t (0) - Voltar" << endl;
 		cout << "-------------------------------------------------------------------------------\n";
 		switch (_getch()) {
 

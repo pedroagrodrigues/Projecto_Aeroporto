@@ -33,7 +33,7 @@ struct terminal {
 	pessoa humman;
 	int turn = -1;
 };
-//---------Funçoes_Stream------
+//---------Funçoes_Stream-------
 bool is_written();
 void load_file_state(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros);
 string * preencher_dados(string caminho);
@@ -45,10 +45,10 @@ void primeiro_carregamento_vectores(aviao * pista, aviao * aproximacao, aviao * 
 void var_load_file();
 int emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem);
 
-//---------Menu Opção---------
+//---------Menu Opção-----------
 int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
 
-//---------Funções_opcoes---------
+//---------Funções_opcoes------------------------------------------------------------------
 
 // Opção 1 Menu_Opções - Funções
 void lista_todos_passageiros(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros); 

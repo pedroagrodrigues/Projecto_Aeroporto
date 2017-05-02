@@ -1,12 +1,12 @@
 #include "bibliotecas.h"
 
 int main() {
-	setlocale(LC_ALL, "Portuguese");
-	var_load_file();
+	setlocale(LC_ALL, "Portuguese"); //Faz a consola aceitar caracteres especiais.
+	var_load_file();//Carrega os ficheiros para memória
 	aviao * pista = new aviao[7], * aproximacao = new aviao[10], * descolar = new aviao[5];
 	terminal * passageiros = new terminal[30];
 	for (int i = 0; i < 30; i++) passageiros[i] = { NULL };
-	primeiro_carregamento_vectores(pista, aproximacao, descolar, passageiros);
+	primeiro_carregamento_vectores(pista, aproximacao, descolar, passageiros); //Carrega o estado ou inicia o programa
 	while (1) {
 		limpar;
 		cout << "(e)mergências (o)pções (g)ravar\t\t 0 - Sair\n";
@@ -50,19 +50,15 @@ int main() {
 			
 			
 		}
-		//Teste Para Ver Se As Pessoas Estão a Entrar e a Sair Do Terminal
-		//for (int i = 0; i < 30; i++)
-			//if (passageiros[i].turn != -1) cout << passageiros[i].humman.segundo_nome << " turno \t" << passageiros[i].turn << endl;
 
-			
 		//-------------Switch Case-------------
 		switch (_getch()) {
 		case 'e':
-			cout << emergencia(pista, aproximacao, descolar); // Função Criada Para Modo_EMERGÊNCIA
+			cout << emergencia(pista, aproximacao, descolar); // Função de Emergência
 			break;
 		case 'o':
 			limpar;
-			opcoes(pista, aproximacao, descolar, passageiros); // Função Criada Para o Menu_Opções
+			opcoes(pista, aproximacao, descolar, passageiros); // Função para o Menu_Opções
 			break;
 		case 'g':
 			limpar;
@@ -76,8 +72,8 @@ int main() {
 			limpar;
 			cout << "Opção Sair, Até à Próxima!\n";
 			return 0;
-		case 0xe0: //Coresponde ao Caracter Indica Que Uma Das Setas Foi Precionada
-			if (_getch() == 0x4D) //Corresponde à Seta Para a Direita
+		case 0xe0: //Indica que uma das setas foi percionada
+			if (_getch() == 0x4D) //Corresponde à seta para a direita
 				go_loop(pista, aproximacao, descolar, passageiros);
 			else cout << "Essa Opção Não é Válida\n";
 			break;
