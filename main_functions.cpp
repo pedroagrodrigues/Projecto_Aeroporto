@@ -175,14 +175,16 @@ int emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 			cout << endl;
 			if (selectE[0] != -1 && selectE[1] != -1) {
 				//Aprox
-				aproximacao[0] = aproximacao[selectE[0]];
-				aproximacao[0].nome_voo += "-----EM EMÊRGENCIA!";
-				for (int i = selectE[0]; i > 1; i--)
+				aviao temp = aproximacao[selectE[0]];
+				for (int i = selectE[0]; i > 0; i--)
 					aproximacao[i] = aproximacao[i - 1];
+				aproximacao[0] = temp;
+				aproximacao[0].nome_voo += "-----EM EMÊRGENCIA!";
 				//Descolagem
-				pista[0] = pista[selectE[1]];
-				for (int i = selectE[1]; i > 1; i--)
+				aviao temp2 = pista[selectE[1]];
+				for (int i = selectE[1]; i > 0; i--)
 					pista[i] = pista[i - 1];
+				pista[0] = temp2;
 				return 0;
 			}
 			else if (selectE[0] != -1 && selectE[1] == -1)	
