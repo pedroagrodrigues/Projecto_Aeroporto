@@ -10,55 +10,93 @@ int main() {
 	while (1) {
 		limpar;
 		cout << "(e)mergências (o)pções (g)ravar\t\t 0 - Sair\n";
-		/*if (aproximacao[0].capacidade != 0) {*/
-		cout << "---------------\nEm aproximação\n---------------\n";
+		cout << "-----------------------------------------------------------------------------------------------------------------------------------\n";
+		cout.width(75);
+		cout << right << "Em Aproximação:\n";
+		cout << "-----------------------------------------------------------------------------------------------------------------------------------\n\n";
+		cout << "Voo";
+		cout.width(22);
+		cout << "Modelo";
+		cout.width(23);
+		cout << "Origem";
+		cout.width(25);
+		cout << "Destino";
+		cout.width(35);
+		cout << "Passageiros \n";
 		for (int j = 0; j <= 9; j++) {
-			cout << "Voo: " << aproximacao[j].nome_voo << endl;
-			cout << "Modelo: " << aproximacao[j].modelo << endl;
-			cout << "Origem: " << aproximacao[j].origem << endl;
-			cout << "Destino: " << aproximacao[j].destino << endl;
-			cout << "Passageiros: ";
+			cout.width(18);
+			cout << left << aproximacao[j].nome_voo;
+			cout.width(20);
+			cout << left << aproximacao[j].modelo;
+			cout.width(27);
+			cout << left << aproximacao[j].origem;
+			cout.width(27);
+			cout << left << aproximacao[j].destino;
 			for (int i = 0; i < aproximacao[j].capacidade && i <= 4; i++) cout << aproximacao[j].passageiro[i].segundo_nome << ", ";
-			if (aproximacao[j].capacidade > 4) cout << "...\n"; //Esta comparação serve para o caso de adicionarem uma capacidade de 4 ao ficheiro "capacidade.txt"
-			else if (aproximacao[j].capacidade > 0) cout << ".\n";
+			if (aproximacao[j].capacidade > 4) cout << "..."; //Esta comparação serve para o caso de adicionarem uma capacidade de 4 ao ficheiro "capacidade.txt"
+			else if (aproximacao[j].capacidade > 0) cout << ".";
 			else cout << endl;
 			cout << "\n";
 		}
 		cout << "\n";
-		cout << "---------------\nNa pista\n---------------\n";
+		cout << "-----------------------------------------------------------------------------------------------------------------------------------\n";
+		cout.width(70);
+		cout << right << "Na Pista:\n";
+		cout << "-----------------------------------------------------------------------------------------------------------------------------------\n\n";
+		cout << "Voo";
+		cout.width(22);
+		cout << "Modelo";
+		cout.width(23);
+		cout << "Origem";
+		cout.width(25);
+		cout << "Destino";
+		cout.width(35);
+		cout << "Passageiros \n";
 		for (int j = 0; j <= 6; j++) {
-			cout << "Voo: " << pista[j].nome_voo << endl;
-			cout << "Modelo: " << pista[j].modelo << endl;
-			cout << "Origem: " << pista[j].origem << endl;
-			cout << "Destino: " << pista[j].destino << endl;
-			cout << "Passageiros: ";
+			cout.width(18);
+			cout << left << pista[j].nome_voo;
+			cout.width(20);
+			cout << left << pista[j].modelo;
+			cout.width(27);
+			cout << left << pista[j].origem;
+			cout.width(27);
+			cout << left << pista[j].destino;
 			for (int i = 0; i < pista[j].capacidade && i <= 4; i++) cout << pista[j].passageiro[i].segundo_nome << ", ";
-			if (pista[j].capacidade > 4) cout << "...\n";
-			else if (pista[j].capacidade > 0) cout << ".\n";
+			if (pista[j].capacidade > 4) cout << "...";
+			else if (pista[j].capacidade > 0) cout << ".";
 			else cout << endl;
 			cout << "\n";
 		}
 		cout << "\n";
-		cout << "---------------\nA descolar\n---------------\n";
+		cout << "-----------------------------------------------------------------------------------------------------------------------------------\n";
+		cout.width(72);
+		cout << right << "A Descolar:\n";
+		cout << "-----------------------------------------------------------------------------------------------------------------------------------\n\n";
+		cout << "Voo";
+		cout.width(22);
+		cout << "Modelo";
+		cout.width(23);
+		cout << "Origem";
+		cout.width(25);
+		cout << "Destino";
+		cout.width(35);
+		cout << "Passageiros \n";
 		for (int j = 0; j <= 4; j++) {
-			cout << "Voo: " << descolar[j].nome_voo << endl;
-			cout << "Modelo: " << descolar[j].modelo << endl;
-			cout << "Origem: " << descolar[j].origem << endl;
-			cout << "Destino: " << descolar[j].destino << endl;
-			cout << "Passageiros: ";
+			cout.width(18);
+			cout << left << descolar[j].nome_voo;
+			cout.width(20);
+			cout << left << descolar[j].modelo;
+			cout.width(27);
+			cout << left << descolar[j].origem;
+			cout.width(27);
+			cout << left << descolar[j].destino;
 			for (int i = 0; i < descolar[j].capacidade && i <= 4; i++) cout << descolar[j].passageiro[i].segundo_nome << ", ";
 			if (descolar[j].capacidade > 4) cout << "...";
 			else if (descolar[j].capacidade > 0) cout << ".";
 			else cout << endl;
 			cout << "\n";
 		}
-		/*}
-		else {
-			cout << "---------------\nEm aproximação (A carregar)\n---------------\n";
-			for (int i = 9; i >-1; i--)
-				cout << i + 1 << "º Voo: " << aproximacao[i].nome_voo << endl;
-			}*/
-
+		
 		//-------------Switch Case-------------
 		switch (_getch()) {
 		case 'e':
