@@ -177,7 +177,7 @@ int emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 				//Aprox
 				aproximacao[0] = aproximacao[selectE[0]];
 				aproximacao[0].nome_voo += "-----EM EMÊRGENCIA!";
-				for (int i = selectE[0]; i > 1; i--)
+				for (int i = selectE[0]; i > 2; i--)
 					aproximacao[i] = aproximacao[i - 1];
 				//Descolagem
 				pista[0] = pista[selectE[1]];

@@ -62,10 +62,28 @@ void lista_voos_pista_descolar(aviao * pista, aviao * desc);
 void lista_passageiros_pista(aviao * pista);
 
 //Opção 4 Menu_Opções - Funções
-void lista_passageiros_pista_nacionalidade(aviao * pista);
+void lista_passageiros_pista_nacionalidade(aviao * pista, terminal * passageiros);
+
+// Opção 5 - Menu_Opções - Funcções
+void lista_passageiros_estrangeiros_aeroporto(aviao * pista, terminal * passageiro);
+int pesquisa_passageiros_estrangeiros_aeroporto_manualmente(aviao * pista, terminal * passageiro);
+void pesquisa_passageiros_estrangeiros_aeroporto_lista(aviao * pista, terminal * passageiro);
+void pesquisa_passageiros_estrangeiros_aeroporto_primeiro_nome(aviao * pista, terminal * passageiro);
+void pesquisa_passageiros_estrangeiros_aeroporto_segundo_nome(aviao * pista, terminal * passageiro);
+
+// Opção 6 - Menu_Opções - Funções
+void pesquisa_passageiros_estrangeiros_aeroporto_ordenados(aviao * pista, terminal * passageiros);
+
+// Opção 7 - Menu_Opções - Funções
+void pesquisa_sobre_passageiros_primeiro_nome(aviao * pista, aviao * desc, aviao * aprox, terminal * passageiros);
+void pesquisa_sobre_passageiros_segundo_nome(aviao * pista, aviao * desc, aviao * aprox, terminal * passageiros);
 
 
+// Opção 8 - Menu_Opções - Funções
+void editar_nome_passageiro(aviao * pista, aviao * desc, aviao * aprox, terminal * passageiros);
 
+// Opção 9 - Menu_Opções - Funções
+void editar_nacionalidade_passageiro(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
 
-
-	
+// Opção 10 - Menu_Opções - Funções
+void editar_destino_voo(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);

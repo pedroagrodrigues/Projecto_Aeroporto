@@ -56,7 +56,80 @@ int todos_voos_pista_desc(aviao * pista, aviao * aprox,  aviao * desc) {
 	} // Fim do ciclo Criado para continuar sempre do Menu_Opções Funcionalidade 2
 } // Fim do da função criado para Menu_Opções Funcionalidade 2
 
-  // Menu_Opções (Chamada dO Menu_Opções -> Principal)
+// Opção 5 Menu_Opções (Sub Menu Com 2 Opções)
+int pesquisa_estrangeiros_aeroporto(aviao * pista, terminal * passageiros){
+	
+	while (1) {
+		limpar;
+		cout << "\n(1) Lista Todos Estrangeiros Aeroporto" << " (2) Pesquisa Passageiros Estrangeiros" << "\t (0) - Voltar" << endl;
+		cout << "-------------------------------------------------------------------------------\n";
+		
+		switch (_getch()) {
+
+		case'1':
+			lista_passageiros_estrangeiros_aeroporto(pista, passageiros);
+			break;
+		
+		case'2':
+			pesquisa_passageiros_estrangeiros_aeroporto_manualmente(pista, passageiros);
+			break;
+		
+		case'0':
+			return 0;
+			break;
+		
+		default:
+			limpar;
+			cout << "\nIntroduza Uma Opção Válida\n.";
+			pausa;
+			break;
+		}
+		
+		pausa;
+
+
+	
+	} // Fim do ciclo Criado para continuar sempre do Menu_Opções Funcionalidade 5
+} // Fim do da função criado para Menu_Opções Funcionalidade 5
+
+// Opção 7 Menu_Opções (Sub Menu Com 2 Opções)
+int pesquisa_sobre_passageiros(aviao * pista, aviao * desc, aviao * aprox, terminal * passageiros){
+	while (1) {
+		limpar;
+		cout.width(55);
+		cout << right << "\nEntrou no Modo Pesquisa Sobre Passageiros no Aeroporto!\n";
+
+		cout << "\n(1) Pesquisa Pelo Primeiro Nome" << " (2) Pesquisa Pelo Segundo Nome" << "\t (0) - Voltar" << endl;
+		cout << "-------------------------------------------------------------------------------\n";
+
+		switch (_getch()) {
+
+		case'1':
+			pesquisa_sobre_passageiros_primeiro_nome(aprox, desc, pista, passageiros);
+			break;
+
+		case'2':
+			pesquisa_sobre_passageiros_segundo_nome(aprox, desc, pista, passageiros);
+			break;
+
+		case'0':
+			return 0;
+			break;
+
+		default:
+			limpar;
+			cout << "\nIntroduza Uma Opção Válida\n.";
+			pausa;
+			break;
+		}
+
+		pausa;
+
+
+	} // Fim do ciclo Criado para continuar sempre do Menu_Opções Funcionalidade 7
+} // Fim do da função criado para Menu_Opções Funcionalidade 7
+
+// Menu_Opções (Chamada do Menu_Opções -> Principal)
 int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 	while (1) { // Ciclo Criado Para Utilizador Estar Sempre Dentro Do Menu Até Ordem Em Contrário
 		limpar;
@@ -65,8 +138,8 @@ int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 		cout << "2 - Mostrar Todos os Voos.\n";
 		cout << "3 - Mostrar Passageiros em Pista.\n";
 		cout << "4 - Mostrar Passageiros em Pista (Por Nacionalidade).\n";
-		cout << "5 - Pesquisa De Passageiros (Origem Estrangeira).\n";
-		cout << "6 - Lista De Passageiros Origem Estrangeira no Aeroporto (Ordenada Por Ordem Alfabética).\n";
+		cout << "5 - Pesquisa De Passageiros Estrangeiros no Aeroporto.\n";
+		cout << "6 - Lista De Passageiros Origem Estrangeira no Aeroporto (Ordem Alfabética).\n";
 		cout << "7 - Pesquisa Sobre os Passageiros.\n";
 		cout << "8 - Editar Nome do Passageiro.\n";
 		cout << "9 - Editar Nacionalidade do Passageiro.\n";
@@ -86,56 +159,26 @@ int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 			break;
 
 		case '4':
-			lista_passageiros_pista_nacionalidade(pista);
+			lista_passageiros_pista_nacionalidade(pista, passageiros);
 			break;
 
 		case '5':
-			limpar;
-			cout << "\nPesquisa De Passageiros (Origem Estrangeira).\n";
-			cout << "-------------------------------------------------------\n";
-			cout << "\nFunção Apenas Disponível na 2ª Fase Do Projecto.\n";// Remover Depois Da Função Implementada
-																		   // Funçao por implementar ainda
-			pausa;
+			pesquisa_estrangeiros_aeroporto(pista, passageiros);
 			break;
 		case '6':
-			limpar;
-			cout << "\nLista De Passageiros Origem Estrangeira no Aeroporto (Ordenada Por Ordem Alfabética).\n";
-			cout << "-------------------------------------------------------\n";
-			cout << "\nFunção Apenas Disponível na 2ª Fase Do Projecto.\n";// Remover Depois Da Função Implementada
-																		   // Funçao por implementar ainda
-			pausa;
+			pesquisa_passageiros_estrangeiros_aeroporto_ordenados(pista, passageiros);
 			break;
 		case '7':
-			limpar;
-			cout << "\nPesquisa Sobre os Passageiros.\n";
-			cout << "-------------------------------------------------------\n";
-			cout << "\nFunção Apenas Disponível na 2ª Fase Do Projecto.\n";// Remover Depois Da Função Implementada
-																		   // Funçao por implementar ainda
-			pausa;
+			pesquisa_sobre_passageiros(pista, aprox, desc, passageiros);
 			break;
 		case '8':
-			limpar;
-			cout << "\nEditar Nome do Passageiro.\n";
-			cout << "-------------------------------------------------------\n";
-			cout << "\nFunção Apenas Disponível na 2ª Fase Do Projecto.\n"; // Remover Depois Da Função Implementada
-																			// Funçao por implementar ainda
-			pausa;
+			editar_nome_passageiro(pista, aprox, desc, passageiros);
 			break;
 		case '9':
-			limpar;
-			cout << "\nEditar Nacionalidade do Passageiro.\n";
-			cout << "-------------------------------------------------------\n";
-			cout << "\nFunção Apenas Disponível na 2ª Fase Do Projecto.\n"; // Remover Depois Da Função Implementada
-																			// Funçao por implementar ainda
-			pausa;
+			editar_nacionalidade_passageiro(pista, aprox, desc, passageiros);
 			break;
 		case '10':
-			limpar;
-			cout << "\nEditar Destino de Voo.\n";
-			cout << "-------------------------------------------------------\n";
-			cout << "\nFunção Apenas Disponível na 2ª Fase Do Projecto.\n"; // Remover Depois Da Função Implementada
-																			// Funçao por implementar ainda
-			pausa;
+			editar_destino_voo(pista, aprox, desc, passageiros);
 			break;
 		case '0':
 			return 0;
