@@ -11,41 +11,61 @@ using namespace std;
 #else
 #define limpar system("clear");
 #define pausa system('PAUSE');
-
 #endif
 
 //---------Estruturas---------
 struct pessoa {
-	long bilhete;
-	string primeiro_nome;
-	string segundo_nome;
-	string nacionalidade;
+	struct pessoa_item {
+		long bilhete;
+		string primeiro_nome;
+		string segundo_nome;
+		string nacionalidade;
+		pessoa_item * next;
+	};
+	pessoa_item * head;
+	pessoa_item * end;
 };
 struct aviao {
-	string nome_voo;
-	string origem;
-	string destino;
-	string modelo;
-	int capacidade = 0;
-	pessoa * passageiro;
+	struct aviao_item {
+		string nome_voo;
+		string origem;
+		string destino;
+		string modelo;
+		int capacidade = 0;
+		pessoa passageiro;
+		aviao_item * next;
+	};
+	aviao_item * head;
+	aviao_item * end;
 };
 struct terminal {
-	pessoa humman;
-	int turn = -1;
+	struct terminal_item {
+		pessoa humman;
+		int turn = -1;
+		terminal_item * next;
+	};
+	terminal_item * head;
+	terminal_item * end;
+
 };
 //---------Funçoes_Stream-------
+string * preencher_dados(string caminho);
+/*
 bool is_written();
 void load_file_state(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros);
-string * preencher_dados(string caminho);
-bool save(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros);
 
+bool save(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros);
+*/
 //---------Funções_main---------
-void go_loop(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
-void primeiro_carregamento_vectores(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros);
+void carregamento_inicial(aviao &pista, aviao &aprox, aviao &desc, terminal &passageiros);
 void var_load_file();
-int emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem);
+void new_struct(aviao &pista, aviao &aprox, aviao &desc, terminal &pass);
+void go_loop(aviao &pista, aviao &aprox, aviao &desc, terminal &passageiros);
+
+//int emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem);
 
 //---------Menu Opção-----------
+/*
 int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
 
 //---------Funções_opcoes------------------------------------------------------------------
@@ -66,6 +86,6 @@ void lista_passageiros_pista_nacionalidade(aviao * pista);
 
 
 
-
+*/
 
 	

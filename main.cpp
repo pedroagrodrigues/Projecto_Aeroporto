@@ -1,24 +1,25 @@
-#include "bibliotecas.h"
+ï»¿#include "bibliotecas.h"
 
 int main() {
 	setlocale(LC_ALL, "Portuguese"); //Faz a consola aceitar caracteres especiais.
-	var_load_file();//Carrega os ficheiros para memória
-	aviao * pista = new aviao[7], * aproximacao = new aviao[10], * descolar = new aviao[5];
-	terminal * passageiros = new terminal[30];
-	for (int i = 0; i < 30; i++) passageiros[i] = { NULL };
-	primeiro_carregamento_vectores(pista, aproximacao, descolar, passageiros); //Carrega o estado ou inicia o programa
-	while (1) {
+	var_load_file();//Carrega os ficheiros para memï¿½ria
+	aviao pista, aproximacao, descolar;
+	terminal passageiros;
+	new_struct(pista, aproximacao, descolar, passageiros);
+	carregamento_inicial(pista, aproximacao, descolar, passageiros); 
+	
+	/*while (1) {
 		limpar;
-		cout << "(e)mergências (o)pções (g)ravar\t\t 0 - Sair\n";
+		cout << "(e)mergÃªncias (o)pÃ§Ãµes (g)ravar\t\t 0 - Sair\n";
 		if (aproximacao[0].capacidade != 0) {
-			cout << "---------------\nEm aproximação\n---------------\n";
+			cout << "---------------\nEm aproximaÃ§Ã£o\n---------------\n";
 			cout << "Voo: " << aproximacao[0].nome_voo << endl;
 			cout << "Modelo: " << aproximacao[0].modelo << endl;
 			cout << "Origem: " << aproximacao[0].origem << endl;
 			cout << "Destino: " << aproximacao[0].destino << endl;
 			cout << "Passageiros: ";
 			for (int i = 0; i < aproximacao[0].capacidade && i <= 4; i++) cout << aproximacao[0].passageiro[i].segundo_nome << ", ";
-			if (aproximacao[0].capacidade > 4) cout << "...\n"; //Esta comparação serve para o caso de adicionarem uma capacidade de 4 ao ficheiro "capacidade.txt"
+			if (aproximacao[0].capacidade > 4) cout << "...\n"; //Esta comparaÃ§Ã£o serve para o caso de adicionarem uma capacidade de 4 ao ficheiro "capacidade.txt"
 			else if (aproximacao[0].capacidade > 0) cout << ".\n";
 			else cout << endl;
 			cout << ".\n.\n";
@@ -44,9 +45,9 @@ int main() {
 			else if (descolar[4].capacidade > 0) cout << ".";
 		}
 		else {
-			cout << "---------------\nEm aproximação (A carregar)\n---------------\n";
+			cout << "---------------\nEm aproximaÃ§Ã£o (A carregar)\n---------------\n";
 			for (int i = 9; i >-1; i--)
-				cout << i+1 << "º Voo: " << aproximacao[i].nome_voo << endl;
+				cout << i+1 << "Âº Voo: " << aproximacao[i].nome_voo << endl;
 			
 			
 		}
@@ -54,15 +55,15 @@ int main() {
 		//-------------Switch Case-------------
 		switch (_getch()) {
 		case 'e':
-			cout << emergencia(pista, aproximacao, descolar); // Função de Emergência
+			cout << emergencia(pista, aproximacao, descolar); // FunÃ§Ã£o de EmergÃªncia
 			break;
 		case 'o':
 			limpar;
-			opcoes(pista, aproximacao, descolar, passageiros); // Função para o Menu_Opções
+			opcoes(pista, aproximacao, descolar, passageiros); // FunÃ§Ã£o para o Menu_OpÃ§Ãµes
 			break;
 		case 'g':
 			limpar;
-			cout << "Escolheu a Opção Gravar.\n";
+			cout << "Escolheu a OpÃ§Ã£o Gravar.\n";
 			if (save(pista, aproximacao, descolar, passageiros))
 				cout << "Os Seus Documentos Foram Salvos.\n";
 			else cout << "Erro. Falha ao Gravar!\n";
@@ -70,17 +71,17 @@ int main() {
 			break;
 		case '0':
 			limpar;
-			cout << "Opção Sair, Até à Próxima!\n";
+			cout << "OpÃ§Ã£o Sair, AtÃ© Ã  PrÃ³xima!\n";
 			return 0;
 		case 0xe0: //Indica que uma das setas foi percionada
-			if (_getch() == 0x4D) //Corresponde à seta para a direita
+			if (_getch() == 0x4D) //Corresponde Ã  seta para a direita
 				go_loop(pista, aproximacao, descolar, passageiros);
-			else cout << "Essa Opção Não é Válida\n";
+			else cout << "Essa OpÃ§Ã£o NÃ£o Ã© VÃ¡lida\n";
 			break;
 		default:
-			cout << "Essa opção não é válida\n";
+			cout << "Essa opÃ§Ã£o nÃ£o Ã© vÃ¡lida\n";
 			break;
 		}
-	} // Fim do While
+	} // Fim do While*/
 }
 

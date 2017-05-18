@@ -28,7 +28,7 @@ string * preencher_dados(string caminho) {
 		return 0;
 	}
 }
-
+/*
 //Verifica Se Existe Algo Escrito No Ficheiro ".save" 
 bool is_written() {
 	ifstream file("estado.save", ios::beg | istream::binary);
@@ -184,3 +184,4 @@ void load_file_state(aviao * pista, aviao * aproximacao, aviao * desc, terminal 
 	}
 
 }
+*/

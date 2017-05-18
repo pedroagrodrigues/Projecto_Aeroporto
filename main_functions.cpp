@@ -22,87 +22,172 @@ string randomize(string * data) {
 }
 
 //Gera Um Numero Para o Bilhete de Voo(falta fazer a verificação se o numero já existe)
-int generate_ticket() {
-	int ticket_number;
+
+long generate_ticket() {
+	long ticket_number;
 	ticket_number = rand() % 1000000000 + 9999999999;
 	return ticket_number;
 }
 
-// Cria um Novo Avião Para a Aproximação
-void aprox_9(aviao aprox[]) {
-	aprox[9].nome_voo = randomize(voo_file);
-	aprox[9].origem = randomize(origem_file);
-	aprox[9].destino = "Aeroporto EDA";
-	aprox[9].modelo = randomize(modelo_file);
-	aprox[9].capacidade = stoi(randomize(capacidade_file));
-	aprox[9].passageiro = new pessoa[aprox[9].capacidade];
-	for (int j = 0; j < aprox[9].capacidade; j++) {
-		aprox[9].passageiro[j].bilhete = generate_ticket();
-		aprox[9].passageiro[j].nacionalidade = randomize(nacionalidade_file);
-		aprox[9].passageiro[j].primeiro_nome = randomize(primeiro_file);
-		aprox[9].passageiro[j].segundo_nome = randomize(segundo_file);
+void new_struct(aviao &pista, aviao &aprox, aviao &desc, terminal &pass) { //RUN ONCE
+	pista.end = NULL;
+	pista.head = NULL;
+	aprox.end = NULL;
+	aprox.head = NULL;
+	desc.end = NULL;
+	desc.head = NULL;
+	pass.head = NULL;
+	pass.end = NULL;
+}
+
+pessoa::pessoa_item * generate_person() {
+	pessoa::pessoa_item * person = new pessoa::pessoa_item();
+	person->bilhete = generate_ticket();
+	person->nacionalidade = randomize(nacionalidade_file);
+	person->primeiro_nome = randomize(primeiro_file);
+	person->segundo_nome = randomize(segundo_file);
+	person->next = NULL;
+	return person;
+}
+
+void fill_plane(pessoa & list, int size) {
+	pessoa::pessoa_item * temp = new pessoa::pessoa_item();
+	for (int i = 0; i < size; i++) {
+		temp = generate_person();
+		if (list.end == NULL) {
+			list.head = temp;
+			list.end = temp;
+		}
+		else {
+			list.end->next = temp;
+			list.end = temp;
+		}
+	}
+
+}
+
+void generate_aprox(aviao &aprox) {
+	aviao::aviao_item * temp = new aviao::aviao_item();
+	temp->capacidade = stoi(randomize(capacidade_file));
+	temp->destino = "Aeroporto EDA";
+	temp->modelo = randomize(modelo_file);
+	temp->nome_voo = randomize(voo_file);
+	temp->origem = randomize(origem_file);
+	fill_plane(temp->passageiro, temp->capacidade);
+	temp->next = NULL;
+	if (aprox.end == NULL) {
+		aprox.head = temp;
+		aprox.end = temp;
+	}
+	else {
+		aprox.end->next = temp;
+		aprox.end = temp;
 	}
 }
 
-//Carrega o Estado Dopprograma Se Tiver Algo Guardado
-void primeiro_carregamento_vectores(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros) {
-	if (is_written()) load_file_state(pista, aproximacao, desc, passageiros);
-	else aprox_9(aproximacao);
-}
-
-//Cria os Novos Elementos Do Novo Avião Na Pista
-void pista_6(aviao pista[], aviao aprox[]) {
-	pista[6].modelo = aprox[0].modelo;
-	pista[6].capacidade = aprox[0].capacidade;
-	pista[6].origem = "Aeroporto EDA";
-	pista[6].destino = randomize(destino_file);
-	pista[6].nome_voo = randomize(voo_file);
-	pista[6].passageiro = new pessoa[pista[6].capacidade];
-	for (int j = 0; j < pista[6].capacidade; j++) {
-		pista[6].passageiro[j].bilhete = generate_ticket();
-		pista[6].passageiro[j].nacionalidade = randomize(nacionalidade_file);
-		pista[6].passageiro[j].primeiro_nome = randomize(primeiro_file);
-		pista[6].passageiro[j].segundo_nome = randomize(segundo_file);
+void generate_pista(aviao & aprox, aviao & pista) {
+	aviao::aviao_item * temp = new aviao::aviao_item();
+	temp->capacidade = aprox.head->capacidade;
+	temp->modelo = aprox.head->modelo;
+	temp->destino = randomize(destino_file);
+	temp->origem = "Aeroporto EDA";
+	temp->nome_voo = randomize(voo_file);
+	fill_plane(temp->passageiro, temp->capacidade);
+	temp->next = NULL;
+	if (pista.end == NULL) {
+		pista.head = temp;
+		pista.end = temp;
+	}
+	else {
+		pista.end->next = temp;
+		pista.end = temp;
 	}
 }
 
-//Verifica o Estado Do Terminal, Limpa as Pessoas Que Estão há Dois Turnos
-void check_terminal(aviao aprox, terminal * ppl) {
-	for (int i = 0; i < 30; i++) {
-		if (ppl[i].turn == 1) ppl[i] = { NULL };
-		else if (ppl[i].turn == 0) ppl[i].turn++;
+void generate_desc(aviao &pista, aviao &desc) {
+	aviao::aviao_item * temp = new aviao::aviao_item();
+	temp->capacidade = pista.head->capacidade;
+	temp->modelo = pista.head->modelo;
+	temp->destino = pista.head->destino;
+	temp->origem = pista.head->origem;
+	temp->nome_voo = pista.head->nome_voo;
+	temp->passageiro = pista.head->passageiro;
+	temp->next = NULL;
+	if (desc.end == NULL) {
+		desc.head = temp;
+		desc.end = temp;
 	}
-	for (int i = 0; i < aprox.capacidade; i++) {
-		for (int j = 0; j < 30; j++) {
-			if (ppl[j].turn == -1) {
-				ppl[j].humman.bilhete = aprox.passageiro[i].bilhete;
-				ppl[j].humman.nacionalidade = aprox.passageiro[i].nacionalidade;
-				ppl[j].humman.primeiro_nome = aprox.passageiro[i].primeiro_nome;
-				ppl[j].humman.segundo_nome = aprox.passageiro[i].segundo_nome;
-				ppl[j].turn = 0;
-				break;
-			}
-		}	
+	else {
+		desc.end->next = temp;
+		desc.end = temp;
 	}
 }
 
-//Gera um Novo Ciclo
-void go_loop(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
-	for (int i = 0; i < 4; i++)	desc[i] = desc[i + 1];
-	desc[4] = pista[0];
-	for (int i = 0; i < 6; i++) {
-		pista[i] = pista[i + 1];
-	}
-	check_terminal(aprox[0], passageiros);
-	if (aprox[0].capacidade != 0)
-		pista_6(pista, aprox);
+void carregamento_inicial(aviao &pista, aviao &aprox, aviao &desc, terminal &passageiros) {
+	generate_aprox(aprox);
 
-	for (int i = 0; i < 9; i++) {
-		aprox[i] = aprox[i + 1];
-	}
-	aprox_9(aprox);
 }
 
+int queue_size(aviao &queue) {
+	aviao::aviao_item * temp = queue.head;
+	int current = 0;
+	while (temp != NULL) {
+		temp = temp->next;
+		current++;
+	}
+	delete temp;
+	return current;
+}
+
+void remover(aviao & to_rem) {
+	to_rem.head = to_rem.head->next;
+}
+
+void check_terminal(aviao::aviao_item * last_aprox, terminal & terminal) {
+	terminal::terminal_item *temp = new terminal::terminal_item();
+	temp->humman.head = last_aprox->passageiro.head;
+	temp->next = NULL;
+	temp->turn = -1;
+	if (terminal.end == NULL) {
+		terminal.head = temp;
+		terminal.end = temp;
+	}
+	else {
+		terminal.end->next = temp;
+		terminal.end = temp;
+	}
+
+	temp = terminal.head;
+	while (terminal.head != NULL) {
+		if (terminal.head->turn == 1) {
+			terminal.head = NULL;
+			break;
+		}
+		else terminal.head->turn++;
+	}
+	terminal.head = temp;
+}
+
+void go_loop(aviao &pista, aviao &aprox, aviao &desc, terminal &pers) {
+	if (queue_size(aprox) < 10) generate_aprox(aprox);
+	else {
+		check_terminal(aprox.head, pers);
+		if (queue_size(pista) < 7) {
+			generate_pista(aprox, pista);
+			remover(aprox);
+			generate_aprox(aprox);
+		}
+		else {
+			generate_desc(pista, desc);
+			remover(pista);
+			generate_pista(aprox, pista);
+			remover(aprox);
+			generate_aprox(aprox);
+			if (queue_size(desc) > 5) remover(desc);
+		}
+	}
+}
+/*
 int emergency_select(aviao * select, int size) {
 	limpar;
 	int opt;
@@ -208,6 +293,6 @@ int emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 }
 	
 	
-	
+	*/
 	
 

@@ -1,6 +1,6 @@
 #include "bibliotecas.h"
 //CPP Dedicado às Funções do Menu_Opções;
-
+/*
 //----Sorting Functions---- (Funções Para Ordenação Alfabéticamente)
 void sort_by_name(pessoa * passageiro, int size) {
 	for (int i = 0; i < size; i++) {
@@ -318,3 +318,4 @@ void lista_passageiros_pista_nacionalidade(aviao * pista) {
 	pausa;
 
 }
+*/

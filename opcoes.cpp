@@ -1,6 +1,6 @@
 #include "bibliotecas.h"
 
-
+/*
 
 // Opção 1 Menu_Opções  (Sub Menu Com 2 Opções)
 int todos_os_passageiros(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
@@ -146,4 +146,4 @@ int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
 			break;
 		} // Fim do Switch
 	} // Fim Do "Ciclo" Criado Para Estar Sempre No Menu_Opções Até Ordem Em Contrário Do Utilizador
-}
+}*/
