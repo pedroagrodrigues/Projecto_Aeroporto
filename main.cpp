@@ -11,7 +11,30 @@ int main() {
 	while (1) {
 		limpar;
 		cout << "(e)mergências (o)pções (g)ravar\t\t 0 - Sair\n";
-		
+		cout << "-----------aprox---------\n";
+		aviao::aviao_item *temp = aproximacao.head;
+
+		while (temp != NULL) {
+			cout << temp->nome_voo << "\n";
+			temp = temp->next;
+		}
+		cout << "-----------Pista---------\n";
+		temp = pista.head;
+
+		while (temp != NULL) {
+			cout << temp->nome_voo << "\n";
+			temp = temp->next;
+		}
+
+		cout << "-----------desc---------\n";
+		temp = descolar.head;
+		while (temp != NULL) {
+			cout << temp->nome_voo << "\n";
+			temp = temp->next;
+		}
+		delete temp;
+
+		cout << endl;
 
 		//-------------Switch Case-------------
 		switch (_getch()) {
