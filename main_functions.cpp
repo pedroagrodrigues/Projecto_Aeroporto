@@ -29,13 +29,13 @@ long generate_ticket() {
 	return ticket_number;
 }
 
-void new_struct(aviao &pista, aviao &aprox, aviao &desc, terminal &pass) { //RUN ONCE
+void new_struct(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &pass) { //RUN ONCE
 	pista.end = NULL;
 	pista.head = NULL;
-	aprox.end = NULL;
-	aprox.head = NULL;
-	desc.end = NULL;
-	desc.head = NULL;
+	aproximacao.end = NULL;
+	aproximacao.head = NULL;
+	descolar.end = NULL;
+	descolar.head = NULL;
 	pass.head = NULL;
 	pass.end = NULL;
 }
@@ -66,7 +66,7 @@ void fill_plane(pessoa & list, int size) {
 
 }
 
-void generate_aprox(aviao &aprox) {
+void generate_aproximacao(aviao &aproximacao) {
 	aviao::aviao_item * temp = new aviao::aviao_item();
 	temp->capacidade = stoi(randomize(capacidade_file));
 	temp->destino = "Aeroporto EDA";
@@ -75,20 +75,20 @@ void generate_aprox(aviao &aprox) {
 	temp->origem = randomize(origem_file);
 	fill_plane(temp->passageiro, temp->capacidade);
 	temp->next = NULL;
-	if (aprox.end == NULL) {
-		aprox.head = temp;
-		aprox.end = temp;
+	if (aproximacao.end == NULL) {
+		aproximacao.head = temp;
+		aproximacao.end = temp;
 	}
 	else {
-		aprox.end->next = temp;
-		aprox.end = temp;
+		aproximacao.end->next = temp;
+		aproximacao.end = temp;
 	}
 }
 
-void generate_pista(aviao & aprox, aviao & pista) {
+void generate_pista(aviao & aproximacao, aviao & pista) {
 	aviao::aviao_item * temp = new aviao::aviao_item();
-	temp->capacidade = aprox.head->capacidade;
-	temp->modelo = aprox.head->modelo;
+	temp->capacidade = aproximacao.head->capacidade;
+	temp->modelo = aproximacao.head->modelo;
 	temp->destino = randomize(destino_file);
 	temp->origem = "Aeroporto EDA";
 	temp->nome_voo = randomize(voo_file);
@@ -104,7 +104,7 @@ void generate_pista(aviao & aprox, aviao & pista) {
 	}
 }
 
-void generate_desc(aviao &pista, aviao &desc) {
+void generate_descolar(aviao &pista, aviao &descolar) {
 	aviao::aviao_item * temp = new aviao::aviao_item();
 	temp->capacidade = pista.head->capacidade;
 	temp->modelo = pista.head->modelo;
@@ -113,18 +113,21 @@ void generate_desc(aviao &pista, aviao &desc) {
 	temp->nome_voo = pista.head->nome_voo;
 	temp->passageiro = pista.head->passageiro;
 	temp->next = NULL;
-	if (desc.end == NULL) {
-		desc.head = temp;
-		desc.end = temp;
+	if (descolar.end == NULL) {
+		descolar.head = temp;
+		descolar.end = temp;
 	}
 	else {
-		desc.end->next = temp;
-		desc.end = temp;
+		descolar.end->next = temp;
+		descolar.end = temp;
 	}
 }
 
-void carregamento_inicial(aviao &pista, aviao &aprox, aviao &desc, terminal &passageiros) {
-	generate_aprox(aprox);
+void carregamento_inicial(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &passageiros, string path) {
+	if (is_written(path)) {
+		load_file_state(pista, aproximacao, descolar, passageiros, path);
+	}
+	generate_aproximacao(aproximacao);
 
 }
 
@@ -143,9 +146,9 @@ void remover(aviao & to_rem) {
 	to_rem.head = to_rem.head->next;
 }
 
-void check_terminal(aviao::aviao_item * last_aprox, terminal & terminal) {
+void check_terminal(aviao::aviao_item * last_aproximacao, terminal & terminal) {
 	terminal::terminal_item *temp = new terminal::terminal_item();
-	temp->humman.head = last_aprox->passageiro.head;
+	temp->humman.head = last_aproximacao->passageiro.head;
 	temp->next = NULL;
 	temp->turn = -1;
 	if (terminal.end == NULL) {
@@ -158,32 +161,32 @@ void check_terminal(aviao::aviao_item * last_aprox, terminal & terminal) {
 	}
 
 	temp = terminal.head;
-	while (terminal.head != NULL) {
-		if (terminal.head->turn == 1) {
-			terminal.head = NULL;
-			break;
+	while (temp!= NULL) {
+		if (temp->turn == 1) {
+			terminal.head = terminal.head->next;
 		}
-		else terminal.head->turn++;
+		else temp->turn++;
+		temp = temp->next;
 	}
-	terminal.head = temp;
+
 }
 
-void go_loop(aviao &pista, aviao &aprox, aviao &desc, terminal &pers) {
-	if (queue_size(aprox) < 10) generate_aprox(aprox);
+void go_loop(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &pers) {
+	if (queue_size(aproximacao) < 10) generate_aproximacao(aproximacao);
 	else {
-		check_terminal(aprox.head, pers);
-		if (queue_size(pista) < 7) {
-			generate_pista(aprox, pista);
-			remover(aprox);
-			generate_aprox(aprox);
+		check_terminal(aproximacao.head, pers);
+		if (queue_size(pista) < 2) {
+			generate_pista(aproximacao, pista);
+			remover(aproximacao);
+			generate_aproximacao(aproximacao);
 		}
 		else {
-			generate_desc(pista, desc);
+			generate_descolar(pista, descolar);
 			remover(pista);
-			generate_pista(aprox, pista);
-			remover(aprox);
-			generate_aprox(aprox);
-			if (queue_size(desc) > 5) remover(desc);
+			generate_pista(aproximacao, pista);
+			remover(aproximacao);
+			generate_aproximacao(aproximacao);
+			if (queue_size(descolar) > 5) remover(descolar);
 		}
 	}
 }
@@ -232,7 +235,7 @@ int emergency_select(aviao * select, int size) {
 }
 
 //EMERGÊNCIA!
-int emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
+int emergencia(aviao * pista, aviao * aproximacaoimacao, aviao * descolarolagem) {
 	limpar;
 	string selecao[2];
 	int selectE[2] = { -1, -1 };
@@ -244,27 +247,27 @@ int emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 		cout << right << "Entrou no modo de Emergência!\n";
 		cout << "----------------------------------------------------------------------------\n\n";
 		cout << "1 - Selecione o Voo em Emergência.\n";
-		cout << "2 - Selecione o Voo a Descolar. \n";
+		cout << "2 - Selecione o Voo a descolarolar. \n";
 		cout << "c - Confirma a Seleção.\n";
 		cout << "0 - Cancelar.\n";
 		switch (_getch()) {
 		case '1'://Sub Seleção para aterragem
-			selectE[0] = emergency_select(aproximacao, 10);
-			selecao[0] = "\t Selecionou Voo a Aterrar: " + aproximacao[selectE[0]].nome_voo + "\t  Modelo: " + aproximacao[selectE[0]].modelo + "\n";
+			selectE[0] = emergency_select(aproximacaoimacao, 10);
+			selecao[0] = "\t Selecionou Voo a Aterrar: " + aproximacaoimacao[selectE[0]].nome_voo + "\t  Modelo: " + aproximacaoimacao[selectE[0]].modelo + "\n";
 			break;
-		case '2'://Submenu Seleção para Descolar
+		case '2'://Submenu Seleção para descolarolar
 			selectE[1] = emergency_select(pista, 7);
-			selecao[1] = "\t Selecionou Voo a Descolar: " + pista[selectE[1]].nome_voo + "\t  Modelo: " + pista[selectE[1]].modelo + "\n";
+			selecao[1] = "\t Selecionou Voo a descolarolar: " + pista[selectE[1]].nome_voo + "\t  Modelo: " + pista[selectE[1]].modelo + "\n";
 			break;
 		case 'c':
 			cout << endl;
 			if (selectE[0] != -1 && selectE[1] != -1) {
-				//Aprox
-				aproximacao[0] = aproximacao[selectE[0]];
-				aproximacao[0].nome_voo += "-----EM EMÊRGENCIA!";
+				//aproximacao
+				aproximacaoimacao[0] = aproximacaoimacao[selectE[0]];
+				aproximacaoimacao[0].nome_voo += "-----EM EMÊRGENCIA!";
 				for (int i = selectE[0]; i > 1; i--)
-					aproximacao[i] = aproximacao[i - 1];
-				//Descolagem
+					aproximacaoimacao[i] = aproximacaoimacao[i - 1];
+				//descolarolagem
 				pista[0] = pista[selectE[1]];
 				for (int i = selectE[1]; i > 1; i--)
 					pista[i] = pista[i - 1];
