@@ -1,18 +1,19 @@
-#include "bibliotecas.h"
+ï»¿#include "bibliotecas.h"
 
 int main() {
 	setlocale(LC_ALL, "Portuguese"); //Faz a consola aceitar caracteres especiais.
-	var_load_file();//Carrega os ficheiros para memória
-	aviao * pista = new aviao[7], *aproximacao = new aviao[10], *descolar = new aviao[5];
-	terminal * passageiros = new terminal[30];
-	for (int i = 0; i < 30; i++) passageiros[i] = { NULL };
-	primeiro_carregamento_vectores(pista, aproximacao, descolar, passageiros); //Carrega o estado ou inicia o programa
+	var_load_file();//Carrega os ficheiros para memï¿½ria
+	aviao pista, aproximacao, descolar;
+	terminal passageiros;
+	new_struct(pista, aproximacao, descolar, passageiros);
+	carregamento_inicial(pista, aproximacao, descolar, passageiros); 
+	
 	while (1) {
 		limpar;
-		cout << "(e)mergências (o)pções (g)ravar\t\t 0 - Sair\n";
+		cout << "(e)mergÃªncias (o)pÃ§Ãµes (g)ravar\t\t 0 - Sair\n";
 		cout << "-----------------------------------------------------------------------------------------------------------------------------------\n";
 		cout.width(75);
-		cout << right << "Em Aproximação:\n";
+		cout << right << "Em AproximaÃ§Ã£o:\n";
 		cout << "-----------------------------------------------------------------------------------------------------------------------------------\n\n";
 		cout << "Voo";
 		cout.width(22);
@@ -23,21 +24,30 @@ int main() {
 		cout << "Destino";
 		cout.width(35);
 		cout << "Passageiros \n";
-		for (int j = 0; j <= 9; j++) {
+		
+		aviao::aviao_item *temp = aproximacao.head;
+		pessoa::pessoa_item * temp_2 = new pessoa::pessoa_item();
+		while (temp != NULL) {
 			cout.width(18);
-			cout << left << aproximacao[j].nome_voo;
+			cout << left << temp->nome_voo;
 			cout.width(20);
-			cout << left << aproximacao[j].modelo;
+			cout << left << temp->modelo;
 			cout.width(27);
-			cout << left << aproximacao[j].origem;
+			cout << left << temp->origem;
 			cout.width(27);
-			cout << left << aproximacao[j].destino;
-			for (int i = 0; i < aproximacao[j].capacidade && i <= 4; i++) cout << aproximacao[j].passageiro[i].segundo_nome << ", ";
-			if (aproximacao[j].capacidade > 4) cout << "..."; //Esta comparação serve para o caso de adicionarem uma capacidade de 4 ao ficheiro "capacidade.txt"
-			else if (aproximacao[j].capacidade > 0) cout << ".";
+			cout << left << temp->destino;
+			temp_2 = temp->passageiro.head;
+			for (int i = 0; i <= 4 && i < temp->capacidade && temp_2 != NULL; i++) {
+				cout << temp_2->segundo_nome << ", ";
+				temp_2 = temp_2->next;
+			}
+			if (temp->capacidade > 4) cout << "..."; //ComparaÃ§Ã£o para o caso de adicionarem uma capacidade de 4 ao ficheiro "capacidade.txt"
+			else if (temp->capacidade > 0) cout << ".";
 			else cout << endl;
 			cout << "\n";
+			temp = temp->next;			
 		}
+	
 		cout << "\n";
 		cout << "-----------------------------------------------------------------------------------------------------------------------------------\n";
 		cout.width(70);
@@ -52,21 +62,29 @@ int main() {
 		cout << "Destino";
 		cout.width(35);
 		cout << "Passageiros \n";
-		for (int j = 0; j <= 6; j++) {
+
+		temp = pista.head;
+		while (temp != NULL) {
 			cout.width(18);
-			cout << left << pista[j].nome_voo;
+			cout << left << temp->nome_voo;
 			cout.width(20);
-			cout << left << pista[j].modelo;
+			cout << left << temp->modelo;
 			cout.width(27);
-			cout << left << pista[j].origem;
+			cout << left << temp->origem;
 			cout.width(27);
-			cout << left << pista[j].destino;
-			for (int i = 0; i < pista[j].capacidade && i <= 4; i++) cout << pista[j].passageiro[i].segundo_nome << ", ";
-			if (pista[j].capacidade > 4) cout << "...";
-			else if (pista[j].capacidade > 0) cout << ".";
+			cout << left << temp->destino;
+			temp_2 = temp->passageiro.head;
+			for (int i = 0; i <= 4 && i < temp->capacidade && temp_2 != NULL; i++) {
+				cout << temp_2->segundo_nome << ", ";
+				temp_2 = temp_2->next;
+			}
+			if (temp->capacidade > 4) cout << "..."; //ComparaÃ§Ã£o para o caso de adicionarem uma capacidade de 4 ao ficheiro "capacidade.txt"
+			else if (temp->capacidade > 0) cout << ".";
 			else cout << endl;
 			cout << "\n";
+			temp = temp->next;			
 		}
+	
 		cout << "\n";
 		cout << "-----------------------------------------------------------------------------------------------------------------------------------\n";
 		cout.width(72);
@@ -81,51 +99,62 @@ int main() {
 		cout << "Destino";
 		cout.width(35);
 		cout << "Passageiros \n";
-		for (int j = 0; j <= 4; j++) {
+
+		temp = descolar.head;
+		while (temp != NULL) {
 			cout.width(18);
-			cout << left << descolar[j].nome_voo;
+			cout << left << temp->nome_voo;
 			cout.width(20);
-			cout << left << descolar[j].modelo;
+			cout << left << temp->modelo;
 			cout.width(27);
-			cout << left << descolar[j].origem;
+			cout << left << temp->origem;
 			cout.width(27);
-			cout << left << descolar[j].destino;
-			for (int i = 0; i < descolar[j].capacidade && i <= 4; i++) cout << descolar[j].passageiro[i].segundo_nome << ", ";
-			if (descolar[j].capacidade > 4) cout << "...";
-			else if (descolar[j].capacidade > 0) cout << ".";
+			cout << left << temp->destino;
+			temp_2 = temp->passageiro.head;
+			for (int i = 0; i <= 4 && i < temp->capacidade && temp_2 != NULL; i++) {
+				cout << temp_2->segundo_nome << ", ";
+				temp_2 = temp_2->next;
+			}
+			if (temp->capacidade > 4) cout << "..."; //ComparaÃ§Ã£o para o caso de adicionarem uma capacidade de 4 ao ficheiro "capacidade.txt"
+			else if (temp->capacidade > 0) cout << ".";
 			else cout << endl;
 			cout << "\n";
+			temp = temp->next;			
 		}
-		
+	
+		delete temp_2;
+		delete temp;
+		cout << endl;
+
 		//-------------Switch Case-------------
 		switch (_getch()) {
 		case 'e':
-			cout << emergencia(pista, aproximacao, descolar); // Função de Emergência
-			break;
+			/*cout << emergencia(pista, aproximacao, descolar); // FunÃ§Ã£o de EmergÃªncia
+			break;*/
 		case 'o':
-			limpar;
-			opcoes(pista, aproximacao, descolar, passageiros); // Função para o Menu_Opções
+			opcoes(pista, aproximacao, descolar, passageiros); // FunÃ§Ã£o Para Entrada Principal Menu_OpÃ§Ãµes
 			break;
 		case 'g':
-			limpar;
-			cout << "Escolheu a Opção Gravar.\n";
+			/*limpar;
+			cout << "Escolheu a OpÃ§Ã£o Gravar.\n";
 			if (save(pista, aproximacao, descolar, passageiros))
 				cout << "Os Seus Documentos Foram Salvos.\n";
 			else cout << "Erro. Falha ao Gravar!\n";
 			pausa;
-			break;
+			break;*/
 		case '0':
 			limpar;
-			cout << "Opção Sair, Até à Próxima!\n";
+			cout << "OpÃ§Ã£o Sair, AtÃ© Ã  PrÃ³xima!\n";
 			return 0;
 		case 0xe0: //Indica que uma das setas foi percionada
-			if (_getch() == 0x4D) //Corresponde à seta para a direita
+			if (_getch() == 0x4D) //Corresponde Ã  seta para a direita
 				go_loop(pista, aproximacao, descolar, passageiros);
-			else cout << "Essa Opção Não é Válida\n";
+			else cout << "Essa OpÃ§Ã£o NÃ£o Ã© VÃ¡lida\n";
 			break;
 		default:
-			cout << "Essa opção não é válida\n";
+			cout << "Essa opÃ§Ã£o nÃ£o Ã© vÃ¡lida\n";
 			break;
 		}
 	} // Fim do While
-}
+} // Fim do main
+
