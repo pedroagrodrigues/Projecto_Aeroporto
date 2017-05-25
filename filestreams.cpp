@@ -28,160 +28,197 @@ string * preencher_dados(string caminho) {
 		return 0;
 	}
 }
-/*
+
 //Verifica Se Existe Algo Escrito No Ficheiro ".save" 
-bool is_written() {
-	ifstream file("estado.save", ios::beg | istream::binary);
+bool is_written(string path) {
+	ifstream file(path, ios::beg | istream::binary);
 	if (file.is_open()) {
 		file.seekg(0, file.end);
 		if (file.tellg() <= 0) { //Verifica a Existencia De Conteúdo
 			file.close();
-			return 0;
+			return false;
 		}
 		else {
 			file.close();
-			return 1;
+			return true;
 		}
-	}
-	else { //Caso Não Exista o Ficheiro
-		return 0;
 	}
 	return false;
 
 }
+int queue_size(aviao::aviao_item *queue) {
+	aviao::aviao_item * temp = queue;
+	int current = 0;
+	while (temp != NULL) {
+		temp = temp->next;
+		current++;
+	}
+	delete temp;
+	return current;
+}
+
 
 //Guarda As Variáveis No Seu Estado Actual Num Ficheiro ".save" Para Que o Programa Continue a Partir Do Último Ponto
-bool save(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros) {
-	fstream file("estado.save", ios::out | ofstream::binary);
-
-	if(file.is_open()){
-		for (int i = 0; i < 7; i++) {
-			file << pista[i].capacidade << endl;
-			file << pista[i].destino << endl;
-			file << pista[i].modelo << endl;
-			file << pista[i].nome_voo << endl;
-			file << pista[i].origem << endl;
-			for (int j = 0; j < pista[i].capacidade; j++) {
-				file << pista[i].passageiro[j].bilhete << endl;
-				file << pista[i].passageiro[j].nacionalidade << endl;
-				file << pista[i].passageiro[j].primeiro_nome << endl;
-				file << pista[i].passageiro[j].segundo_nome << endl;
+bool save(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &pass, string path) {
+	fstream file("estado.bin", ios::out | ofstream::binary);
+	if (file.is_open()) {
+		aviao::aviao_item *temp = aproximacao.head;
+		pessoa::pessoa_item *temp_person = new pessoa::pessoa_item();
+		int current = 0;
+		while (current < 3){
+			file << queue_size(temp) << endl;
+			while (temp != NULL) {
+				file << temp->capacidade << endl;
+				file << temp->destino << endl;
+				file << temp->modelo << endl;
+				file << temp->nome_voo << endl;
+				file << temp->origem << endl;
+				temp_person = temp->passageiro.head;
+				while (temp_person != NULL) {
+					file << temp_person->bilhete << endl;
+					file << temp_person->nacionalidade << endl;
+					file << temp_person->primeiro_nome << endl;
+					file << temp_person->segundo_nome << endl;
+					temp_person = temp_person->next;
+				}
+				temp = temp->next;
 			}
+			current++;
+			(current == 1) ? temp = pista.head : temp = descolar.head;
+			
 		}
-		for (int i = 0; i < 10; i++) {
-			file << aprox[i].capacidade << endl;
-			file << aprox[i].destino << endl;
-			file << aprox[i].modelo << endl;
-			file << aprox[i].nome_voo << endl;
-			file << aprox[i].origem << endl;
-			for (int j = 0; j < aprox[i].capacidade; j++) {
-				file << aprox[i].passageiro[j].bilhete << endl;
-				file << aprox[i].passageiro[j].nacionalidade << endl;
-				file << aprox[i].passageiro[j].primeiro_nome << endl;
-				file << aprox[i].passageiro[j].segundo_nome << endl;
-			}
-		}
-		for (int i = 0; i < 5; i++) {
-			file << desc[i].capacidade << endl;
-			file << desc[i].destino << endl;
-			file << desc[i].modelo << endl;
-			file << desc[i].nome_voo << endl;
-			file << desc[i].origem << endl;
-			for (int j = 0; j < desc[i].capacidade; j++) {
-				file << desc[i].passageiro[j].bilhete << endl;
-				file << desc[i].passageiro[j].nacionalidade << endl;
-				file << desc[i].passageiro[j].primeiro_nome << endl;
-				file << desc[i].passageiro[j].segundo_nome << endl;
-			}
-		}
-		for (int i = 0; i < 30; i++) {
-			file << passageiros[i].humman.bilhete << endl;
-			file << passageiros[i].humman.nacionalidade << endl;
-			file << passageiros[i].humman.primeiro_nome << endl;
-			file << passageiros[i].humman.segundo_nome << endl;
-			file << passageiros[i].turn << endl;
-		}
-		
 		file.close();
 		return 1;
 	}
 	else return 0;
+	
+	
 }
 
 //Carrega Do Ficheiro ".save" o Estado Que Foi Guardado Noutra Utilização
-void load_file_state(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros) {
-	ifstream file("estado.save", ios::in | ifstream::binary);
+void load_file_state(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &pass, string path) {
+	fstream file(path, ios::in | ifstream::binary);
 	if (file.is_open()) {
-		for (int i = 0; i < 7; i++) {
-			string temp;
-			getline(file, temp);
-			pista[i].capacidade = atoi(temp.c_str());
-			getline(file, pista[i].destino);
-			getline(file, pista[i].modelo);
-			getline(file, pista[i].nome_voo);
-			getline(file, pista[i].origem);
-			pista[i].passageiro = new pessoa[pista[i].capacidade];
-			for (int j = 0; j < pista[i].capacidade; j++) {
-				string temp;
-				getline(file, temp);
-				pista[i].passageiro[j].bilhete = atoi(temp.c_str());
-				getline(file, pista[i].passageiro[j].nacionalidade);
-				getline(file, pista[i].passageiro[j].primeiro_nome);
-				getline(file, pista[i].passageiro[j].segundo_nome);
-			}
-		}
-		for (int i = 0; i < 10; i++) {
-			string temp;
-			getline(file, temp);
-			aproximacao[i].capacidade = atoi(temp.c_str());
-			getline(file, aproximacao[i].destino);
-			getline(file, aproximacao[i].modelo);
-			getline(file, aproximacao[i].nome_voo);
-			getline(file, aproximacao[i].origem);
-			aproximacao[i].passageiro = new pessoa[aproximacao[i].capacidade];
-			for (int j = 0; j < aproximacao[i].capacidade; j++) {
-				getline(file, temp);
-				aproximacao[i].passageiro[j].bilhete = atoi(temp.c_str());
-				getline(file, aproximacao[i].passageiro[j].nacionalidade);
-				getline(file, aproximacao[i].passageiro[j].primeiro_nome);
-				getline(file, aproximacao[i].passageiro[j].segundo_nome);
-			}
-		}
-		
-		for (int i = 0; i < 5; i++) {
-			string temp;
-			getline(file, temp);
-			desc[i].capacidade = atoi(temp.c_str());
-			getline(file, desc[i].destino);
-			getline(file, desc[i].modelo);
-			getline(file, desc[i].nome_voo);
-			getline(file, desc[i].origem);
-			desc[i].passageiro = new pessoa[desc[i].capacidade];
-			for (int j = 0; j < desc[i].capacidade; j++) {
-				getline(file, temp);
-				desc[i].passageiro[j].bilhete = atoi(temp.c_str());
-				getline(file, desc[i].passageiro[j].nacionalidade);
-				getline(file, desc[i].passageiro[j].primeiro_nome);
-				getline(file, desc[i].passageiro[j].segundo_nome);
-			}
-		}
-		for (int i = 0; i < 30; i++) {
-			string temp;
-			getline(file, temp);
-			passageiros[i].humman.bilhete=atoi(temp.c_str());
-			getline(file, passageiros[i].humman.nacionalidade);
-			getline(file, passageiros[i].humman.primeiro_nome);
-			getline(file, passageiros[i].humman.segundo_nome);
-			getline(file, temp);
-			passageiros[i].turn = atoi(temp.c_str());
-		}
+		string line;
+		aviao::aviao_item * temp;
+		pessoa::pessoa_item * temp_person;
+		int current=0, aux;
+		//while (current < 3) {
+		getline(file, line);
+		aux = stoi(line);
+		//temp->destino = "teste";
+		for (int i = 0; i < aux; i++) {
+			temp = new aviao::aviao_item();
+			getline(file, line);
+			temp->capacidade = atoi(line.c_str());
+			getline(file, temp->destino);
+			getline(file, temp->modelo);
+			getline(file, temp->nome_voo);
+			getline(file, temp->origem);
+			for (int j = 0; j < temp->capacidade; j++) {
+				temp_person = new pessoa::pessoa_item();
+				getline(file, line);
+				temp_person->bilhete = stoi(line);
+				getline(file, temp_person->nacionalidade);
+				getline(file, temp_person->primeiro_nome);
+				getline(file, temp_person->segundo_nome);
+				temp_person->next = NULL;
 
+				if (temp->passageiro.end == NULL) {
+					temp->passageiro.head = temp_person;
+					temp->passageiro.end = temp_person;
+				}
+				else {
+					temp->passageiro.end->next = temp_person;
+					temp->passageiro.end = temp_person;
+				}
+			}
+			temp->next = NULL;
+			if (aproximacao.end == NULL) {
+				aproximacao.head = temp;
+				aproximacao.end = temp;
+			}
+			else {
+				aproximacao.end->next = temp;
+				aproximacao.end = temp;
+			}
+		}
+		getline(file, line);
+		aux = stoi(line);
+		for (int i = 0; i < aux; i++) {
+			temp = new aviao::aviao_item();
+			getline(file, line);
+			temp->capacidade = atoi(line.c_str());
+			getline(file, temp->destino);
+			getline(file, temp->modelo);
+			getline(file, temp->nome_voo);
+			getline(file, temp->origem);
+			for (int j = 0; j < temp->capacidade; j++) {
+				temp_person = new pessoa::pessoa_item();
+				getline(file, line);
+				temp_person->bilhete = stoi(line);
+				getline(file, temp_person->nacionalidade);
+				getline(file, temp_person->primeiro_nome);
+				getline(file, temp_person->segundo_nome);
+				temp_person->next = NULL;
+
+				if (temp->passageiro.end == NULL) {
+					temp->passageiro.head = temp_person;
+					temp->passageiro.end = temp_person;
+				}
+				else {
+					temp->passageiro.end->next = temp_person;
+					temp->passageiro.end = temp_person;
+				}
+			}
+			temp->next = NULL;
+			if (pista.end == NULL) {
+				pista.head = temp;
+				pista.end = temp;
+			}
+			else {
+				pista.end->next = temp;
+				pista.end = temp;
+			}
+		}
+		getline(file, line);
+		aux = stoi(line);
+		for (int i = 0; i < aux; i++) {
+			temp = new aviao::aviao_item();
+			getline(file, line);
+			temp->capacidade = atoi(line.c_str());
+			getline(file, temp->destino);
+			getline(file, temp->modelo);
+			getline(file, temp->nome_voo);
+			getline(file, temp->origem);
+			for (int j = 0; j < temp->capacidade; j++) {
+				temp_person = new pessoa::pessoa_item();
+				getline(file, line);
+				temp_person->bilhete = stoi(line);
+				getline(file, temp_person->nacionalidade);
+				getline(file, temp_person->primeiro_nome);
+				getline(file, temp_person->segundo_nome);
+				temp_person->next = NULL;
+
+				if (temp->passageiro.end == NULL) {
+					temp->passageiro.head = temp_person;
+					temp->passageiro.end = temp_person;
+				}
+				else {
+					temp->passageiro.end->next = temp_person;
+					temp->passageiro.end = temp_person;
+				}
+			}
+			temp->next = NULL;
+			if (descolar.end == NULL) {
+				descolar.head = temp;
+				descolar.end = temp;
+			}
+			else {
+				descolar.end->next = temp;
+				descolar.end = temp;
+			}
+		}
 		file.close();
 	}
-	else {
-		cout << "ERROR, something prevent connection to the file! (load file state) \n";
-		pausa;
-	}
-
 }
-*/
