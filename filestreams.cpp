@@ -57,12 +57,24 @@ int queue_size(aviao::aviao_item *queue) {
 	return current;
 }
 
+int pack_size(pessoa::pessoa_item *pack) {
+	pessoa::pessoa_item * temp = pack;
+	int current = 0;
+	while (temp != NULL) {
+		temp = temp->next;
+		current++;
+	}
+	delete temp;
+	return current;
+}
+
 
 //Guarda As Variáveis No Seu Estado Actual Num Ficheiro ".save" Para Que o Programa Continue a Partir Do Último Ponto
 bool save(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &pass, string path) {
 	fstream file("estado.bin", ios::out | ofstream::binary);
 	if (file.is_open()) {
 		aviao::aviao_item *temp = aproximacao.head;
+		terminal::terminal_item *temp2 = new terminal::terminal_item();
 		pessoa::pessoa_item *temp_person = new pessoa::pessoa_item();
 		int current = 0;
 		while (current < 3){
@@ -85,8 +97,23 @@ bool save(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &pass, str
 			}
 			current++;
 			(current == 1) ? temp = pista.head : temp = descolar.head;
-			
 		}
+		delete temp;
+		temp2 = pass.head;
+		while (temp2 != NULL) {
+			temp_person = temp2->humman.head;
+			file << pack_size(temp_person) << endl;
+			while (temp_person != NULL) {
+				file << temp_person->bilhete << endl;
+				file << temp_person->nacionalidade << endl;
+				file << temp_person->primeiro_nome << endl;
+				file << temp_person->segundo_nome << endl;
+				temp_person = temp_person->next;
+			}
+			file << temp2->turn << endl;
+			temp2 = temp2->next;
+		}
+		delete temp_person;
 		file.close();
 		return 1;
 	}
@@ -101,12 +128,11 @@ void load_file_state(aviao &pista, aviao &aproximacao, aviao &descolar, terminal
 	if (file.is_open()) {
 		string line;
 		aviao::aviao_item * temp;
+		terminal::terminal_item * temp2;
 		pessoa::pessoa_item * temp_person;
-		int current=0, aux;
-		//while (current < 3) {
+		int current = 0, aux;
 		getline(file, line);
 		aux = stoi(line);
-		//temp->destino = "teste";
 		for (int i = 0; i < aux; i++) {
 			temp = new aviao::aviao_item();
 			getline(file, line);
@@ -219,6 +245,44 @@ void load_file_state(aviao &pista, aviao &aproximacao, aviao &descolar, terminal
 				descolar.end = temp;
 			}
 		}
+		for (int i = 0; i < 2; i++) {
+			temp2 = new terminal::terminal_item();
+			getline(file, line);
+			aux = stoi(line);
+			temp_person = temp2->humman.head;
+			for (int j = 0; j < aux; j++) {
+				temp_person = new pessoa::pessoa_item();
+				getline(file, line);
+				temp_person->bilhete = stoi(line);
+				getline(file, temp_person->nacionalidade);
+				getline(file, temp_person->primeiro_nome);
+				getline(file, temp_person->segundo_nome);
+				temp_person->next = NULL;
+
+				if (temp2->humman.end == NULL) {
+					temp2->humman.head = temp_person;
+					temp2->humman.end = temp_person;
+				}
+				else {
+					temp2->humman.end->next = temp_person;
+					temp2->humman.end = temp_person;
+				}
+
+			}
+			getline(file, line);
+			temp2->turn = stoi(line);
+			temp2->next = NULL;
+			if (pass.end == NULL) {
+				pass.head = temp2;
+				pass.end = temp2;
+			}
+			else {
+				pass.end->next = temp2;
+				pass.end = temp2;
+			}
+		}
+		
 		file.close();
 	}
 }
+

@@ -45,21 +45,40 @@ void sort_by_destino(aviao * ordenar, int size) {
 
 
 // ----------------Funções_Menu_Opções-------------------
+//------------------------------------------------------------------------impressão de pessoas
+void print_humman(aviao &subject) {
+	aviao::aviao_item *temp = subject.head;
+	pessoa::pessoa_item *temp_humman = new pessoa::pessoa_item();
+	while (temp != NULL) {
+		temp_humman = temp->passageiro.head;
+		while (temp_humman != NULL) {
+			cout.width(50);
+			cout << left <<temp_humman->segundo_nome + ", " + temp_humman->primeiro_nome ;
+			cout << right << temp_humman->nacionalidade << endl;
+			temp_humman = temp_humman->next;
+		}
+		temp = temp->next;
+	}
+}
+
 
 // Funções do Sub - Menu Criado -> Opção 1 Menu_Opções
 void lista_todos_passageiros(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros){
 	limpar;
+	
 	cout << "\nLista De Todos os Passageiros.\n";
 
 	// Lista De Passageiros Que Estão Nos Aviões Em Aproximação
 	cout << "\n----------------------------------------------------------------------------\n";
 	cout.width(48);
 	cout << right << "Em Aproximação:\n";
+	
+
 	cout << "----------------------------------------------------------------------------\n\n";
 	cout << "Nome";
 	cout.width(60);
 	cout << "Nacionalidade\n\n";
-	
+	print_humman(aproximar);
 	// Lista De Passageiros Que Estão Nos Aviões Em Pista
 	cout << "\n----------------------------------------------------------------------------\n";
 	cout.width(48);
@@ -68,7 +87,7 @@ void lista_todos_passageiros(aviao &pista, aviao &aproximar, aviao &descolar, te
 	cout << "Nome";
 	cout.width(60);
 	cout << "Nacionalidade\n\n";
-	
+	print_humman(pista);
 	// Lista De Passageiros Que Estão Nos Aviões Em Descolagem
 	cout << "\n----------------------------------------------------------------------------\n";
 	cout.width(48);
@@ -77,7 +96,7 @@ void lista_todos_passageiros(aviao &pista, aviao &aproximar, aviao &descolar, te
 	cout << "Nome";
 	cout.width(60);
 	cout << "Nacionalidade\n\n";
-	
+	print_humman(descolar);
 	// Lista De Passageiros Que Estão No Terminal Do Aeroporto
 	cout << "\n----------------------------------------------------------------------------\n";
 	cout.width(48);
@@ -86,6 +105,19 @@ void lista_todos_passageiros(aviao &pista, aviao &aproximar, aviao &descolar, te
 	cout << "Nome";
 	cout.width(60);
 	cout << "Nacionalidade\n\n";
+	terminal::terminal_item *temp = passageiros.head;
+	pessoa::pessoa_item *temp2 = new pessoa::pessoa_item();
+	while (temp != NULL) {
+		temp2 = temp->humman.head;
+		while (temp2 != NULL) {
+			cout.width(50);
+			cout << left << temp2->segundo_nome + ", " + temp2->primeiro_nome;
+			cout << right << temp2->nacionalidade << endl;
+			temp2 = temp2->next;
+
+		}
+		temp = temp->next;
+	}
 	pausa;
 } // Fim Da Opção 1 Menu_Opções
 void lista_todos_passageiros_ordenados(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros) {

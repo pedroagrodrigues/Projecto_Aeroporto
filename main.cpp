@@ -16,17 +16,32 @@ cout << temp->turn << endl;
 temp = temp->next;
 }*/
 
-
 int main() {
+	//cout << path << endl;
+	string path = "estado.bin";
 	setlocale(LC_ALL, "Portuguese"); //Faz a consola aceitar caracteres especiais.
 	var_load_file();//Carrega os ficheiros para mem�ria
 	aviao pista, aproximacao, descolar;
 	terminal passageiros;
 	new_struct(pista, aproximacao, descolar, passageiros);
-	carregamento_inicial(pista, aproximacao, descolar, passageiros, "estado.bin"); 
+	carregamento_inicial(pista, aproximacao, descolar, passageiros, path);
 
 	
 	while (1) {
+		limpar;
+		cout << "-----------terminal---------\n";
+		terminal::terminal_item *temp = passageiros.head;
+		pessoa::pessoa_item *temp2 = new pessoa::pessoa_item();
+		while (temp != NULL) {
+			temp2 = temp->humman.head;
+			while (temp2 != NULL) {
+				cout << temp2->primeiro_nome << endl;
+				temp2 = temp2->next;
+
+			}
+			cout << temp->turn << endl;
+			temp = temp->next;
+		}
 		/*
 		limpar;
 		cout << "(e)mergências (o)pções (g)ravar\t\t 0 - Sair\n";
@@ -157,7 +172,7 @@ int main() {
 		case 'g':
 			limpar;
 			cout << "Escolheu a Opção Gravar.\n";
-			if (save(pista, aproximacao, descolar, passageiros, "estado.bin"))
+			if (save(pista, aproximacao, descolar, passageiros, path))
 				cout << "Os Seus Documentos Foram Salvos.\n";
 			else cout << "Erro. Falha ao Gravar!\n";
 			pausa;
