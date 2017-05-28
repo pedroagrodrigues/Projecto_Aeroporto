@@ -175,7 +175,7 @@ void go_loop(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &pers) 
 	if (queue_size(aproximacao) < 10) generate_aproximacao(aproximacao);
 	else {
 		check_terminal(aproximacao.head, pers);
-		if (queue_size(pista) < 2) {
+		if (queue_size(pista) < 7) {
 			generate_pista(aproximacao, pista);
 			remover(aproximacao);
 			generate_aproximacao(aproximacao);
@@ -190,29 +190,34 @@ void go_loop(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &pers) 
 		}
 	}
 }
-/*
-int emergency_select(aviao * select, int size) {
+///Emergência
+aviao::aviao_item *emergency_select(aviao &select, int size) {
 	limpar;
 	int opt;
-	cout << "\n------------------------------------------------------------------------------------\n";
-	cout.width(50);
-	cout << right << "Selecione o Voo\n";
-	cout << "------------------------------------------------------------------------------------\n\n";
-	cout.width(5);
-	cout << left << "Nº";
-	cout.width(27);
-	cout << left << "Nome do Voo";
-	cout.width(27);
-	cout << left << "Modelo";
-	cout << "Origem\n\n";
-	for (int i = 0; i < size; i++) {
+	aviao::aviao_item *temp = select.head;
+	while (temp != NULL) {
+		cout << "\n------------------------------------------------------------------------------------\n";
+		cout.width(50);
+		cout << right << "Selecione o Voo\n";
+		cout << "------------------------------------------------------------------------------------\n\n";
 		cout.width(5);
-		cout << left << i + 1;
+		cout << left << "Nº";
 		cout.width(27);
-		cout << left << select[i].nome_voo;
+		cout << left << "Nome do Voo";
 		cout.width(27);
-		cout << left << select[i].modelo;
-		cout << left << select[i].origem << endl;
+		cout << left << "Modelo";
+		cout << "Origem\n\n";
+		int i = 0;
+		while (temp != NULL) {
+			cout.width(5);
+			cout << left << ++i;
+			cout.width(27);
+			cout << left << temp->nome_voo;
+			cout.width(27);
+			cout << left << temp->modelo;
+			cout << left << temp->origem << endl;
+			temp = temp->next;
+		}
 	}
 	while (1) {
 		while (!(cin >> opt))
@@ -221,81 +226,90 @@ int emergency_select(aviao * select, int size) {
 			while (cin.get() != '\n') continue;
 			cout << "ERRO opção inválida\n";
 		}
-
 		if (opt > 0 && opt <= size) {
 			limpar;
-			return --opt;
+			temp = select.head;
+			for (int i = 0; i < opt-1; i++)
+				temp = temp->next;
+			aviao::aviao_item * temp2 = new aviao::aviao_item();
+			temp2->capacidade = temp->capacidade;
+			temp2->destino = temp->destino;
+			temp2->modelo = temp->modelo;
+			temp2->nome_voo = temp->nome_voo;
+			temp2->origem = temp->origem;
+			temp2->passageiro = temp->passageiro;
+			temp2->next = NULL;
+			return temp2;
+			break;
 		}
 		else {
 			cout << "ERRO opção inválida\n";
-			
 		}
 	}
-	
+}
+bool check(aviao::aviao_item*a, aviao::aviao_item*b) {
+	if (a->nome_voo != b->nome_voo) return 0;
+	if (a->modelo != b->modelo) return 0;
+	if (a->origem != b->origem) return 0;
+	if (a->capacidade != b->capacidade) return 0;
+	if (a->destino != b->destino) return 0;
+	return 1;
+}
+void swap_priority(aviao &queue, aviao::aviao_item * swap) {
+	aviao::aviao_item * temp = queue.head;
+	aviao::aviao_item *aux = new aviao::aviao_item();
+	while (!check(temp->next, swap)) {
+		temp = temp->next;
+	}
+
+	aux = temp->next;
+	temp->next = temp->next->next;
+	delete aux;
+	temp = queue.head;
+	queue.head = swap;
+	queue.head->next = temp;
 }
 
-//EMERGÊNCIA!
-int emergencia(aviao * pista, aviao * aproximacaoimacao, aviao * descolarolagem) {
+//EMERGÊNCIA! Função principal
+bool emergencia(aviao &pista, aviao &aproximacao) {
 	limpar;
-	string selecao[2];
-	int selectE[2] = { -1, -1 };
+
+	aviao::aviao_item * select[2] = { NULL, NULL };
+
 	while (1) {
-		cout << selecao[0];
-		cout << selecao[1];
+		if (select[0] != NULL) cout << "Voo Nº: " << select[0]->nome_voo << "\tModelo: " << select[0]->modelo << endl;
+		if (select[1] != NULL) cout << "Voo Nº: " << select[1]->nome_voo << "\tModelo: " << select[1]->modelo << endl;
 		cout << "\n----------------------------------------------------------------------------\n";
 		cout.width(55);
 		cout << right << "Entrou no modo de Emergência!\n";
 		cout << "----------------------------------------------------------------------------\n\n";
-		cout << "1 - Selecione o Voo em Emergência.\n";
-		cout << "2 - Selecione o Voo a descolarolar. \n";
+		cout << "1 - Selecione o Voo em Emergência.\n"; 
+		cout << "2 - Selecione o Voo a Descolar. \n";
 		cout << "c - Confirma a Seleção.\n";
 		cout << "0 - Cancelar.\n";
+
 		switch (_getch()) {
 		case '1'://Sub Seleção para aterragem
-			selectE[0] = emergency_select(aproximacaoimacao, 10);
-			selecao[0] = "\t Selecionou Voo a Aterrar: " + aproximacaoimacao[selectE[0]].nome_voo + "\t  Modelo: " + aproximacaoimacao[selectE[0]].modelo + "\n";
+			select[0] = emergency_select(aproximacao, queue_size(aproximacao));
 			break;
-		case '2'://Submenu Seleção para descolarolar
-			selectE[1] = emergency_select(pista, 7);
-			selecao[1] = "\t Selecionou Voo a descolarolar: " + pista[selectE[1]].nome_voo + "\t  Modelo: " + pista[selectE[1]].modelo + "\n";
+		case '2'://Submenu Seleção para Descolar
+			select[1] = emergency_select(pista, queue_size(pista));
 			break;
 		case 'c':
-			cout << endl;
-			if (selectE[0] != -1 && selectE[1] != -1) {
-				//aproximacao
-				aproximacaoimacao[0] = aproximacaoimacao[selectE[0]];
-				aproximacaoimacao[0].nome_voo += "-----EM EMÊRGENCIA!";
-				for (int i = selectE[0]; i > 1; i--)
-					aproximacaoimacao[i] = aproximacaoimacao[i - 1];
-				//descolarolagem
-				pista[0] = pista[selectE[1]];
-				for (int i = selectE[1]; i > 1; i--)
-					pista[i] = pista[i - 1];
-				return 0;
+			if (select[0] != NULL) swap_priority(aproximacao, select[0]);
+			else {
+				cout << "Nenhuma emergência seleccionada";
+				break;
 			}
-			else if (selectE[0] != -1 && selectE[1] == -1)	
-				cout << "Faltou seleccionar um avião a levantar.\n";
-			else if (selectE[0] == -1 && selectE[1] != -1)
-				cout << "Faltou seleccionar um avião a aterrar.\n";
-			else cout << "Não foram selecionados aviões.\n";
-			cout << endl;
-			pausa;
-			limpar;
-			break;
+			if (select[1] != NULL) swap_priority(pista, select[1]);
+			return 1;
 		case '0':
 			limpar;
 			return 0;
-			break;
 		default:
 			limpar;
 			cout << "Essa opção não é válida\n";
 			break;
 		}
 	}
-
 }
-	
-	
-	*/
-	
-

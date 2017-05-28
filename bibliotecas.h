@@ -68,8 +68,7 @@ void var_load_file();
 void new_struct(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &passageiros);
 void carregamento_inicial(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &passageiros, string path);
 void go_loop(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &passageiros);
-
-//int emergencia(aviao * pista, aviao * aproximacao, aviao * descolarolagem);
+bool emergencia(aviao &pista, aviao &aproximacao);
 
 //---------Menu Opção-----------
 

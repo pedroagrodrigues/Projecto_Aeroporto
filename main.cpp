@@ -28,7 +28,7 @@ int main() {
 
 	
 	while (1) {
-		limpar;
+		/*limpar;
 		cout << "-----------terminal---------\n";
 		terminal::terminal_item *temp = passageiros.head;
 		pessoa::pessoa_item *temp2 = new pessoa::pessoa_item();
@@ -42,7 +42,7 @@ int main() {
 			cout << temp->turn << endl;
 			temp = temp->next;
 		}
-		/*
+		*/
 		limpar;
 		cout << "(e)mergências (o)pções (g)ravar\t\t 0 - Sair\n";
 		cout << "-----------------------------------------------------------------------------------------------------------------------------------\n";
@@ -159,12 +159,17 @@ int main() {
 		delete temp_2;
 		delete temp;
 		cout << endl;
-		*/
+		
 		//-------------Switch Case-------------
 		switch (_getch()) {
 		case 'e':
-			/*cout << emergencia(pista, aproximacao, descolar); // Função de Emergência
-			break;*/
+			
+			if (aproximacao.head->nome_voo.find("Em Emergencia") != string::npos) {
+				cout << "Emergência já a decorrer" << endl;
+				pausa;
+			}
+			else if(emergencia(pista, aproximacao)) aproximacao.head->nome_voo = aproximacao.head->nome_voo+"---- Em Emergencia"; // Função de Emergência
+			break;
 		case 'o':
 			opcoes(pista, aproximacao, descolar, passageiros); // Função Para Entrada Principal Menu_Opções
 			break;
