@@ -103,6 +103,29 @@ void go_loop(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros)
 	aprox_9(aprox);
 }
 
+<<<<<<< HEAD
+=======
+void go_loop(aviao &pista, aviao &aprox, aviao &desc, terminal &pers) {
+	if (queue_size(aprox) < 10) generate_aprox(aprox);
+	else {
+		check_terminal(aprox.head, pers);
+		if (queue_size(pista) < 7) {
+			generate_pista(aprox, pista);
+			remover(aprox);
+			generate_aprox(aprox);
+		}
+		else {
+			generate_desc(pista, desc);
+			remover(pista);
+			generate_pista(aprox, pista);
+			remover(aprox);
+			generate_aprox(aprox);
+			if (queue_size(desc) > 5) remover(desc);
+		}
+	}
+}
+/*
+>>>>>>> parent of 05b5cdc... Implementação das funções de Emergência em listas ligadas, ainda não totalmente funcionais, falta fazer impressão dos voos selecionados.
 int emergency_select(aviao * select, int size) {
 	limpar;
 	int opt;
@@ -175,6 +198,7 @@ int emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 			cout << endl;
 			if (selectE[0] != -1 && selectE[1] != -1) {
 				//Aprox
+<<<<<<< HEAD
 				aviao temp = aproximacao[selectE[0]];
 				for (int i = selectE[0]; i > 0; i--)
 					aproximacao[i] = aproximacao[i - 1];
@@ -185,6 +209,16 @@ int emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 				for (int i = selectE[1]; i > 0; i--)
 					pista[i] = pista[i - 1];
 				pista[0] = temp2;
+=======
+				aproximacao[0] = aproximacao[selectE[0]];
+				aproximacao[0].nome_voo += "-----EM EM�RGENCIA!";
+				for (int i = selectE[0]; i > 1; i--)
+					aproximacao[i] = aproximacao[i - 1];
+				//Descolagem
+				pista[0] = pista[selectE[1]];
+				for (int i = selectE[1]; i > 1; i--)
+					pista[i] = pista[i - 1];
+>>>>>>> parent of 05b5cdc... Implementação das funções de Emergência em listas ligadas, ainda não totalmente funcionais, falta fazer impressão dos voos selecionados.
 				return 0;
 			}
 			else if (selectE[0] != -1 && selectE[1] == -1)	
@@ -209,7 +243,11 @@ int emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem) {
 
 }
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> parent of 05b5cdc... Implementação das funções de Emergência em listas ligadas, ainda não totalmente funcionais, falta fazer impressão dos voos selecionados.
 	
+	*/
 	
 
