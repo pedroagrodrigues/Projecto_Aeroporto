@@ -16,9 +16,12 @@ cout << temp->turn << endl;
 temp = temp->next;
 }*/
 
-int main() {
-	//cout << path << endl;
-	string path = "estado.bin";
+int main(int argc, char *argv[]) {
+	string path;
+	(argc < 2) ? path = "estado.bin" : path = string(argv[1]);
+	//if (argc == 2) path = string(argv[1]);
+
+
 	setlocale(LC_ALL, "Portuguese"); //Faz a consola aceitar caracteres especiais.
 	var_load_file();//Carrega os ficheiros para mem�ria
 	aviao pista, aproximacao, descolar;
@@ -28,7 +31,7 @@ int main() {
 
 	
 	while (1) {
-		/*limpar;
+		limpar;
 		cout << "-----------terminal---------\n";
 		terminal::terminal_item *temp = passageiros.head;
 		pessoa::pessoa_item *temp2 = new pessoa::pessoa_item();
@@ -42,8 +45,8 @@ int main() {
 			cout << temp->turn << endl;
 			temp = temp->next;
 		}
-		*/
-		limpar;
+		/*
+		//limpar;
 		cout << "(e)mergências (o)pções (g)ravar\t\t 0 - Sair\n";
 		cout << "-----------------------------------------------------------------------------------------------------------------------------------\n";
 		cout.width(75);
@@ -159,7 +162,7 @@ int main() {
 		delete temp_2;
 		delete temp;
 		cout << endl;
-		
+		*/
 		//-------------Switch Case-------------
 		switch (_getch()) {
 		case 'e':
