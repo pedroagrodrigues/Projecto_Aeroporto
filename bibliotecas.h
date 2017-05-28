@@ -14,6 +14,8 @@ using namespace std;
 #endif
 
 //---------Estruturas---------
+#ifdef pessoa
+#else
 struct pessoa {
 	struct pessoa_item {
 		long bilhete;
@@ -25,6 +27,9 @@ struct pessoa {
 	pessoa_item * head;
 	pessoa_item * end;
 };
+#endif
+#ifdef aviao
+#else
 struct aviao {
 	struct aviao_item {
 		string nome_voo;
@@ -38,6 +43,9 @@ struct aviao {
 	aviao_item * head;
 	aviao_item * end;
 };
+#endif
+#ifdef terminal
+#else
 struct terminal {
 	struct terminal_item {
 		pessoa humman;
@@ -48,44 +56,60 @@ struct terminal {
 	terminal_item * end;
 
 };
+#endif
 //---------Funçoes_Stream-------
 string * preencher_dados(string caminho);
-/*
-bool is_written();
-void load_file_state(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros);
+bool is_written(string path);
+void load_file_state(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &passageiros, string);
+bool save(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &passageiros, string path);
 
-bool save(aviao * pista, aviao * aproximacao, aviao * desc, terminal * passageiros);
-*/
 //---------Funções_main---------
-void carregamento_inicial(aviao &pista, aviao &aprox, aviao &desc, terminal &passageiros);
 void var_load_file();
-void new_struct(aviao &pista, aviao &aprox, aviao &desc, terminal &pass);
-void go_loop(aviao &pista, aviao &aprox, aviao &desc, terminal &passageiros);
+void new_struct(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &passageiros);
+void carregamento_inicial(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &passageiros, string path);
+void go_loop(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &passageiros);
 
-//int emergencia(aviao * pista, aviao * aproximacao, aviao * descolagem);
+//int emergencia(aviao * pista, aviao * aproximacao, aviao * descolarolagem);
 
 //---------Menu Opção-----------
-/*
-int opcoes(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
 
-//---------Funções_opcoes------------------------------------------------------------------
+int opcoes(aviao & pista, aviao & aprox, aviao & descolar, terminal & passageiros);
 
 // Opção 1 Menu_Opções - Funções
-void lista_todos_passageiros(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros); 
-void lista_todos_passageiros_ordenados(aviao * pista, aviao * aprox, aviao * desc, terminal * passageiros);
+
+void lista_todos_passageiros(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
+void lista_todos_passageiros_ordenados(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
 
 // Opção 2 Menu_Opções - Funções
-void lista_todos_voos(aviao * pista, aviao * aprox, aviao * desc);
-void lista_voos_pista_descolar(aviao * pista, aviao * desc);
+void lista_todos_voos(aviao &pista, aviao &aproximar, aviao &descolar);
+void lista_voos_pista_descolar(aviao &pista, aviao &descolar);
 
 // Opção 3 Menu_Opções - Funções
-void lista_passageiros_pista(aviao * pista);
+void lista_passageiros_pista(aviao &pista);
 
 //Opção 4 Menu_Opções - Funções
-void lista_passageiros_pista_nacionalidade(aviao * pista);
+void lista_passageiros_pista_nacionalidade(aviao &pista);
 
+// Opção 5 - Menu_Opções - Funcções
+void lista_passageiros_estrangeiros_aeroporto(aviao &pista, terminal &passageiros);
+int pesquisa_passageiros_estrangeiros_aeroporto_manualmente(aviao &pista, terminal &passageiros);
+void pesquisa_passageiros_estrangeiros_aeroporto_lista(aviao &pista, terminal &passageiros);
+void pesquisa_passageiros_estrangeiros_aeroporto_primeiro_nome(aviao &pista, terminal &passageiros);
+void pesquisa_passageiros_estrangeiros_aeroporto_segundo_nome(aviao &pista, terminal &passageiros);
 
+// Opção 6 - Menu_Opções - Funções
+void pesquisa_passageiros_estrangeiros_aeroporto_ordenados(aviao &pista, terminal &passageiros);
 
-*/
+// Opção 7 - Menu_Opções - Funções
+void pesquisa_sobre_passageiros_primeiro_nome(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
+void pesquisa_sobre_passageiros_segundo_nome(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
 
-	
+// Opção 8 - Menu_Opções - Funções
+void editar_nome_passageiro(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
+
+// Opção 9 - Menu_Opções - Funções
+void editar_nacionalidade_passageiro(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
+
+// Opção 10 - Menu_Opções - Funções
+void editar_destino_voo(aviao &pista, aviao &aproximar, aviao &descolar);
+
