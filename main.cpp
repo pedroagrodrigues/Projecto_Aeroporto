@@ -1,20 +1,27 @@
 ﻿#include "bibliotecas.h"
 
-//EXEMPPLO DE APRESENTAÇÃO
-/*
-cout << "-----------terminal---------\n";
-terminal::terminal_item *temp = passageiros.head;
-pessoa::pessoa_item *temp2 = new pessoa::pessoa_item();
-while (temp != NULL) {
-temp2 = temp->humman.head;
-while (temp2 != NULL) {
-cout << temp2->primeiro_nome << endl;
-temp2 = temp2->next;
-
+//Imprime aviões e respetivos passageiros
+void print_aviao_passageiros(aviao &subject) {
+	aviao::aviao_item *temp = subject.head;
+	pessoa::pessoa_item *temp_passageiro = new pessoa::pessoa_item();
+	while (temp != NULL) {
+		cout.width(14);
+		cout << left << temp->nome_voo;
+		cout.width(18);
+		cout << left << temp->modelo;
+		cout.width(27);
+		cout << left << temp->origem;
+		cout.width(27);
+		cout << left << temp->destino;
+		temp_passageiro = temp->passageiro.head;
+		for (int i = 0; i < 3 && temp_passageiro != NULL; i++) {
+			cout << temp_passageiro->segundo_nome << ", ";
+			temp_passageiro = temp_passageiro->next;
+		}
+		cout << "...\n";
+		temp = temp->next;
+	}
 }
-cout << temp->turn << endl;
-temp = temp->next;
-}*/
 
 int main(int argc, char *argv[]) {
 	string path;
@@ -29,31 +36,16 @@ int main(int argc, char *argv[]) {
 	new_struct(pista, aproximacao, descolar, passageiros);
 	carregamento_inicial(pista, aproximacao, descolar, passageiros, path);
 
-	
+
 	while (1) {
 		limpar;
-		cout << "-----------terminal---------\n";
-		terminal::terminal_item *temp = passageiros.head;
-		pessoa::pessoa_item *temp2 = new pessoa::pessoa_item();
-		while (temp != NULL) {
-			temp2 = temp->humman.head;
-			while (temp2 != NULL) {
-				cout << temp2->primeiro_nome << endl;
-				temp2 = temp2->next;
-
-			}
-			cout << temp->turn << endl;
-			temp = temp->next;
-		}
-		/*
-		//limpar;
 		cout << "(e)mergências (o)pções (g)ravar\t\t 0 - Sair\n";
-		cout << "-----------------------------------------------------------------------------------------------------------------------------------\n";
-		cout.width(75);
+		cout << "----------------------------------------------------------------------------------------------------------------------\n";
+		cout.width(65);
 		cout << right << "Em Aproximação:\n";
-		cout << "-----------------------------------------------------------------------------------------------------------------------------------\n\n";
+		cout << "----------------------------------------------------------------------------------------------------------------------\n\n";
 		cout << "Voo";
-		cout.width(22);
+		cout.width(18);
 		cout << "Modelo";
 		cout.width(23);
 		cout << "Origem";
@@ -61,117 +53,58 @@ int main(int argc, char *argv[]) {
 		cout << "Destino";
 		cout.width(35);
 		cout << "Passageiros \n";
-		
-		aviao::aviao_item *temp = aproximacao.head;
-		pessoa::pessoa_item * temp_2 = new pessoa::pessoa_item();
-		while (temp != NULL) {
-			cout.width(18);
-			cout << left << temp->nome_voo;
-			cout.width(20);
-			cout << left << temp->modelo;
-			cout.width(27);
-			cout << left << temp->origem;
-			cout.width(27);
-			cout << left << temp->destino;
-			temp_2 = temp->passageiro.head;
-			for (int i = 0; i <= 4 && i < temp->capacidade && temp_2 != NULL; i++) {
-				cout << temp_2->segundo_nome << ", ";
-				temp_2 = temp_2->next;
-			}
-			if (temp->capacidade > 4) cout << "..."; //Comparação para o caso de adicionarem uma capacidade de 4 ao ficheiro "capacidade.txt"
-			else if (temp->capacidade > 0) cout << ".";
-			else cout << endl;
-			cout << "\n";
-			temp = temp->next;			
-		}
-	
+		print_aviao_passageiros(aproximacao);
 		cout << "\n";
-		cout << "-----------------------------------------------------------------------------------------------------------------------------------\n";
-		cout.width(70);
+
+		cout << "----------------------------------------------------------------------------------------------------------------------\n";
+		cout.width(65);
 		cout << right << "Na Pista:\n";
-		cout << "-----------------------------------------------------------------------------------------------------------------------------------\n\n";
+		cout << "----------------------------------------------------------------------------------------------------------------------\n\n";
 		cout << "Voo";
-		cout.width(22);
+		cout.width(18);
 		cout << "Modelo";
-		cout.width(23);
+		cout.width(21);
 		cout << "Origem";
-		cout.width(25);
+		cout.width(27);
 		cout << "Destino";
 		cout.width(35);
 		cout << "Passageiros \n";
+		print_aviao_passageiros(pista);
 
-		temp = pista.head;
-		while (temp != NULL) {
-			cout.width(18);
-			cout << left << temp->nome_voo;
-			cout.width(20);
-			cout << left << temp->modelo;
-			cout.width(27);
-			cout << left << temp->origem;
-			cout.width(27);
-			cout << left << temp->destino;
-			temp_2 = temp->passageiro.head;
-			for (int i = 0; i <= 4 && i < temp->capacidade && temp_2 != NULL; i++) {
-				cout << temp_2->segundo_nome << ", ";
-				temp_2 = temp_2->next;
-			}
-			if (temp->capacidade > 4) cout << "..."; //Comparação para o caso de adicionarem uma capacidade de 4 ao ficheiro "capacidade.txt"
-			else if (temp->capacidade > 0) cout << ".";
-			else cout << endl;
-			cout << "\n";
-			temp = temp->next;			
-		}
-	
+
 		cout << "\n";
-		cout << "-----------------------------------------------------------------------------------------------------------------------------------\n";
-		cout.width(72);
+		cout << "----------------------------------------------------------------------------------------------------------------------\n";
+		cout.width(65);
 		cout << right << "A Descolar:\n";
-		cout << "-----------------------------------------------------------------------------------------------------------------------------------\n\n";
+		cout << "----------------------------------------------------------------------------------------------------------------------\n\n";
 		cout << "Voo";
-		cout.width(22);
+		cout.width(18);
 		cout << "Modelo";
-		cout.width(23);
+		cout.width(21);
 		cout << "Origem";
-		cout.width(25);
+		cout.width(27);
 		cout << "Destino";
 		cout.width(35);
 		cout << "Passageiros \n";
+		print_aviao_passageiros(descolar);
 
-		temp = descolar.head;
-		while (temp != NULL) {
-			cout.width(18);
-			cout << left << temp->nome_voo;
-			cout.width(20);
-			cout << left << temp->modelo;
-			cout.width(27);
-			cout << left << temp->origem;
-			cout.width(27);
-			cout << left << temp->destino;
-			temp_2 = temp->passageiro.head;
-			for (int i = 0; i <= 4 && i < temp->capacidade && temp_2 != NULL; i++) {
-				cout << temp_2->segundo_nome << ", ";
-				temp_2 = temp_2->next;
-			}
-			if (temp->capacidade > 4) cout << "..."; //Comparação para o caso de adicionarem uma capacidade de 4 ao ficheiro "capacidade.txt"
-			else if (temp->capacidade > 0) cout << ".";
-			else cout << endl;
-			cout << "\n";
-			temp = temp->next;			
-		}
-	
-		delete temp_2;
-		delete temp;
-		cout << endl;
-		*/
 		//-------------Switch Case-------------
 		switch (_getch()) {
 		case 'e':
-			
-			if (aproximacao.head->nome_voo.find("Em Emergencia") != string::npos) {
-				cout << "Emergência já a decorrer" << endl;
+			if (queue_size(aproximacao) >= 10 && pista.head != NULL) {
+				if (aproximacao.head->nome_voo.find("-Emergencia") != string::npos) {
+					limpar;
+					cout << "Emergência já a decorrer" << endl;
+					pausa;
+				}
+				else if (emergencia(pista, aproximacao)) aproximacao.head->nome_voo = aproximacao.head->nome_voo + "-Emergencia  "; // Função de Emergência
+			}
+			else {
+				limpar;
+				cout << "Só é possível aceder ao menu emergência quando as aproximações estão cheias.\n";
 				pausa;
 			}
-			else if(emergencia(pista, aproximacao)) aproximacao.head->nome_voo = aproximacao.head->nome_voo+"---- Em Emergencia"; // Função de Emergência
+
 			break;
 		case 'o':
 			opcoes(pista, aproximacao, descolar, passageiros); // Função Para Entrada Principal Menu_Opções
@@ -201,3 +134,4 @@ int main(int argc, char *argv[]) {
 
 	} // Fim do While
 } // Fim do main
+

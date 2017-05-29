@@ -258,16 +258,17 @@ bool check(aviao::aviao_item*a, aviao::aviao_item*b) {
 void swap_priority(aviao &queue, aviao::aviao_item * swap) {
 	aviao::aviao_item * temp = queue.head;
 	aviao::aviao_item *aux = new aviao::aviao_item();
-	while (!check(temp->next, swap)) {
-		temp = temp->next;
+	if (!check(temp, swap)) {
+		while (!check(temp->next, swap)) {
+			temp = temp->next;
+		}
+		aux = temp->next;
+		temp->next = temp->next->next;
+		delete aux;
+		temp = queue.head;
+		queue.head = swap;
+		queue.head->next = temp;
 	}
-
-	aux = temp->next;
-	temp->next = temp->next->next;
-	delete aux;
-	temp = queue.head;
-	queue.head = swap;
-	queue.head->next = temp;
 }
 
 //EMERGÊNCIA! Função principal
@@ -277,8 +278,8 @@ bool emergencia(aviao &pista, aviao &aproximacao) {
 	aviao::aviao_item * select[2] = { NULL, NULL };
 
 	while (1) {
-		if (select[0] != NULL) cout << "Voo Nº: " << select[0]->nome_voo << "\tModelo: " << select[0]->modelo << endl;
-		if (select[1] != NULL) cout << "Voo Nº: " << select[1]->nome_voo << "\tModelo: " << select[1]->modelo << endl;
+		if (select[0] != NULL) cout << "Aproximação: Voo Nº: " << select[0]->nome_voo << "\tModelo: " << select[0]->modelo << endl;
+		if (select[1] != NULL) cout << "Desolar: Voo Nº: " << select[1]->nome_voo << "\tModelo: " << select[1]->modelo << endl;
 		cout << "\n----------------------------------------------------------------------------\n";
 		cout.width(55);
 		cout << right << "Entrou no modo de Emergência!\n";
@@ -296,12 +297,16 @@ bool emergencia(aviao &pista, aviao &aproximacao) {
 			select[1] = emergency_select(pista, queue_size(pista));
 			break;
 		case 'c':
-			if (select[0] != NULL) swap_priority(aproximacao, select[0]);
+			if (select[0] != NULL && (select[1] != NULL)) {
+				swap_priority(aproximacao, select[0]);
+				swap_priority(pista, select[1]);
+				return 1;
+			}
 			else {
-				cout << "Nenhuma emergência seleccionada";
+				(select[0] == NULL) ? cout << "Não foram seleccionados voos em aproximação" << endl : cout << "Não foram seleccionados voos na pista" << endl;
+				pausa;
 				break;
 			}
-			if (select[1] != NULL) swap_priority(pista, select[1]);
 			return 1;
 		case '0':
 			limpar;
