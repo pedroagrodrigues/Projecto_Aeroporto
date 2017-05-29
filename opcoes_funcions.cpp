@@ -133,7 +133,7 @@ void lista_todos_passageiros_ordenados(aviao &pista, aviao &aproximar, aviao &de
 }// Fim Da Opção 1 Menu_Opções
 
 // Funções do Sub - Menu Criado -> Opção 2 Menu_Opções
-void lista_todos_voos(aviao &pista, aviao &aproximar, aviao &descolar) {
+/*void lista_todos_voos(aviao &pista, aviao &aproximar, aviao &descolar) {
 	limpar;
 	cout << "\nLista De Todos os Voos.\n";
 
@@ -171,15 +171,14 @@ void lista_todos_voos(aviao &pista, aviao &aproximar, aviao &descolar) {
 	cout << "Destino\n\n";
 	pausa;
 
-} // Fim Da Opção 2 Menu_Opções
+} // Fim Da Opção 2 Menu_Opções*/ //Função desnecessária
 void lista_voos_pista_descolar(aviao &pista, aviao &descolar) {
 	limpar;
 	cout << "\nLista Todos os Voos, em Pista e a Descolar, Ordenados Alfabéticamente.\n";
-	
 	// Voos em Pista
 	cout << "\n----------------------------------------------------------------------------\n";
 	cout.width(45);
-	cout << right << "Na Pista:\n";
+	cout << right << "Na Pista e a Descolar:\n";
 	cout << "----------------------------------------------------------------------------\n\n";
 	cout << "Modelo";
 	cout.width(30);
@@ -187,16 +186,54 @@ void lista_voos_pista_descolar(aviao &pista, aviao &descolar) {
 	cout.width(30);
 	cout << "Destino\n\n";
 	
-	// Voos em Descolagem
-	cout << "\n----------------------------------------------------------------------------\n";
-	cout.width(45);
-	cout << right << "Em Descolar:\n";
-	cout << "----------------------------------------------------------------------------\n\n";
-	cout << "Modelo";
-	cout.width(30);
-	cout << "Origem";
-	cout.width(30);
-	cout << "Destino\n\n";
+//Juntar as duas listas:
+	aviao::aviao_item * aux = new aviao::aviao_item();
+	aviao  temp;
+	temp.head = NULL;
+	temp.end = NULL;
+	while (pista.head != NULL) {
+		aux = new aviao::aviao_item();
+		aux->capacidade = pista.head->capacidade;
+		aux->modelo = pista.head->modelo;
+		aux->destino = pista.head->destino;
+		aux->origem = pista.head->origem;
+		aux->nome_voo = pista.head->nome_voo;
+		aux->passageiro = pista.head->passageiro;
+		aux->next = NULL;
+		if (temp.end == NULL) {
+			temp.head = aux;
+			temp.end = aux;
+		}
+		else {
+			temp.end->next = aux;
+			temp.end = aux;
+		}
+		pista.head = pista.head->next;
+	}
+	while (descolar.head != NULL) {
+		aux = new aviao::aviao_item();
+		aux->capacidade = descolar.head->capacidade;
+		aux->modelo = descolar.head->modelo;
+		aux->destino = descolar.head->destino;
+		aux->origem = descolar.head->origem;
+		aux->nome_voo = descolar.head->nome_voo;
+		aux->passageiro = descolar.head->passageiro;
+		aux->next = NULL;
+		if (temp.end == NULL) {
+			temp.head = aux;
+			temp.end = aux;
+		}
+		else {
+			temp.end->next = aux;
+			temp.end = aux;
+		}
+		descolar.head = descolar.head->next;
+	}
+
+	while (temp.head != NULL) {
+		cout << temp.head->nome_voo << endl;
+		temp.head = temp.head->next;
+	}
 	pausa;
 }// Fim Da Opção 2 Menu_Opções
 

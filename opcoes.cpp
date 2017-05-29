@@ -34,14 +34,10 @@ int mostrar_passageiros(aviao & pista, aviao & aproximar, aviao & descolar, term
 int mostrar_voos(aviao & pista, aviao & aproximar,  aviao & descolar) {
 	while (1) {
 		limpar;
-		cout << "\n(1) Lista Todos Voos" << " (2) Lista De Voos em Pista e a Descolar" << "\t (0) - Voltar" << endl;
+		cout << "\n(1) Lista De Voos em Pista e a Descolar" << "\t (0) - Voltar" << endl;
 		cout << "-------------------------------------------------------------------------------\n";
 		switch (_getch()) {
-
 		case'1':
-			lista_todos_voos(pista, aproximar, descolar);
-			break;
-		case'2':
 			lista_voos_pista_descolar(pista, descolar);
 			break;
 		case'0':
