@@ -296,12 +296,16 @@ bool emergencia(aviao &pista, aviao &aproximacao) {
 			select[1] = emergency_select(pista, queue_size(pista));
 			break;
 		case 'c':
-			if (select[0] != NULL) swap_priority(aproximacao, select[0]);
+			if (select[0] != NULL && (select[1] != NULL)) {
+				swap_priority(aproximacao, select[0]);
+				swap_priority(pista, select[1]);
+				return 1;
+			}
 			else {
-				cout << "Nenhuma emergência seleccionada";
+				(select[0] == NULL) ? cout << "Não foram seleccionados voos em aproximação" << endl : cout << "Não foram seleccionados voos na pista" << endl;
+				pausa;
 				break;
 			}
-			if (select[1] != NULL) swap_priority(pista, select[1]);
 			return 1;
 		case '0':
 			limpar;
