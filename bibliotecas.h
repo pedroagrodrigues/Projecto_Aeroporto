@@ -69,7 +69,7 @@ void new_struct(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &pas
 void carregamento_inicial(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &passageiros, string path);
 void go_loop(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &passageiros);
 bool emergencia(aviao &pista, aviao &aproximacao);
-
+int queue_size(aviao &queue);
 //---------Menu Opção-----------
 
 int opcoes(aviao & pista, aviao & aprox, aviao & descolar, terminal & passageiros);
