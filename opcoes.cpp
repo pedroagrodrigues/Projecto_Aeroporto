@@ -30,100 +30,6 @@ int mostrar_passageiros(aviao & pista, aviao & aproximar, aviao & descolar, term
 	} // Fim do ciclo Criado para continuar sempre do Menu_Opções Funcionalidade 1
 } // Fim do da função criado para Menu_Opções Funcionalidade 1
 
-  //  Sub-Menu - Opção 2 Menu_Opções
-int mostrar_voos(aviao & pista, aviao & aproximar,  aviao & descolar) {
-	while (1) {
-		limpar;
-		cout << "\n(1) Lista De Voos em Pista e a Descolar" << "\t (0) - Voltar" << endl;
-		cout << "-------------------------------------------------------------------------------\n";
-		switch (_getch()) {
-		case'1':
-			lista_voos_pista_descolar(pista, descolar);
-			break;
-		case'0':
-			return 0;
-			break;
-		default:
-			limpar;
-			cout << "\nIntroduza Uma Opção Válida\n.";
-			pausa;
-			break;
-		}
-	} // Fim do ciclo Criado para continuar sempre do Menu_Opções Funcionalidade 2
-} // Fim do da função criado para Menu_Opções Funcionalidade 2
-
-  //  Sub-Menu - Opção 5 Menu_Opções
-int pesquisa_estrangeiros_aeroporto(aviao & pista, terminal & passageiros) {
-
-	while (1) {
-		limpar;
-		cout << "\n(1) Lista Todos Estrangeiros Aeroporto" << " (2) Pesquisa Passageiros Estrangeiros" << "\t (0) - Voltar" << endl;
-		cout << "-------------------------------------------------------------------------------\n";
-
-		switch (_getch()) {
-
-		case'1':
-			lista_passageiros_estrangeiros_aeroporto(pista, passageiros);
-			break;
-
-		case'2':
-			pesquisa_passageiros_estrangeiros_aeroporto_manualmente(pista, passageiros);
-			break;
-
-		case'0':
-			return 0;
-			break;
-
-		default:
-			limpar;
-			cout << "\nIntroduza Uma Opção Válida\n.";
-			pausa;
-			break;
-		}
-
-		pausa;
-
-
-
-	} // Fim do ciclo Criado para continuar sempre do Menu_Opções Funcionalidade 5
-} // Fim do da função criado para Menu_Opções Funcionalidade 5
-
-  //  Sub-Menu - Opção 7 Menu_Opções
-int pesquisa_sobre_passageiros(aviao & pista, aviao & descolar, aviao & aproximar, terminal & passageiros) {
-	while (1) {
-		limpar;
-		cout.width(55);
-		cout << right << "\nEntrou no Modo Pesquisa Sobre Passageiros no Aeroporto!\n";
-
-		cout << "\n(1) Pesquisa Pelo Primeiro Nome" << " (2) Pesquisa Pelo Segundo Nome" << "\t (0) - Voltar" << endl;
-		cout << "-------------------------------------------------------------------------------\n";
-
-		switch (_getch()) {
-
-		case'1':
-			pesquisa_sobre_passageiros_primeiro_nome(pista,descolar,aproximar,passageiros);
-			break;
-
-		case'2':
-			pesquisa_sobre_passageiros_segundo_nome(aproximar, descolar, pista, passageiros);
-			break;
-
-		case'0':
-			return 0;
-			break;
-
-		default:
-			limpar;
-			cout << "\nIntroduza Uma Opção Válida\n.";
-			pausa;
-			break;
-		}
-
-		pausa;
-
-
-	} // Fim do ciclo Criado para continuar sempre do Menu_Opções Funcionalidade 7
-} // Fim do da função criado para Menu_Opções Funcionalidade 7
 
   // Chamada Menu_Opções - PRINCIPAL
 int opcoes(aviao & pista, aviao & aproximar, aviao & descolar, terminal & passageiros) {
@@ -131,15 +37,15 @@ int opcoes(aviao & pista, aviao & aproximar, aviao & descolar, terminal & passag
 		limpar;
 		cout << "\nEntrou no Menu Opções. Por Favor Selecione Uma Das Seguintes Funcionalidades\n\n";
 		cout << "1 - Mostrar Todos os Passageiros.\n";
-		cout << "2 - Mostrar Todos os Voos.\n";
+		cout << "2 - Mostrar Voos em Pista e a Descolar (Ordenados Alfabéticamente Destinos).----------implementar\n";
 		cout << "3 - Mostrar Passageiros em Pista.\n";
 		cout << "4 - Mostrar Passageiros em Pista (Por Nacionalidade).\n";
-		cout << "5 - Pesquisa De Passageiros (Origem Estrangeira).\n";
+		cout << "5 - Pesquisa de Passageiros no Aeroporto (Origem Estrangeira).----------implementar\n";
 		cout << "6 - Lista De Passageiros Origem Estrangeira no Aeroporto (Ordenada Por Ordem Alfabética).\n";
-		cout << "7 - Pesquisa Sobre os Passageiros.\n";
-		cout << "8 - Editar Nome do Passageiro.\n";
-		cout << "9 - Editar Nacionalidade do Passageiro.\n";
-		cout << "10 - Editar Destino de Voo.\n";
+		cout << "7 - Pesquisa Sobre os Passageiros.----------implementar\n";
+		cout << "8 - Editar Nome do Passageiro.----------implementar\n";
+		cout << "9 - Editar Nacionalidade do Passageiro.----------implementar\n";
+		cout << "10 - Editar Destino de Voo.----------implementar\n";
 		cout << "\n0 - Voltar"; // Cout Para Sair do Menu_Opções
 		switch (_getch()) {
 
@@ -147,7 +53,7 @@ int opcoes(aviao & pista, aviao & aproximar, aviao & descolar, terminal & passag
 			mostrar_passageiros(pista, aproximar, descolar, passageiros);
 			break;
 		case '2':
-			mostrar_voos(pista,aproximar,descolar);
+			lista_voos_pista_descolar(pista, descolar);
 			break;
 
 		case '3':

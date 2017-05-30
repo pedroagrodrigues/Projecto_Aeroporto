@@ -123,3 +123,16 @@ sort_tree * fill_tree_by_nationality(sort_tree * tree, aviao &subject) {
 	}
 	return tree;
 }
+int size_tree(sort_tree * tree)
+{
+	if (tree == NULL) return 0;
+	return size_tree(tree->left) + size_tree(tree->right) + 1; // retorna o numero de chamadas recursiva (atŽ no esq e dir ser null). +1 devido ˆ raiz
+}
+
+void search_by_last_name(sort_tree * root, string name) {
+	if (root == NULL) return;
+	search_by_last_name(root->left, name);
+	cout.width(50);
+	if (root->humman.segundo_nome == name) cout << left << root->humman.segundo_nome + ", " + root->humman.primeiro_nome << root->humman.nacionalidade << endl;
+	search_by_last_name(root->right, name);
+}

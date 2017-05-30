@@ -90,18 +90,14 @@ void lista_passageiros_pista(aviao &pista);
 void lista_passageiros_pista_nacionalidade(aviao &pista);
 
 // Opção 5 - Menu_Opções - Funcções
-void lista_passageiros_estrangeiros_aeroporto(aviao &pista, terminal &passageiros);
-int pesquisa_passageiros_estrangeiros_aeroporto_manualmente(aviao &pista, terminal &passageiros);
-void pesquisa_passageiros_estrangeiros_aeroporto_lista(aviao &pista, terminal &passageiros);
-void pesquisa_passageiros_estrangeiros_aeroporto_primeiro_nome(aviao &pista, terminal &passageiros);
-void pesquisa_passageiros_estrangeiros_aeroporto_segundo_nome(aviao &pista, terminal &passageiros);
+int pesquisa_estrangeiros_aeroporto(aviao &pista, terminal &passageiros);
+
 
 // Opção 6 - Menu_Opções - Funções
 void pesquisa_passageiros_estrangeiros_aeroporto_ordenados(aviao &pista, terminal &passageiros);
 
 // Opção 7 - Menu_Opções - Funções
-void pesquisa_sobre_passageiros_primeiro_nome(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
-void pesquisa_sobre_passageiros_segundo_nome(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
+void pesquisa_sobre_passageiros(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
 
 // Opção 8 - Menu_Opções - Funções
 void editar_nome_passageiro(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
