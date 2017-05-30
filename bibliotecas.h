@@ -72,15 +72,14 @@ bool emergencia(aviao &pista, aviao &aproximacao);
 int queue_size(aviao &queue);
 //---------Menu Opção-----------
 
+// Chamada Menu_Opções - PRINCIPAL
 int opcoes(aviao & pista, aviao & aprox, aviao & descolar, terminal & passageiros);
 
 // Opção 1 Menu_Opções - Funções
-
 void lista_todos_passageiros(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
 void lista_todos_passageiros_ordenados(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
 
 // Opção 2 Menu_Opções - Funções
-void lista_todos_voos(aviao &pista, aviao &aproximar, aviao &descolar);
 void lista_voos_pista_descolar(aviao &pista, aviao &descolar);
 
 // Opção 3 Menu_Opções - Funções
@@ -91,7 +90,6 @@ void lista_passageiros_pista_nacionalidade(aviao &pista);
 
 // Opção 5 - Menu_Opções - Funcções
 int pesquisa_estrangeiros_aeroporto(aviao &pista, terminal &passageiros);
-
 
 // Opção 6 - Menu_Opções - Funções
 void pesquisa_passageiros_estrangeiros_aeroporto_ordenados(aviao &pista, terminal &passageiros);

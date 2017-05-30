@@ -61,18 +61,18 @@ int modo_editar(aviao & pista, aviao & aproximar, aviao & descolar, terminal & p
 	} // Fim do ciclo Criado para continuar sempre do Menu_Opções Funcionalidade 8
 } // Fim do da função criado para Menu_Opções Funcionalidade 8
 
-  // Chamada Menu_Opções - PRINCIPAL
+// Chamada Menu_Opções - PRINCIPAL
 int opcoes(aviao & pista, aviao & aproximar, aviao & descolar, terminal & passageiros) {
 	while (1) { // Ciclo Criado Para Utilizador Estar Sempre Dentro Do Menu Até Ordem Em Contrário
 		limpar;
 		cout << "\nEntrou no Menu Opções. Por Favor Selecione Uma Das Seguintes Funcionalidades\n\n";
 		cout << "1 - Mostrar Todos os Passageiros.\n";
-		cout << "2 - Mostrar Voos em Pista e a Descolar (Ordenados Alfabéticamente Destinos).----------implementar\n";
+		cout << "2 - Mostrar Voos em Pista e a Descolar (Ordenados Alfabéticamente Destinos).\n";
 		cout << "3 - Mostrar Passageiros em Pista.\n";
 		cout << "4 - Mostrar Passageiros em Pista (Por Nacionalidade).\n";
-		cout << "5 - Pesquisa de Passageiros no Aeroporto (Origem Estrangeira).----------implementar\n";
+		cout << "5 - Pesquisa de Passageiros no Aeroporto (Origem Estrangeira).\n";
 		cout << "6 - Lista De Passageiros Origem Estrangeira no Aeroporto (Ordenada Por Ordem Alfabética).\n";
-		cout << "7 - Pesquisa Sobre os Passageiros.----------implementar\n";
+		cout << "7 - Pesquisa Sobre os Passageiros.\n";
 		cout << "8 - Entrar no Modo Editar.\n";
 		
 		cout << "\n0 - Voltar"; // Cout Para Sair do Menu_Opções
