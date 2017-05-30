@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="bibliotecas.h" />
+    <ClInclude Include="tree.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filestreams.cpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="main_functions.cpp" />
     <ClCompile Include="opcoes.cpp" />
     <ClCompile Include="opcoes_funcions.cpp" />
+    <ClCompile Include="tree_functions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="txt\capacidade.txt" />

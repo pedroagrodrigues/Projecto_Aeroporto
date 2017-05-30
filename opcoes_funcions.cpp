@@ -1,15 +1,5 @@
 #include "bibliotecas.h"
-struct sort_tree {
-	struct item {
-		long bilhete;
-		string primeiro_nome;
-		string segundo_nome;
-		string nacionalidade;
-	}humman;
-	sort_tree * right;
-	sort_tree * left;
-};
-
+#include "tree.h"
 // Comentário Abaixo, são as funções usadas, para ordenar alfabéticamente
 /*
 //----Sorting Functions---- (Funções Para Ordenação Alfabéticamente)
@@ -69,38 +59,7 @@ void print_humman(aviao &subject) {
 		temp = temp->next;
 	}
 }
-void insert_tree(sort_tree::item *subject, sort_tree *order) {
-	if (order == NULL) {
-		order->humman = *subject;
-		order->left = NULL;
-		order->right = NULL;
-	}
-	else if (order->humman.segundo_nome <= subject->segundo_nome) {
-		insert_tree(subject, order->left);
-	}
-	else insert_tree(subject, order->right);
 
-}
-
-
-void fill_tree(aviao &subject, sort_tree *order) {
-	aviao::aviao_item *temp = new aviao::aviao_item();
-	sort_tree::item *temp_person = new sort_tree::item();
-	temp = subject.head;
-	while (temp != NULL) {
-		while (temp->passageiro.head != NULL) {
-			temp_person->bilhete = temp->passageiro.head->bilhete;
-			temp_person->nacionalidade = temp->passageiro.head->nacionalidade;
-			temp_person->primeiro_nome = temp->passageiro.head->primeiro_nome;
-			temp_person->segundo_nome = temp->passageiro.head->segundo_nome;
-			temp->passageiro.head = temp->passageiro.head->next;
-			insert_tree(temp_person, order);
-		}
-	}
-}
-void print(sort_tree * tree) {
-
-}
 // Funções do Sub - Menu Criado -> Opção 1 Menu_Opções
 void lista_todos_passageiros(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros){
 	limpar;
@@ -162,22 +121,26 @@ void lista_todos_passageiros(aviao &pista, aviao &aproximar, aviao &descolar, te
 
 void lista_todos_passageiros_ordenados(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros) {
 	limpar;
-	sort_tree * tree = new sort_tree();
-	fill_tree(pista, tree);
-	fill_tree(aproximar, tree);
-	fill_tree(descolar, tree);
+	sort_tree * tree = NULL;
+	tree = fill_tree(tree, aproximar); 
+	fill_tree(tree, pista);
+	fill_tree(tree, descolar);
 	terminal::terminal_item *temp = passageiros.head;
-	sort_tree::item *temp_person = new sort_tree::item();
+	pessoa::pessoa_item *temp_humman = new pessoa::pessoa_item();
+	sort_tree::item temp_person;
 	while (temp != NULL) {
-		while (temp->humman.head != NULL) {
-			temp_person->bilhete = temp->humman.head->bilhete;
-			temp_person->nacionalidade = temp->humman.head->nacionalidade;
-			temp_person->primeiro_nome = temp->humman.head->primeiro_nome;
-			temp_person->segundo_nome = temp->humman.head->segundo_nome;
-			temp->humman.head = temp->humman.head->next;
-			insert_tree(temp_person, tree);
+		temp_humman = temp->humman.head;
+		while (temp_humman != NULL) {
+			temp_person.bilhete = temp_humman->bilhete;
+			temp_person.nacionalidade = temp_humman->nacionalidade;
+			temp_person.primeiro_nome = temp_humman->primeiro_nome;
+			temp_person.segundo_nome = temp_humman->segundo_nome;
+			temp_humman = temp_humman->next;
+			tree = insert_tree(tree, temp_person);
 		}
+		temp = temp->next;
 	}
+
 	cout << "\n----------------------------------------------------------------------------\n";
 	cout.width(65);
 	cout << right << "Lista de Passageiros Ordenada Alfabéticamente.\n";
@@ -185,8 +148,8 @@ void lista_todos_passageiros_ordenados(aviao &pista, aviao &aproximar, aviao &de
 	cout << "Nome";
 	cout.width(60);
 	cout << "Nacionalidade\n\n";
-
-	print(tree);
+	sort_tree_out(tree);
+	//print(tree);
 
 	pausa;
 }// Fim Da Opção 1 Menu_Opções
