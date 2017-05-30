@@ -30,6 +30,36 @@ int mostrar_passageiros(aviao & pista, aviao & aproximar, aviao & descolar, term
 	} // Fim do ciclo Criado para continuar sempre do Menu_Opções Funcionalidade 1
 } // Fim do da função criado para Menu_Opções Funcionalidade 1
 
+// Sub-Menu - Opção 8 Menu_Opções
+int modo_editar(aviao & pista, aviao & aproximar, aviao & descolar, terminal & passageiros) {
+	while (1) {
+		limpar;
+		cout << "\n(1) Editar Nome Passageiro" << " (2) Editar Nacionalidade" << " (3) Editar Destino Voo" << "\t (0) - Voltar" << endl;
+		cout << "-------------------------------------------------------------------------------\n";
+
+
+		switch (_getch()) {
+
+		case'1':
+			editar_nome_passageiro(pista, aproximar, descolar, passageiros);
+			break;
+		case'2':
+			editar_nacionalidade_passageiro(pista, aproximar, descolar, passageiros);
+			break;
+		case'3':
+			editar_destino_voo(pista, aproximar,descolar);
+			break;
+		case'0':
+			return 0;
+			break;
+		default:
+			limpar;
+			cout << "\nIntroduza Uma Opção Válida\n.";
+			pausa;
+			break;
+		}
+	} // Fim do ciclo Criado para continuar sempre do Menu_Opções Funcionalidade 8
+} // Fim do da função criado para Menu_Opções Funcionalidade 8
 
   // Chamada Menu_Opções - PRINCIPAL
 int opcoes(aviao & pista, aviao & aproximar, aviao & descolar, terminal & passageiros) {
@@ -43,9 +73,8 @@ int opcoes(aviao & pista, aviao & aproximar, aviao & descolar, terminal & passag
 		cout << "5 - Pesquisa de Passageiros no Aeroporto (Origem Estrangeira).----------implementar\n";
 		cout << "6 - Lista De Passageiros Origem Estrangeira no Aeroporto (Ordenada Por Ordem Alfabética).\n";
 		cout << "7 - Pesquisa Sobre os Passageiros.----------implementar\n";
-		cout << "8 - Editar Nome do Passageiro.----------implementar\n";
-		cout << "9 - Editar Nacionalidade do Passageiro.----------implementar\n";
-		cout << "10 - Editar Destino de Voo.----------implementar\n";
+		cout << "8 - Entrar no Modo Editar.\n";
+		
 		cout << "\n0 - Voltar"; // Cout Para Sair do Menu_Opções
 		switch (_getch()) {
 
@@ -74,13 +103,7 @@ int opcoes(aviao & pista, aviao & aproximar, aviao & descolar, terminal & passag
 			pesquisa_sobre_passageiros(pista, descolar, aproximar, passageiros);
 			break;
 		case '8':
-			editar_nome_passageiro(pista, descolar, aproximar, passageiros);
-			break;
-		case '9':
-			editar_nacionalidade_passageiro(pista, descolar, aproximar, passageiros);
-			break;
-		case '10':
-			editar_destino_voo(pista, descolar, aproximar);
+			modo_editar(pista, descolar, aproximar, passageiros);
 			break;
 		case '0':
 			return 0; // Fecho Do Menu_Opções
