@@ -124,11 +124,7 @@ void generate_descolar(aviao &pista, aviao &descolar) {
 }
 
 void carregamento_inicial(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &passageiros, string path) {
-	if (is_written(path)) {
-		load_file_state(pista, aproximacao, descolar, passageiros, path);
-	}
-	generate_aproximacao(aproximacao);
-
+	(is_written(path)) ? load_file_state(pista, aproximacao, descolar, passageiros, path) : generate_aproximacao(aproximacao);
 }
 
 int queue_size(aviao &queue) {
