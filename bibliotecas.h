@@ -99,12 +99,8 @@ void pesquisa_passageiros_estrangeiros_aeroporto_ordenados(aviao &pista, termina
 // Opção 7 - Menu_Opções - Funções
 void pesquisa_sobre_passageiros(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
 
-// Opção 8 - Menu_Opções - Funções
+// Opção 8-9-10 - Menu_Opções - Funções
+int modo_editar(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
 void editar_nome_passageiro(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
-
-// Opção 9 - Menu_Opções - Funções
 void editar_nacionalidade_passageiro(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
-
-// Opção 10 - Menu_Opções - Funções
 void editar_destino_voo(aviao &pista, aviao &aproximar, aviao &descolar);
-

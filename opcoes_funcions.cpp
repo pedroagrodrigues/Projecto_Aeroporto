@@ -2,7 +2,7 @@
 #include "tree.h"
 
 // ----------------Funções_Menu_Opções-------------------
-//------------------------------------------------------------------------impressão de pessoas
+// ----------------Impressão de Pessoas-------------------
 void print_humman(aviao &subject) {
 	aviao::aviao_item *temp = subject.head;
 	pessoa::pessoa_item *temp_humman = new pessoa::pessoa_item();
@@ -76,7 +76,6 @@ void lista_todos_passageiros(aviao &pista, aviao &aproximar, aviao &descolar, te
 	}
 	pausa;
 } // Fim Da Opção 1 Menu_Opções
-
 void lista_todos_passageiros_ordenados(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros) {
 	limpar;
 	sort_tree * tree = NULL;
@@ -257,7 +256,6 @@ int pesquisa_estrangeiros_aeroporto(aviao &pista, terminal &passageiros){
 	return 0;
 }// Fim Da Opção 5 Menu_Opções
 
-
 // Opção 6 - Menu_Opções - Funções
 void pesquisa_passageiros_estrangeiros_aeroporto_ordenados(aviao &pista, terminal &passageiros){
 	limpar;
@@ -351,8 +349,6 @@ void editar_nome_passageiro(aviao &pista, aviao &aproximar, aviao &descolar, ter
 	cout << "----------------------------------------------------------------------------\n\n";
 	pausa;
 }// Fim Da Opção 8 Menu_Opções
-
-// Opção 9 - Menu_Opções - Funções
 void editar_nacionalidade_passageiro(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros){
 	limpar;
 	cout << "\n----------------------------------------------------------------------------\n";
@@ -362,8 +358,6 @@ void editar_nacionalidade_passageiro(aviao &pista, aviao &aproximar, aviao &desc
 
 	pausa;
 }// Fim Da Opção 9 Menu_Opções
-
-// Opção 10 - Menu_Opções - Funções
 void editar_destino_voo(aviao &pista, aviao &aproximar, aviao &descolar){
 	limpar;
 	cout << "\n----------------------------------------------------------------------------\n";
