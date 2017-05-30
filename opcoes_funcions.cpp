@@ -110,46 +110,6 @@ void lista_todos_passageiros_ordenados(aviao &pista, aviao &aproximar, aviao &de
 	pausa;
 }// Fim Da Opção 1 Menu_Opções
 
-// Funções do Sub - Menu Criado -> Opção 2 Menu_Opções
-/*void lista_todos_voos(aviao &pista, aviao &aproximar, aviao &descolar) {
-	limpar;
-	cout << "\nLista De Todos os Voos.\n";
-
-	// Voos em Aproximação
-	cout << "\n----------------------------------------------------------------------------\n";
-	cout.width(48);
-	cout << right << "Em Aproximação:\n";
-	cout << "----------------------------------------------------------------------------\n\n";
-	cout << "Modelo";
-	cout.width(30);
-	cout << "Origem";
-	cout.width(30);
-	cout << "Destino\n\n";
-	
-	// Voos em Pista
-	cout << "\n----------------------------------------------------------------------------\n";
-	cout.width(45);
-	cout << right << "Na Pista:\n";
-	cout << "----------------------------------------------------------------------------\n\n";
-	cout << "Modelo";
-	cout.width(30);
-	cout << "Origem";
-	cout.width(30);
-	cout << "Destino\n\n";
-	
-	// Voos em Descolagem
-	cout << "\n----------------------------------------------------------------------------\n";
-	cout.width(45);
-	cout << right << "Em Descolar:\n";
-	cout << "----------------------------------------------------------------------------\n\n";
-	cout << "Modelo";
-	cout.width(30);
-	cout << "Origem";
-	cout.width(30);
-	cout << "Destino\n\n";
-	pausa;
-
-} // Fim Da Opção 2 Menu_Opções*/ //Função desnecessária
 void lista_voos_pista_descolar(aviao &pista, aviao &descolar) {
 	sort_plane * tree = NULL;
 	tree = sort_plane_by_destiny(tree, pista);
