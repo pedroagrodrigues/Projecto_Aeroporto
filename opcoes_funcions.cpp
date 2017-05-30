@@ -251,6 +251,7 @@ void lista_passageiros_pista_nacionalidade(aviao &pista) {
 // Funções do Sub - Menu Criado -> Opção 5 Menu_Opções
 int pesquisa_estrangeiros_aeroporto(aviao &pista, terminal &passageiros){
 	limpar;
+	int opt = 0;
 	string name;
 	int size = 0;
 
@@ -279,12 +280,22 @@ int pesquisa_estrangeiros_aeroporto(aviao &pista, terminal &passageiros){
 	cout.width(60);
 	cout << "Pesquisa de Passageiros Estrangeiros no Aeroporto : \n";
 	cout << "----------------------------------------------------------------------------\n\n";
+	cout << "1-Primeiro nome\t2-Segundo nome\n";
+	while (1) {
+		while (!(cin >> opt)) {
+			cin.clear(); //Previne loop na introdução de cratéres não numéricos
+			while (cin.get() != '\n') continue;
+			cout << "ERRO opção inválida\n";
+		}
+		if (opt != 1 && opt != 2) cout << "ERRO opção inválida\n";
+		else break;
+	}
 	cout << "\nIntroduza um nome para a pesquisa\n";
 	cin >> name;
 	cout << "Nome";
 	cout.width(60);
 	cout << "Nacionalidade\n\n";
-	search_by_last_name(tree, name);
+	(opt == 1) ? search_by_first_name(tree, name) : search_by_last_name(tree, name);
 	cout << "Nao foram encontradado mais resultados.\n";
 	pausa;
 
@@ -318,6 +329,7 @@ void pesquisa_passageiros_estrangeiros_aeroporto_ordenados(aviao &pista, termina
 	cout.width(65);
 	cout << right << "Lista Passageiros Estrageiros no Aeroporto, Ordenados Alfabéticamente.\n";
 	cout << "----------------------------------------------------------------------------\n\n";
+
 	cout << "Nome";
 	cout.width(60);
 	cout << "Nacionalidade\n\n";
@@ -329,6 +341,7 @@ void pesquisa_passageiros_estrangeiros_aeroporto_ordenados(aviao &pista, termina
 // Funções do Sub - Menu Criado -> Opção 7 Menu_Opções
 void pesquisa_sobre_passageiros(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros){
 	limpar;
+	int opt=0;
 	string name;
 	sort_tree * tree = NULL;
 	tree = fill_tree_by_name(tree, aproximar);
@@ -354,12 +367,22 @@ void pesquisa_sobre_passageiros(aviao &pista, aviao &aproximar, aviao &descolar,
 	cout.width(55);
 	cout << right << "Pesquisa sobre passageiros : \n";
 	cout << "----------------------------------------------------------------------------\n\n";
+	cout << "1-Primeiro nome\t2-Segundo nome\n";
+	while (1) {
+		while (!(cin >> opt)) {
+			cin.clear(); //Previne loop na introdução de cratéres não numéricos
+			while (cin.get() != '\n') continue;
+			cout << "ERRO opção inválida\n";
+		}
+		if (opt != 1 && opt != 2) cout << "ERRO opção inválida\n";
+		else break;
+	}
 	cout << "\nIntroduza um nome para a pesquisa\n";
 	cin >> name;
 	cout << "\nNome";
 	cout.width(60);
 	cout << "Nacionalidade\n\n";
-	search_by_last_name(tree, name);
+	(opt == 1) ? search_by_first_name(tree, name) :  search_by_last_name(tree, name);
 	cout << "\nNao foram encontradado mais resultados.\n\n";
 	pausa;
 }// Fim Da Opção 7 Menu_Opções

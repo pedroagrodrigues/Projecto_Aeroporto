@@ -22,3 +22,4 @@ sort_tree * fill_tree_by_nationality(sort_tree * tree, aviao &subject);
 sort_tree * fill_tree_by_name_stanger( sort_tree * tree, aviao &subject);
 
 void search_by_last_name(sort_tree * root, string name);
+void search_by_first_name(sort_tree * root, string name);

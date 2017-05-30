@@ -136,3 +136,10 @@ void search_by_last_name(sort_tree * root, string name) {
 	if (root->humman.segundo_nome == name) cout << left << root->humman.segundo_nome + ", " + root->humman.primeiro_nome << root->humman.nacionalidade << endl;
 	search_by_last_name(root->right, name);
 }
+void search_by_first_name(sort_tree * root, string name) {
+	if (root == NULL) return;
+	search_by_first_name(root->left, name);
+	cout.width(50);
+	if (root->humman.primeiro_nome == name) cout << left << root->humman.segundo_nome + ", " + root->humman.primeiro_nome << root->humman.nacionalidade << endl;
+	search_by_first_name(root->right, name);
+}
