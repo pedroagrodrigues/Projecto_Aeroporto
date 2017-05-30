@@ -67,6 +67,16 @@ int pack_size(pessoa::pessoa_item *pack) {
 	delete temp;
 	return current;
 }
+int terminal_size(terminal::terminal_item *pack) {
+	terminal::terminal_item * temp = pack;
+	int current = 0;
+	while (temp != NULL) {
+		temp = temp->next;
+		current++;
+	}
+	delete temp;
+	return current;
+}
 
 
 //Guarda As Variáveis No Seu Estado Actual Num Ficheiro ".save" Para Que o Programa Continue a Partir Do Último Ponto
@@ -99,6 +109,7 @@ bool save(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &pass, str
 			(current == 1) ? temp = pista.head : temp = descolar.head;
 		}
 		temp2 = pass.head;
+		file << terminal_size(temp2) << endl;
 		while (temp2 != NULL) {
 			temp_person = temp2->humman.head;
 			file << pack_size(temp_person) << endl;
@@ -128,7 +139,7 @@ void load_file_state(aviao &pista, aviao &aproximacao, aviao &descolar, terminal
 		aviao::aviao_item * temp;
 		terminal::terminal_item * temp2;
 		pessoa::pessoa_item * temp_person;
-		int current = 0, aux;
+		int current = 0, aux, aux_2;
 		getline(file, line);
 		aux = stoi(line);
 		for (int i = 0; i < aux; i++) {
@@ -243,7 +254,9 @@ void load_file_state(aviao &pista, aviao &aproximacao, aviao &descolar, terminal
 				descolar.end = temp;
 			}
 		}
-		for (int i = 0; i < 2; i++) {
+		getline(file, line);
+		aux_2 = stoi(line);
+		for (int i = 0; i < aux_2; i++) {
 			temp2 = new terminal::terminal_item();
 			getline(file, line);
 			aux = stoi(line);

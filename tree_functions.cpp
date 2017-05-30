@@ -143,3 +143,106 @@ void search_by_first_name(sort_tree * root, string name) {
 	if (root->humman.primeiro_nome == name) cout << left << root->humman.segundo_nome + ", " + root->humman.primeiro_nome << root->humman.nacionalidade << endl;
 	search_by_first_name(root->right, name);
 }
+
+/*
+
+//Juntar as duas listas:
+aviao::aviao_item * aux = new aviao::aviao_item();
+aviao  temp;
+temp.head = NULL;
+temp.end = NULL;
+while (pista.head != NULL) {
+	aux = new aviao::aviao_item();
+	aux->capacidade = pista.head->capacidade;
+	aux->modelo = pista.head->modelo;
+	aux->destino = pista.head->destino;
+	aux->origem = pista.head->origem;
+	aux->nome_voo = pista.head->nome_voo;
+	aux->passageiro = pista.head->passageiro;
+	aux->next = NULL;
+	if (temp.end == NULL) {
+		temp.head = aux;
+		temp.end = aux;
+	}
+	else {
+		temp.end->next = aux;
+		temp.end = aux;
+	}
+	pista.head = pista.head->next;
+}
+while (descolar.head != NULL) {
+	aux = new aviao::aviao_item();
+	aux->capacidade = descolar.head->capacidade;
+	aux->modelo = descolar.head->modelo;
+	aux->destino = descolar.head->destino;
+	aux->origem = descolar.head->origem;
+	aux->nome_voo = descolar.head->nome_voo;
+	aux->passageiro = descolar.head->passageiro;
+	aux->next = NULL;
+	if (temp.end == NULL) {
+		temp.head = aux;
+		temp.end = aux;
+	}
+	else {
+		temp.end->next = aux;
+		temp.end = aux;
+	}
+	descolar.head = descolar.head->next;
+}
+
+while (temp.head != NULL) {
+	cout << temp.head->nome_voo << endl;
+	temp.head = temp.head->next;
+}
+*/
+
+void sort_tree_out(sort_plane * root) {
+	if (root == NULL) return;
+	sort_tree_out(root->left);
+	cout << root->plane.modelo + root->plane.origem + root->plane.destino;
+	sort_tree_out(root->right);
+}
+sort_plane * newLeaf_plane(sort_plane::item subject) {
+	sort_plane * leaf = new sort_plane;
+	leaf->plane = subject;
+	leaf->left = NULL;
+	leaf->right = NULL;
+	return(leaf);
+}
+
+sort_plane * insert_plane_by_name(sort_plane * tree, sort_plane::item plane) {
+	if (tree == NULL) {
+		return newLeaf_plane(plane);
+	}
+	else {
+		if (plane.destino <= tree->plane.destino)
+			tree->left = insert_plane_by_name(tree->left, plane);
+		else
+			tree->right = insert_plane_by_name(tree->right, plane);
+	}
+
+	return tree;
+}
+
+sort_plane * sort_plane_by_destiny(sort_plane * tree, aviao &subject) {
+	aviao::aviao_item *temp = subject.head;
+	pessoa::pessoa_item *temp_humman = new pessoa::pessoa_item();
+	sort_plane::item temp_plane;
+	temp = subject.head;
+	while (temp != NULL) {
+		temp_humman = temp->passageiro.head;
+		//while (temp_humman != NULL) {
+		temp_plane.capacidade = temp->capacidade;
+		temp_plane.destino = temp->destino;
+		temp_plane.modelo = temp->modelo;
+		temp_plane.nome_voo = temp->nome_voo;
+		temp_plane.origem = temp->origem;
+		temp_plane.passageiro = temp->passageiro;
+		tree = insert_plane_by_name(tree, temp_plane);
+
+			//temp_humman = temp_humman->next;
+		//}
+		temp = temp->next;
+	}
+	return tree;
+}
