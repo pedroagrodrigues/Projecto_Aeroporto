@@ -122,9 +122,9 @@ void lista_todos_passageiros(aviao &pista, aviao &aproximar, aviao &descolar, te
 void lista_todos_passageiros_ordenados(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros) {
 	limpar;
 	sort_tree * tree = NULL;
-	tree = fill_tree(tree, aproximar); 
-	fill_tree(tree, pista);
-	fill_tree(tree, descolar);
+	tree = fill_tree_by_name(tree, aproximar);
+	tree = fill_tree_by_name(tree, pista);
+	tree = fill_tree_by_name(tree, descolar);
 	terminal::terminal_item *temp = passageiros.head;
 	pessoa::pessoa_item *temp_humman = new pessoa::pessoa_item();
 	sort_tree::item temp_person;
@@ -136,7 +136,7 @@ void lista_todos_passageiros_ordenados(aviao &pista, aviao &aproximar, aviao &de
 			temp_person.primeiro_nome = temp_humman->primeiro_nome;
 			temp_person.segundo_nome = temp_humman->segundo_nome;
 			temp_humman = temp_humman->next;
-			tree = insert_tree(tree, temp_person);
+			tree = insert_tree_by_name(tree, temp_person);
 		}
 		temp = temp->next;
 	}
@@ -149,7 +149,6 @@ void lista_todos_passageiros_ordenados(aviao &pista, aviao &aproximar, aviao &de
 	cout.width(60);
 	cout << "Nacionalidade\n\n";
 	sort_tree_out(tree);
-	//print(tree);
 
 	pausa;
 }// Fim Da Opção 1 Menu_Opções
@@ -266,19 +265,27 @@ void lista_passageiros_pista(aviao &pista) {
 	cout.width(55);
 	cout << right << "Lista De Todos os Passageiros Em Pista:";
 	cout << "\n----------------------------------------------------------------------------\n\n";
+	cout << "Nome";
+	cout.width(60);
+	cout << "Nacionalidade\n\n";
+	print_humman(pista);
+
 	pausa;
 } // Fim Da Opção 3 Menu_Opções
 
 // Opção 4 - Menu_Opções
 void lista_passageiros_pista_nacionalidade(aviao &pista) {
 	limpar;
+	sort_tree * tree = NULL;
+	tree = fill_tree_by_nationality(tree, pista);
 	cout << "\n----------------------------------------------------------------------------\n";
-	cout.width(70);
+	cout.width(65);
 	cout << "Lista De Todos Passageiros em Pista Ordenados Por Nacionalidade:";
 	cout << "\n----------------------------------------------------------------------------\n\n";
-	cout << "Nome";
+	cout << right << "Nome";
 	cout.width(60);
 	cout << "Nacionalidade\n\n";
+	sort_tree_out(tree);
 
 	pausa;
 } // Fim Da Opção 4 Menu_Opções
@@ -384,6 +391,25 @@ void pesquisa_passageiros_estrangeiros_aeroporto_segundo_nome(aviao &pista, term
 // Opção 6 - Menu_Opções - Funções
 void pesquisa_passageiros_estrangeiros_aeroporto_ordenados(aviao &pista, terminal &passageiros){
 	limpar;
+	sort_tree * tree = NULL;
+	tree = fill_tree_by_name_stanger(tree, pista);
+	terminal::terminal_item *temp = passageiros.head;
+	pessoa::pessoa_item *temp_humman = new pessoa::pessoa_item();
+	sort_tree::item temp_person;
+	while (temp != NULL) {
+		temp_humman = temp->humman.head;
+		while (temp_humman != NULL) {
+			temp_person.bilhete = temp_humman->bilhete;
+			temp_person.nacionalidade = temp_humman->nacionalidade;
+			temp_person.primeiro_nome = temp_humman->primeiro_nome;
+			temp_person.segundo_nome = temp_humman->segundo_nome;
+			temp_humman = temp_humman->next;
+			tree = insert_tree_by_name(tree, temp_person);
+		}
+		temp = temp->next;
+	}
+
+
 	cout << "\n----------------------------------------------------------------------------\n";
 	cout.width(65);
 	cout << right << "Lista Passageiros Estrageiros no Aeroporto, Ordenados Alfabéticamente.\n";
@@ -391,6 +417,8 @@ void pesquisa_passageiros_estrangeiros_aeroporto_ordenados(aviao &pista, termina
 	cout << "Nome";
 	cout.width(60);
 	cout << "Nacionalidade\n\n";
+	sort_tree_out(tree);
+
 	pausa;
 }// Fim Da Opção 6 Menu_Opções
 

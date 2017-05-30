@@ -15,10 +15,12 @@ void print_aviao_passageiros(aviao &subject) {
 		cout << left << temp->destino;
 		temp_passageiro = temp->passageiro.head;
 		for (int i = 0; i < 3 && temp_passageiro != NULL; i++) {
-			cout << temp_passageiro->segundo_nome << ", ";
+			if (i==2 && temp_passageiro->next != NULL) cout << temp_passageiro->segundo_nome << "... ";
+			else if (temp_passageiro->next == NULL) cout << temp_passageiro->segundo_nome << ".";
+			else cout << temp_passageiro->segundo_nome << ", ";
 			temp_passageiro = temp_passageiro->next;
 		}
-		cout << "...\n";
+		cout << endl;
 		temp = temp->next;
 	}
 }

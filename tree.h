@@ -12,10 +12,11 @@ typedef struct sort_tree {
 	sort_tree * left;
 }sort_tree;
 #endif
+
+
 sort_tree * newLeaf(sort_tree::item subject);
-
-sort_tree * insert_tree(sort_tree * no, sort_tree::item subject);
-
+sort_tree * insert_tree_by_name (sort_tree * no, sort_tree::item subject);
 void sort_tree_out(sort_tree * no); //infixa
-
-sort_tree * fill_tree(sort_tree * tree, aviao &subject);
+sort_tree * fill_tree_by_name(sort_tree * tree, aviao &subject);
+sort_tree * fill_tree_by_nationality(sort_tree * tree, aviao &subject);
+sort_tree * fill_tree_by_name_stanger( sort_tree * tree, aviao &subject);

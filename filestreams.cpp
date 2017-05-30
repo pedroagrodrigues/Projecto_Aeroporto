@@ -98,7 +98,6 @@ bool save(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &pass, str
 			current++;
 			(current == 1) ? temp = pista.head : temp = descolar.head;
 		}
-		delete temp;
 		temp2 = pass.head;
 		while (temp2 != NULL) {
 			temp_person = temp2->humman.head;
@@ -113,7 +112,6 @@ bool save(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &pass, str
 			file << temp2->turn << endl;
 			temp2 = temp2->next;
 		}
-		delete temp_person;
 		file.close();
 		return 1;
 	}
