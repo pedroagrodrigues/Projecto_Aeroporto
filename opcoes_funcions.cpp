@@ -348,10 +348,13 @@ void lista_inicial_menu_9(aviao &pista, aviao &aproximar, aviao &descolar) {
 	tree = sort_plane_by_destiny(tree, descolar);
 	tree = sort_plane_by_destiny(tree, aproximar);
 	limpar;
-	cout << "\nLista Todos os Voos, em Pista e a Descolar, Ordenados Alfabéticamente.\n";
+	cout << "\Editar destino dos voos.\n";
 	cout << "\n----------------------------------------------------------------------------\n";
-	cout << "Modelo";
 	cout.width(30);
+	cout << "Nome Voo";
+	cout.width(30);
+	cout << "Modelo";
+	cout.width(22);
 	cout << "Origem";
 	cout.width(30);
 	cout << "Destino\n\n";

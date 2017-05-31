@@ -151,14 +151,14 @@ void search_by_first_name(sort_tree * root, string name) {
 void sort_tree_plane(sort_plane * root) {
 	if (root == NULL) return;
 	sort_tree_plane(root->left);
-	cout.width(28);
-	cout << left << root->plane.nome_voo;
-	cout.width(10);
-	cout << internal << root->plane.modelo;
-	cout.width(25);
-	cout << internal << root->plane.origem;
 	cout.width(30);
-	cout << internal <<root->plane.destino << endl;
+	cout << left << root->plane.nome_voo;
+	cout.width(30);
+	cout << left << root->plane.modelo;
+	cout.width(30);
+	cout << left << root->plane.origem;
+	cout.width(30);
+	cout << left <<root->plane.destino << endl;
 	sort_tree_plane(root->right);
 }
 
