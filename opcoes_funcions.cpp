@@ -415,6 +415,7 @@ bool edit_humman_terminal_by_tkt(terminal &subject, int tkt) {
 				edit(temp_humman);
 				return 1;
 			}
+			temp_humman = temp_humman->next;
 		}
 		temp = temp->next;
 	}
@@ -433,7 +434,7 @@ int tkt_select(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passag
 	if (edit_humman_by_tkt(aproximar, tkt)) return 1;
 	if (edit_humman_by_tkt(descolar, tkt)) return 1;
 	if (edit_humman_terminal_by_tkt(passageiros, tkt)) return 1;
-	cout << "ERRO TKT inválido\n";
+	cout << "Pessoa não encontrada";
 	pausa;
 	return 0;
 }
@@ -464,6 +465,7 @@ bool name_sel_ter(terminal &subject, string name1, string name2) {
 				edit(temp_humman);
 				return 1;
 			}
+			temp_humman = temp_humman->next;
 		}
 		temp = temp->next;
 	}
