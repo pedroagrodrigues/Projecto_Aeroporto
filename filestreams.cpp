@@ -296,4 +296,3 @@ void load_file_state(aviao &pista, aviao &aproximacao, aviao &descolar, terminal
 		file.close();
 	}
 }
-
