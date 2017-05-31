@@ -136,10 +136,64 @@ void search_by_last_name(sort_tree * root, string name) {
 	if (root->humman.segundo_nome == name) cout << left << root->humman.segundo_nome + ", " + root->humman.primeiro_nome << root->humman.nacionalidade << endl;
 	search_by_last_name(root->right, name);
 }
+
 void search_by_first_name(sort_tree * root, string name) {
 	if (root == NULL) return;
 	search_by_first_name(root->left, name);
 	cout.width(50);
 	if (root->humman.primeiro_nome == name) cout << left << root->humman.segundo_nome + ", " + root->humman.primeiro_nome << root->humman.nacionalidade << endl;
 	search_by_first_name(root->right, name);
+}
+
+
+void sort_tree_out(sort_plane * root) {
+	if (root == NULL) return;
+	sort_tree_out(root->left);
+	cout << root->plane.modelo;
+	cout.width(31);
+	cout << right << root->plane.origem;
+	cout.width(30);
+	cout << right << root->plane.destino << endl;
+	sort_tree_out(root->right);
+}
+
+sort_plane * newLeaf_plane(sort_plane::item subject) {
+	sort_plane * leaf = new sort_plane;
+	leaf->plane = subject;
+	leaf->left = NULL;
+	leaf->right = NULL;
+	return(leaf);
+}
+
+sort_plane * insert_plane_by_name(sort_plane * tree, sort_plane::item plane) {
+	if (tree == NULL) {
+		return newLeaf_plane(plane);
+	}
+	else {
+		if (plane.destino <= tree->plane.destino)
+			tree->left = insert_plane_by_name(tree->left, plane);
+		else
+			tree->right = insert_plane_by_name(tree->right, plane);
+	}
+
+	return tree;
+}
+
+sort_plane * sort_plane_by_destiny(sort_plane * tree, aviao &subject) {
+	aviao::aviao_item *temp = subject.head;
+	pessoa::pessoa_item *temp_humman = new pessoa::pessoa_item();
+	sort_plane::item temp_plane;
+	temp = subject.head;
+	while (temp != NULL) {
+		temp_humman = temp->passageiro.head;
+		temp_plane.capacidade = temp->capacidade;
+		temp_plane.destino = temp->destino;
+		temp_plane.modelo = temp->modelo;
+		temp_plane.nome_voo = temp->nome_voo;
+		temp_plane.origem = temp->origem;
+		temp_plane.passageiro = temp->passageiro;
+		tree = insert_plane_by_name(tree, temp_plane);
+		temp = temp->next;
+	}
+	return tree;
 }
