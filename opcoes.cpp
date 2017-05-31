@@ -37,7 +37,7 @@ int modo_editar(aviao & pista, aviao & aproximar, aviao & descolar, terminal & p
 		cout << "-------------------------------------------------------------------------------\n";
 		lista_inicial_menu_8(pista,aproximar,descolar,passageiros);
 		cout << "\nQual a forma que pertente utilizar para editar?";
-		cout << "\n(1) Número de Ticket" << " (2) Primeiro Nome" << " (3) Segundo Nome" << "\t (0) - Voltar" << endl;
+		cout << "\n(1) Número de Ticket" << " (2) Por Nome" << "\t (0) - Voltar" << endl;
 
 		switch (_getch()) {
 
@@ -45,7 +45,7 @@ int modo_editar(aviao & pista, aviao & aproximar, aviao & descolar, terminal & p
 			tkt_select(pista, aproximar, descolar, passageiros);
 			break;
 		case'2':
-		//	editar_nacionalidade_passageiro(pista, aproximar, descolar, passageiros);
+			primeiro_nome(pista, aproximar, descolar, passageiros);
 			break;
 		case'3':
 			//editar_destino_voo(pista, aproximar,descolar);

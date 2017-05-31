@@ -8,6 +8,7 @@ sort_tree * newLeaf(sort_tree::item subject){
 	leaf->right = NULL;
 	return(leaf);
 }
+
 bool orderbyname(sort_tree * tree, sort_tree::item pessoa) {
 	if (pessoa.segundo_nome < tree->humman.segundo_nome) return 1;
 	else if (pessoa.segundo_nome == tree->humman.segundo_nome)
@@ -16,9 +17,7 @@ bool orderbyname(sort_tree * tree, sort_tree::item pessoa) {
 		else if (pessoa.primeiro_nome == tree->humman.primeiro_nome) //organiza pela nacionalidade
 			if (pessoa.nacionalidade <= tree->humman.nacionalidade)
 				return 1;
-			
 	return 0;
-
 }
 
 sort_tree * insert_tree_by_name(sort_tree * tree, sort_tree::item pessoa){
@@ -27,11 +26,9 @@ sort_tree * insert_tree_by_name(sort_tree * tree, sort_tree::item pessoa){
 	}
 	else {
 		(orderbyname(tree, pessoa)) ? tree->left = insert_tree_by_name(tree->left, pessoa) : tree->right = insert_tree_by_name(tree->right, pessoa);
-	}
-		
+	}		
 	return tree;
 }
-
 
 void sort_tree_out(sort_tree * root) {
 	if (root == NULL) return;
@@ -44,9 +41,9 @@ void sort_tree_out(sort_tree * root) {
 void sort_tree_out_menu_8(sort_tree * root){
 	if (root == NULL) return;
 	sort_tree_out_menu_8(root->left);
-	//cout.width(0);
-	cout <<internal<< "TKT: " << root->humman.bilhete;
-	cout.width(30);
+	cout.width(27);
+	cout << left << "TKT: " + to_string(root->humman.bilhete);
+	cout.width(55);
 	cout << left << root->humman.segundo_nome + ", " + root->humman.primeiro_nome << root->humman.nacionalidade << endl;
 	sort_tree_out_menu_8(root->right);
 }
@@ -132,11 +129,6 @@ sort_tree * fill_tree_by_nationality(sort_tree * tree, aviao &subject) {
 		temp = temp->next;
 	}
 	return tree;
-}
-int size_tree(sort_tree * tree)
-{
-	if (tree == NULL) return 0;
-	return size_tree(tree->left) + size_tree(tree->right) + 1; // retorna o numero de chamadas recursiva (até no esq e dir ser null). +1 devido à raiz
 }
 
 void search_by_last_name(sort_tree * root, string name) {

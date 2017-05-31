@@ -98,9 +98,9 @@ void pesquisa_passageiros_estrangeiros_aeroporto_ordenados(aviao &pista, termina
 void pesquisa_sobre_passageiros(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
 
 // Opção 8-9-10 - Menu_Opções - Funções
-int modo_editar(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
 void lista_inicial_menu_8(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
-void tkt_select(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
+int tkt_select(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
+int primeiro_nome(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
 
 
 /*void editar_nome_passageiro(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
