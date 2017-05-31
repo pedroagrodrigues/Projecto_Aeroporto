@@ -199,7 +199,7 @@ int pesquisa_estrangeiros_aeroporto(aviao &pista, terminal &passageiros){
 	cout.width(60);
 	cout << "Pesquisa de Passageiros Estrangeiros no Aeroporto. \n";
 	cout << "----------------------------------------------------------------------------\n\n";
-	cout << "(1) - Pesquisa por primeiro nome \t (2)- Pesquisa pelo último nome\n";
+	cout << "(1) - Pesquisa Por Primeiro Nome \t (2) - Pesquisa Pelo Último Nome\n";
 	while (1) {
 		while (!(cin >> opt)) {
 			cin.clear(); //Previne loop na introdução de cratéres não numéricos
@@ -286,7 +286,7 @@ void pesquisa_sobre_passageiros(aviao &pista, aviao &aproximar, aviao &descolar,
 	cout.width(55);
 	cout << right << "Pesquisa sobre passageiros. \n";
 	cout << "----------------------------------------------------------------------------\n\n";
-	cout << "(1) - Pesquisa Por Primeiro Nome \t (2) - Pesquisa Pelo Segundo Nome\n";
+	cout << "(1) - Pesquisa Por Primeiro Nome \t (2) - Pesquisa Pelo Último Nome\n";
 	while (1) {
 		while (!(cin >> opt)) {
 			cin.clear(); //Previne loop na introdução de cratéres não numéricos
@@ -346,7 +346,7 @@ void lista_inicial_menu_8(aviao &pista, aviao &aproximar, aviao &descolar, termi
 
 void edit(pessoa::pessoa_item *pessoa) {
 	int opt;
-	cout << "Seleccione:\n1-Nome\t2-Nacionalidade\t\t0-Cancelar\n";
+	cout << "Seleccione:\n(1) - Nome\t (2) - Nacionalidade\t\t(0) - Cancelar\n";
 	while (1) {
 		while (!(cin >> opt)) {
 			cin.clear(); //Previne loop na introdução de cratéres não numéricos
@@ -358,13 +358,13 @@ void edit(pessoa::pessoa_item *pessoa) {
 	}
 	switch (opt) {
 	case 1:
-		cout << "Introduza o último nome: ";
+		cout << "Introduza o Último Nome: ";
 		cin >> pessoa->segundo_nome;
-		cout << "Introduza o primeiro nome: ";
+		cout << "Introduza o Primeiro Nome: ";
 		cin >> pessoa->primeiro_nome;
 		break;
 	case 2:
-		cout << "Introduza a nacionalidade: ";
+		cout << "Introduza a Nacionalidade: ";
 		cin >> pessoa->nacionalidade;
 		break;
 	}
@@ -405,17 +405,17 @@ bool edit_humman_terminal_by_tkt(terminal &subject, int tkt) {
 
 int tkt_select(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros) {
 	int tkt;
-	cout << "Introduza o número do bilhete da pessoa que pertente modificar: ";
+	cout << "Introduza o Número Do Bilhete Da Pessoa Que Pretende Modificar: ";
 	while (!(cin >> tkt)) {
 		cin.clear(); //Previne loop na introdução de cratéres não numéricos
 		while (cin.get() != '\n') continue;
-		cout << "ERRO TKT inválido\n";
+		cout << "ERRO TKT Inválido\n";
 	}
 	if (edit_humman_by_tkt(pista, tkt)) return 1;
 	if (edit_humman_by_tkt(aproximar, tkt)) return 1;
 	if (edit_humman_by_tkt(descolar, tkt)) return 1;
 	if (edit_humman_terminal_by_tkt(passageiros, tkt)) return 1;
-	cout << "ERRO TKT inválido\n";
+	cout << "ERRO TKT Inválido\n";
 	pausa
 	return 0;
 }
@@ -453,16 +453,16 @@ bool name_sel_ter(terminal &subject, string name1, string name2) {
 }
 int primeiro_nome(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros) {
 	string name1, name2;
-	cout << "Introduza o primeiro nome da pessoa que pertente modificar: ";
+	cout << "Introduza o Primeiro Nome Da Pessoa Que Pretente Modificar: ";
 	cin >> name1;
-	cout << "Introduza o segundo nome da pessoa que pertente modificar: ";
+	cout << "Introduza o Último Nome Da Pessoa Que Pretente Modificar: ";
 	cin >> name2;
 	if (name_sel(pista, name1, name2)) return 1;
 	if (name_sel(aproximar, name1, name2)) return 1;
 	if (name_sel(descolar, name1, name2)) return 1;
 	if (name_sel_ter(passageiros, name1, name2)) return 1;
 	
-	cout << "foste";
+	cout << "Erro.";
 	return 0;
 
 }

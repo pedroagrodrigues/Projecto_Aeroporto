@@ -36,7 +36,7 @@ int modo_editar(aviao & pista, aviao & aproximar, aviao & descolar, terminal & p
 		limpar;
 		cout << "-------------------------------------------------------------------------------\n";
 		lista_inicial_menu_8(pista,aproximar,descolar,passageiros);
-		cout << "\nQual a forma que pertente utilizar para editar?";
+		cout << "\nQue Método Pretende Utilizar Para Editar?";
 		cout << "\n(1) Número de Ticket" << " (2) Por Nome" << "\t (0) - Voltar" << endl;
 
 		switch (_getch()) {
