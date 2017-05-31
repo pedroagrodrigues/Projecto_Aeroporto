@@ -359,7 +359,6 @@ void lista_inicial_menu_9(aviao &pista, aviao &aproximar, aviao &descolar) {
 	cout.width(30);
 	cout << "Destino\n\n";
 	sort_tree_plane(tree);
-	pausa;
 }
 
 void edit(pessoa::pessoa_item *pessoa) {
@@ -383,7 +382,7 @@ void edit(pessoa::pessoa_item *pessoa) {
 		break;
 	case 2:
 		cout << "Introduza a Nacionalidade: ";
-		cin >> pessoa->nacionalidade;
+		getline(cin, pessoa->nacionalidade);
 		break;
 	}
 }

@@ -77,7 +77,6 @@ int modo_editar_avioes(aviao & pista, aviao & aproximar, aviao & descolar, termi
 			getline(cin, name);
 			aviao_edit(pista, aproximar, descolar, name);
 		break;
-
 		case'0':
 			return 0;
 			break;
@@ -96,7 +95,7 @@ int opcoes(aviao & pista, aviao & aproximar, aviao & descolar, terminal & passag
 		limpar;
 		cout << "\nEntrou no Menu Opções. Por Favor Selecione Uma Das Seguintes Funcionalidades\n\n";
 		cout << "1 - Mostrar Todos os Passageiros.\n";
-		cout << "2 - Mostrar Voos em Pista e a Descolar (Ordenados Alfabéticamente Destinos).\n";
+		cout << "2 - Mostrar Voos em Pista e a Descolar (Ordenados Alfabeticamente Destinos).\n";
 		cout << "3 - Mostrar Passageiros em Pista.\n";
 		cout << "4 - Mostrar Passageiros em Pista (Por Nacionalidade).\n";
 		cout << "5 - Pesquisa de Passageiros no Aeroporto (Origem Estrangeira).\n";

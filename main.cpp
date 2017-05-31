@@ -5,7 +5,7 @@ void print_aviao_passageiros(aviao &subject) {
 	aviao::aviao_item *temp = subject.head;
 	pessoa::pessoa_item *temp_passageiro = new pessoa::pessoa_item();
 	while (temp != NULL) {
-		cout.width(14);
+		cout.width(18);
 		cout << left << temp->nome_voo;
 		cout.width(18);
 		cout << left << temp->modelo;
@@ -44,14 +44,14 @@ int main(int argc, char *argv[]) {
 		cout << right << "Em Aproximação:\n";
 		cout << "----------------------------------------------------------------------------------------------------------------------\n\n";
 		cout << "Voo";
-		cout.width(18);
+		cout.width(22);
 		cout << "Modelo";
 		cout.width(23);
 		cout << "Origem";
 		cout.width(25);
 		cout << "Destino";
 		cout.width(35);
-		cout << "Passageiros \n";
+		cout << "Passageiros \n\n";
 		print_aviao_passageiros(aproximacao);
 		cout << "\n";
 		cout << "----------------------------------------------------------------------------------------------------------------------\n";
@@ -59,14 +59,14 @@ int main(int argc, char *argv[]) {
 		cout << right << "Na Pista:\n";
 		cout << "----------------------------------------------------------------------------------------------------------------------\n\n";
 		cout << "Voo";
-		cout.width(18);
+		cout.width(22);
 		cout << "Modelo";
 		cout.width(21);
 		cout << "Origem";
 		cout.width(27);
 		cout << "Destino";
 		cout.width(35);
-		cout << "Passageiros \n";
+		cout << "Passageiros \n\n";
 		print_aviao_passageiros(pista);
 		cout << "\n";
 		cout << "----------------------------------------------------------------------------------------------------------------------\n";
@@ -74,14 +74,14 @@ int main(int argc, char *argv[]) {
 		cout << right << "A Descolar:\n";
 		cout << "----------------------------------------------------------------------------------------------------------------------\n\n";
 		cout << "Voo";
-		cout.width(18);
+		cout.width(22);
 		cout << "Modelo";
 		cout.width(21);
 		cout << "Origem";
 		cout.width(27);
 		cout << "Destino";
 		cout.width(35);
-		cout << "Passageiros \n";
+		cout << "Passageiros \n\n";
 		print_aviao_passageiros(descolar);
 
 		//-------------Switch Case-------------
