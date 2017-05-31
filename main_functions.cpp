@@ -126,12 +126,27 @@ void generate_descolar(aviao &pista, aviao &descolar) {
 void carregamento_inicial(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &passageiros, string path) {
 	if (is_written(path)) {
 		char opt;
-		cout << "Pertende carregar os ficheiros? \t(S)im\n";
-		opt = _getch();
-		if (opt == 's' || opt == 'S')	load_file_state(pista, aproximacao, descolar, passageiros, path);
-		else generate_aproximacao(aproximacao);
+
+		cout << "\n-------------------------------------------------------------------------------\n";
+		cout.width(60);
+		cout << right << "Pretende Carregar os Ficheiros Guardados Anteriormente?";
+		cout << "\n-------------------------------------------------------------------------------\n\n";
+		cout << " (1) - Sim \t (2) - Não\n";
+		while (1) {
+			opt = _getch();
+			if (opt == '1') {
+				load_file_state(pista, aproximacao, descolar, passageiros, path);
+				break;
+			}
+			else if (opt == '2') {
+				generate_aproximacao(aproximacao);
+				break;
+			}
+			else "Erro!\n";
+		}
 	}
 	else generate_aproximacao(aproximacao);
+
 }
 
 int queue_size(aviao &queue) {
