@@ -490,7 +490,7 @@ bool find_plane(aviao &subject, string name) {
 	aviao::aviao_item *temp = subject.head;
 	while (temp != NULL) {
 		if (temp->nome_voo == name) {
-			cout << "Introduza o nome do novo destino";
+			cout << "Introduza o nome do novo destino:\n";
 			getline(cin, temp->destino);
 			return 1;
 		}
