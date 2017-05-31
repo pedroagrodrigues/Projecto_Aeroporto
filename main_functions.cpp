@@ -124,7 +124,14 @@ void generate_descolar(aviao &pista, aviao &descolar) {
 }
 
 void carregamento_inicial(aviao &pista, aviao &aproximacao, aviao &descolar, terminal &passageiros, string path) {
-	(is_written(path)) ? load_file_state(pista, aproximacao, descolar, passageiros, path) : generate_aproximacao(aproximacao);
+	if (is_written(path)) {
+		char opt;
+		cout << "Pertende carregar os ficheiros? \t(S)im\n";
+		opt = _getch();
+		if (opt == 's' || opt == 'S')	load_file_state(pista, aproximacao, descolar, passageiros, path);
+		else generate_aproximacao(aproximacao);
+	}
+	else generate_aproximacao(aproximacao);
 }
 
 int queue_size(aviao &queue) {

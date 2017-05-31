@@ -197,7 +197,7 @@ int pesquisa_estrangeiros_aeroporto(aviao &pista, terminal &passageiros){
 	cout.width(60);
 	cout << "Pesquisa de Passageiros Estrangeiros no Aeroporto. \n";
 	cout << "----------------------------------------------------------------------------\n\n";
-	cout << "(1) - Pesquisa Por Primeiro Nome \t (2)- Pesquisa Pelo Segundo Nome\n";
+	cout << "(1) - Pesquisa por primeiro nome \t (2)- Pesquisa pelo último nome\n";
 	while (1) {
 		while (!(cin >> opt)) {
 			cin.clear(); //Previne loop na introdução de cratéres não numéricos

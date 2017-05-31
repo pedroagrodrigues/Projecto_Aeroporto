@@ -27,8 +27,7 @@ void print_aviao_passageiros(aviao &subject) {
 
 int main(int argc, char *argv[]) {
 	string path;
-	(argc < 2) ? path = "estado.bin" : path = string(argv[1]);
-	//if (argc == 2) path = string(argv[1]);
+	if (argc == 2) path = string(argv[1]);
 
 
 	setlocale(LC_ALL, "Portuguese"); //Faz a consola aceitar caracteres especiais.

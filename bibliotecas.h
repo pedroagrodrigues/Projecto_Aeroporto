@@ -102,7 +102,3 @@ void lista_inicial_menu_8(aviao &pista, aviao &aproximar, aviao &descolar, termi
 int tkt_select(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
 int primeiro_nome(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
 
-
-/*void editar_nome_passageiro(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
-void editar_nacionalidade_passageiro(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
-void editar_destino_voo(aviao &pista, aviao &aproximar, aviao &descolar);*/
