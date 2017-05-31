@@ -34,10 +34,11 @@ int mostrar_passageiros(aviao & pista, aviao & aproximar, aviao & descolar, term
 int modo_editar(aviao & pista, aviao & aproximar, aviao & descolar, terminal & passageiros) {
 	while (1) {
 		limpar;
-		cout << "-------------------------------------------------------------------------------\n";
+		cout << "-------------------------------------------------------------------------------\n\n";
 		lista_inicial_menu_8(pista,aproximar,descolar,passageiros);
 		cout << "\nQue Método Pretende Utilizar Para Editar?";
-		cout << "\n(1) Número de Ticket" << " (2) Por Nome" << "\t (0) - Voltar" << endl;
+		cout << "\n(1) Número de Ticket" << " (2) Por Nome" << "\t (0) - Voltar\n" << endl;
+		
 
 		switch (_getch()) {
 
@@ -66,14 +67,15 @@ int modo_editar_avioes(aviao & pista, aviao & aproximar, aviao & descolar, termi
 	string name;
 	while (1) {
 		limpar;
-		cout << "-------------------------------------------------------------------------------\n";
+		cout << left;
+		cout << "-------------------------------------------------------------------------------\n\n";
 		lista_inicial_menu_9(pista, aproximar, descolar);
 		cout << "1 - Editar \t0 - Sair\n";
 		
 		switch (_getch()) {
 
 		case'1':
-			cout << "\nIntroduza o nome do voo.\t0 - Sair";
+			cout << "\nIntroduza o nome do voo.\t0 - Sair\n";
 			getline(cin, name);
 			aviao_edit(pista, aproximar, descolar, name);
 		break;

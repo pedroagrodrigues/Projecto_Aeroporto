@@ -356,7 +356,6 @@ void lista_inicial_menu_9(aviao &pista, aviao &aproximar, aviao &descolar) {
 	cout << "Modelo";
 	cout.width(22);
 	cout << "Origem";
-	cout.width(30);
 	cout << "Destino\n\n";
 	sort_tree_plane(tree);
 }
@@ -492,7 +491,7 @@ bool find_plane(aviao &subject, string name) {
 	while (temp != NULL) {
 		if (temp->nome_voo == name) {
 			cout << "Introduza o nome do novo destino";
-			getline(cin, temp->nome_voo);
+			getline(cin, temp->destino);
 			return 1;
 		}
 		temp = temp->next;
