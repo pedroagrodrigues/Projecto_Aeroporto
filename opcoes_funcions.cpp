@@ -121,9 +121,11 @@ void lista_voos_pista_descolar(aviao &pista, aviao &descolar) {
 	cout.width(45);
 	cout << right << "Na Pista e a Descolar:\n";
 	cout << "----------------------------------------------------------------------------\n\n";
-	cout << "Modelo";
+	cout << "Nome Voo";
 	cout.width(30);
-	cout << "Origem";
+	cout << "Modelo";
+	cout.width(22);
+	cout <<"Origem";
 	cout.width(30);
 	cout << "Destino\n\n";
 	sort_tree_plane(tree);

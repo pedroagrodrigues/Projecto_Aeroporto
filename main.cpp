@@ -88,16 +88,16 @@ int main(int argc, char *argv[]) {
 		switch (_getch()) {
 		case 'e':
 			if (queue_size(aproximacao) >= 10 && pista.head != NULL) {
-				if (aproximacao.head->nome_voo.find("-Emergencia") != string::npos) {
+				if (aproximacao.head->nome_voo.find("-Emergência") != string::npos) {
 					limpar;
-					cout << "Emergência já a decorrer" << endl;
+					cout << "Emergência já a Decorrer." << endl;
 					pausa;
 				}
-				else if (emergencia(pista, aproximacao)) aproximacao.head->nome_voo = aproximacao.head->nome_voo + "-Emergencia  "; // Função de Emergência
+				else if (emergencia(pista, aproximacao)) aproximacao.head->nome_voo = aproximacao.head->nome_voo + "-Emergência  "; // Função de Emergência
 			}
 			else {
 				limpar;
-				cout << "Só é possível aceder ao menu emergência quando as aproximações estão cheias.\n";
+				cout << "Só é Possível Aceder ao Menu Emergência Quando as Aproximações Estão Cheias.\n";
 				pausa;
 			}
 			break;
@@ -124,10 +124,10 @@ int main(int argc, char *argv[]) {
 		case 0xe0: //Indica que uma das setas foi percionada
 			if (_getch() == 0x4D) //Corresponde à seta para a direita
 				go_loop(pista, aproximacao, descolar, passageiros);
-			else cout << "Essa Opção Não é Válida\n";
+			else cout << "Essa Opção Não é Válida.\n";
 			break;
 		default:
-			cout << "Essa opção não é válida\n";
+			cout << "Essa Opção Não é Válida.\n";
 			break;
 		}
 
