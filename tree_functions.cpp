@@ -43,7 +43,7 @@ void sort_tree_out_menu_8(sort_tree * root){
 	sort_tree_out_menu_8(root->left);
 	cout.width(27);
 	cout << left << "TKT: " + to_string(root->humman.bilhete);
-	cout.width(55);
+	cout.width(45);
 	cout << left << root->humman.segundo_nome + ", " + root->humman.primeiro_nome << root->humman.nacionalidade << endl;
 	sort_tree_out_menu_8(root->right);
 }
@@ -151,14 +151,14 @@ void search_by_first_name(sort_tree * root, string name) {
 void sort_tree_plane(sort_plane * root) {
 	if (root == NULL) return;
 	sort_tree_plane(root->left);
-	cout.width(28);
-	cout << left << root->plane.nome_voo;
-	cout.width(10);
-	cout << internal << root->plane.modelo;
-	cout.width(25);
-	cout << internal << root->plane.origem;
 	cout.width(30);
-	cout << internal <<root->plane.destino << endl;
+	cout << left << root->plane.nome_voo;
+	cout.width(30);
+	cout << left << root->plane.modelo;
+	cout.width(30);
+	cout << left << root->plane.origem;
+	cout.width(30);
+	cout << left <<root->plane.destino << endl;
 	sort_tree_plane(root->right);
 }
 

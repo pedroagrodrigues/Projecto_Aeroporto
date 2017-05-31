@@ -97,7 +97,6 @@ void lista_todos_passageiros_ordenados(aviao &pista, aviao &aproximar, aviao &de
 		}
 		temp = temp->next;
 	}
-
 	cout << "\n----------------------------------------------------------------------------\n";
 	cout.width(65);
 	cout << right << "Lista de Passageiros Ordenada Alfabéticamente.\n";
@@ -106,8 +105,6 @@ void lista_todos_passageiros_ordenados(aviao &pista, aviao &aproximar, aviao &de
 	cout.width(60);
 	cout << "Nacionalidade\n\n";
 	sort_tree_out(tree);
-
-	pausa;
 }// Fim Da Opção 1 Menu_Opções
 
 
@@ -337,11 +334,32 @@ void lista_inicial_menu_8(aviao &pista, aviao &aproximar, aviao &descolar, termi
 	cout << "Ticket";
 	cout.width(30);
 	cout << "Nome";
-	cout.width(60);
+	cout.width(50);
 	cout << "Nacionalidade\n\n";
 
 	sort_tree_out_menu_8(tree);
 
+}
+
+void lista_inicial_menu_9(aviao &pista, aviao &aproximar, aviao &descolar) {
+	
+	sort_plane * tree = NULL;
+	tree = sort_plane_by_destiny(tree, pista);
+	tree = sort_plane_by_destiny(tree, descolar);
+	tree = sort_plane_by_destiny(tree, aproximar);
+	limpar;
+	cout << "\Editar destino dos voos.\n";
+	cout << "\n----------------------------------------------------------------------------\n";
+	cout.width(30);
+	cout << "Nome Voo";
+	cout.width(30);
+	cout << "Modelo";
+	cout.width(22);
+	cout << "Origem";
+	cout.width(30);
+	cout << "Destino\n\n";
+	sort_tree_plane(tree);
+	pausa;
 }
 
 void edit(pessoa::pessoa_item *pessoa) {
@@ -397,6 +415,7 @@ bool edit_humman_terminal_by_tkt(terminal &subject, int tkt) {
 				edit(temp_humman);
 				return 1;
 			}
+			temp_humman = temp_humman->next;
 		}
 		temp = temp->next;
 	}
@@ -415,8 +434,10 @@ int tkt_select(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passag
 	if (edit_humman_by_tkt(aproximar, tkt)) return 1;
 	if (edit_humman_by_tkt(descolar, tkt)) return 1;
 	if (edit_humman_terminal_by_tkt(passageiros, tkt)) return 1;
+
 	cout << "ERRO TKT Inválido\n";
-	pausa
+	pausa;
+
 	return 0;
 }
 
@@ -446,6 +467,7 @@ bool name_sel_ter(terminal &subject, string name1, string name2) {
 				edit(temp_humman);
 				return 1;
 			}
+			temp_humman = temp_humman->next;
 		}
 		temp = temp->next;
 	}
@@ -461,8 +483,31 @@ int primeiro_nome(aviao &pista, aviao &aproximar, aviao &descolar, terminal &pas
 	if (name_sel(aproximar, name1, name2)) return 1;
 	if (name_sel(descolar, name1, name2)) return 1;
 	if (name_sel_ter(passageiros, name1, name2)) return 1;
-	
-	cout << "Erro.";
+	cout << "Pessoa não encontrada";
+	pausa;
 	return 0;
 
+}
+bool find_plane(aviao &subject, string name) {
+	aviao::aviao_item *temp = subject.head;
+	while (temp != NULL) {
+		if (temp->nome_voo == name) {
+			cout << "Introduza o nome do novo destino";
+			getline(cin, temp->nome_voo);
+			return 1;
+		}
+		temp = temp->next;
+	}
+	return 0;
+}
+
+int aviao_edit(aviao &pista, aviao &aproximar, aviao &descolar, string name) {
+	if (name == "0") return 1;
+	if (find_plane(pista, name)) return 1;
+	if (find_plane(aproximar, name)) return 1;
+	if (find_plane(descolar, name)) return 1;
+	
+	cout << "Avião não encontrada";
+	pausa;
+	return 0;
 }
