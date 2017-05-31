@@ -99,6 +99,10 @@ void pesquisa_sobre_passageiros(aviao &pista, aviao &aproximar, aviao &descolar,
 
 // Opção 8-9-10 - Menu_Opções - Funções
 int modo_editar(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
-void editar_nome_passageiro(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
+void lista_inicial_menu_8(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
+void tkt_select(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
+
+
+/*void editar_nome_passageiro(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
 void editar_nacionalidade_passageiro(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
-void editar_destino_voo(aviao &pista, aviao &aproximar, aviao &descolar);
+void editar_destino_voo(aviao &pista, aviao &aproximar, aviao &descolar);*/

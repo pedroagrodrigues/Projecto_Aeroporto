@@ -41,6 +41,16 @@ void sort_tree_out(sort_tree * root) {
 	sort_tree_out(root->right);
 }
 
+void sort_tree_out_menu_8(sort_tree * root){
+	if (root == NULL) return;
+	sort_tree_out_menu_8(root->left);
+	//cout.width(0);
+	cout <<internal<< "TKT: " << root->humman.bilhete;
+	cout.width(30);
+	cout << left << root->humman.segundo_nome + ", " + root->humman.primeiro_nome << root->humman.nacionalidade << endl;
+	sort_tree_out_menu_8(root->right);
+}
+
 sort_tree * fill_tree_by_name(sort_tree * tree, aviao &subject) {
 	aviao::aviao_item *temp = subject.head;
 	pessoa::pessoa_item *temp_humman = new pessoa::pessoa_item();
@@ -146,15 +156,15 @@ void search_by_first_name(sort_tree * root, string name) {
 }
 
 
-void sort_tree_out(sort_plane * root) {
+void sort_tree_plane(sort_plane * root) {
 	if (root == NULL) return;
-	sort_tree_out(root->left);
+	sort_tree_plane(root->left);
 	cout << root->plane.modelo;
 	cout.width(31);
 	cout << right << root->plane.origem;
 	cout.width(30);
 	cout << right << root->plane.destino << endl;
-	sort_tree_out(root->right);
+	sort_tree_plane(root->right);
 }
 
 sort_plane * newLeaf_plane(sort_plane::item subject) {

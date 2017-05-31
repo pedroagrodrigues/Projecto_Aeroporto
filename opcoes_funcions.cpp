@@ -129,7 +129,7 @@ void lista_voos_pista_descolar(aviao &pista, aviao &descolar) {
 	cout << "Origem";
 	cout.width(30);
 	cout << "Destino\n\n";
-	sort_tree_out(tree);
+	sort_tree_plane(tree);
 	pausa;
 }// Fim Da Opção 2 Menu_Opções
 
@@ -305,7 +305,9 @@ void pesquisa_sobre_passageiros(aviao &pista, aviao &aproximar, aviao &descolar,
 	pausa;
 }// Fim Da Opção 7 Menu_Opções
 
- // Funções do Sub - Menu Criado -> Opção 8 Menu_Opções
+
+
+/* // Funções do Sub - Menu Criado -> Opção 8 Menu_Opções
 void editar_nome_passageiro(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros){
 	limpar;
 
@@ -414,4 +416,110 @@ void editar_destino_voo(aviao &pista, aviao &aproximar, aviao &descolar){
 	cout << "----------------------------------------------------------------------------\n\n";
 
 	pausa;
-}// Fim Da Opção 10 Menu_Opções
+}// Fim Da Opção 10 Menu_Opções*/
+
+void lista_inicial_menu_8(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros) {
+	limpar;
+	sort_tree * tree = NULL;
+	tree = fill_tree_by_name(tree, aproximar);
+	tree = fill_tree_by_name(tree, pista);
+	tree = fill_tree_by_name(tree, descolar);
+	terminal::terminal_item *temp = passageiros.head;
+	pessoa::pessoa_item *temp_humman = new pessoa::pessoa_item();
+	sort_tree::item temp_person;
+	while (temp != NULL) {
+		temp_humman = temp->humman.head;
+		while (temp_humman != NULL) {
+			temp_person.bilhete = temp_humman->bilhete;
+			temp_person.nacionalidade = temp_humman->nacionalidade;
+			temp_person.primeiro_nome = temp_humman->primeiro_nome;
+			temp_person.segundo_nome = temp_humman->segundo_nome;
+			temp_humman = temp_humman->next;
+			tree = insert_tree_by_name(tree, temp_person);
+		}
+		temp = temp->next;
+	}
+
+	cout << "\n----------------------------------------------------------------------------\n";
+	cout.width(65);
+	cout << right << "Lista de Passageiros Ordenada Alfabéticamente.\n";
+	cout << "----------------------------------------------------------------------------\n\n";
+	cout << "Ticket";
+	cout.width(30);
+	cout << "Nome";
+	cout.width(60);
+	cout << "Nacionalidade\n\n";
+
+	sort_tree_out_menu_8(tree);
+
+}
+void edit(pessoa::pessoa_item *pessoa) {
+	int opt;
+	cout << "Seleccione:\n1-Nome\t2-Nacionalidade\t\t0-Cancelar\n";
+	while (1) {
+		while (!(cin >> opt)) {
+			cin.clear(); //Previne loop na introdução de cratéres não numéricos
+			while (cin.get() != '\n') continue;
+			cout << "ERRO Opção Inválida\n";
+		}
+		if (opt != 1 && opt != 2 && opt != 0) cout << "ERRO Opção Inválida\n";
+		else break;
+	}
+	switch (opt) {
+	case 1:
+		cout << "Introduza o último nome: ";
+		cin >> pessoa.segundo_nome;
+		cout << "Introduza o primeiro nome: ";
+		cin >> pessoa.primeiro_nome;
+		break;
+	case 2:
+		cout << "Introduza a nacionalidade: ";
+		cin >> pessoa.nacionalidade;
+		break;
+	}
+}
+
+bool edit_humman_by_tkt(aviao &subject, int tkt) {
+	aviao::aviao_item *temp = subject.head;
+	pessoa::pessoa_item *temp_humman = new pessoa::pessoa_item();
+	while (temp != NULL) {
+		temp_humman = temp->passageiro.head;
+		while (temp_humman != NULL) {
+			if (temp_humman->bilhete == tkt) {
+				edit(temp_humman);
+				return 1;
+			}
+			temp_humman = temp_humman->next;
+		}
+		temp = temp->next;
+	}
+	return 0;
+}
+bool edit_humman_terminal_by_tkt(terminal &subject, int tkt) {
+
+	pessoa::pessoa_item *temp_humman = new pessoa::pessoa_item();
+	terminal::terminal_item *temp = subject.head;
+	while (temp != NULL) {
+		temp_humman = temp->humman.head;
+		while (temp_humman != NULL) {
+			if (temp_humman->bilhete == tkt) {
+				edit(temp_humman);
+				return 1;
+			}
+		}
+		temp = temp->next;
+	}
+}
+int tkt_select(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros) {
+	int tkt;
+	cout << "Introduza o número do bilhete da pessoa que pertente modificar: ";
+	while (!(cin >> tkt)) {
+		cin.clear(); //Previne loop na introdução de cratéres não numéricos
+		while (cin.get() != '\n') continue;
+		cout << "ERRO TKT inválido\n";
+	}
+	if (edit_humman_by_tkt(pista, tkt)) return 1;
+	if (edit_humman_by_tkt(aproximar, tkt)) return 1;
+	if (edit_humman_by_tkt(descolar, tkt)) return 1;
+	if (edit_humman_terminal_by_tkt(passageiros, tkt)) return 1;
+}
