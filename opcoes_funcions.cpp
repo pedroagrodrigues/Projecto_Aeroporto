@@ -381,6 +381,7 @@ void edit(pessoa::pessoa_item *pessoa) {
 		break;
 	case 2:
 		cout << "Introduza a Nacionalidade: ";
+		cin.ignore();
 		getline(cin, pessoa->nacionalidade);
 		break;
 	}
