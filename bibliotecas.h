@@ -99,6 +99,7 @@ void pesquisa_sobre_passageiros(aviao &pista, aviao &aproximar, aviao &descolar,
 
 // Opção 8-9-10 - Menu_Opções - Funções
 void lista_inicial_menu_8(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
+void lista_inicial_menu_9(aviao &pista, aviao &aproximar, aviao &descolar);
 int tkt_select(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
 int primeiro_nome(aviao &pista, aviao &aproximar, aviao &descolar, terminal &passageiros);
-
+int aviao_edit(aviao &pista, aviao &aproximar, aviao &descolar, string nome);

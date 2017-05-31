@@ -27,9 +27,7 @@ void print_aviao_passageiros(aviao &subject) {
 
 int main(int argc, char *argv[]) {
 	string path;
-	if (argc == 2) path = string(argv[1]);
-
-
+	(argc < 2) ? path = "NULL" : path = string(argv[1]);
 	setlocale(LC_ALL, "Portuguese"); //Faz a consola aceitar caracteres especiais.
 	var_load_file();//Carrega os ficheiros para mem�ria
 	aviao pista, aproximacao, descolar;
@@ -56,7 +54,6 @@ int main(int argc, char *argv[]) {
 		cout << "Passageiros \n";
 		print_aviao_passageiros(aproximacao);
 		cout << "\n";
-
 		cout << "----------------------------------------------------------------------------------------------------------------------\n";
 		cout.width(65);
 		cout << right << "Na Pista:\n";
@@ -71,8 +68,6 @@ int main(int argc, char *argv[]) {
 		cout.width(35);
 		cout << "Passageiros \n";
 		print_aviao_passageiros(pista);
-
-
 		cout << "\n";
 		cout << "----------------------------------------------------------------------------------------------------------------------\n";
 		cout.width(65);
@@ -105,15 +100,18 @@ int main(int argc, char *argv[]) {
 				cout << "Só é possível aceder ao menu emergência quando as aproximações estão cheias.\n";
 				pausa;
 			}
-
 			break;
 		case 'o':
 			opcoes(pista, aproximacao, descolar, passageiros); // Função Para Entrada Principal Menu_Opções
 			break;
-
 		case 'g':
 			limpar;
 			cout << "Escolheu a Opção Gravar.\n";
+			if (path == "NULL") {
+				cout << "Não foram defenidos ficheiros para gravar.\n";
+				pausa;
+				break;
+			}
 			if (save(pista, aproximacao, descolar, passageiros, path))
 				cout << "Os Seus Documentos Foram Salvos.\n";
 			else cout << "Erro. Falha ao Gravar!\n";

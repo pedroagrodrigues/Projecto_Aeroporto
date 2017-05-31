@@ -43,7 +43,7 @@ void sort_tree_out_menu_8(sort_tree * root){
 	sort_tree_out_menu_8(root->left);
 	cout.width(27);
 	cout << left << "TKT: " + to_string(root->humman.bilhete);
-	cout.width(55);
+	cout.width(45);
 	cout << left << root->humman.segundo_nome + ", " + root->humman.primeiro_nome << root->humman.nacionalidade << endl;
 	sort_tree_out_menu_8(root->right);
 }
